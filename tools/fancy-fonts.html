@@ -1,1 +1,134 @@
-<h2>Fancy Fonts Generator</h2><p>Convert text to stylish fonts.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fancy Fonts Generator</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(135deg, #ff6ec4, #7873f5);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .output {
+      margin-top: 20px;
+    }
+
+    .fancy-box {
+      background: #f9f9f9;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .copy-btn {
+      background: #00b894;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background: #019875;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Fancy Fonts Generator</h2>
+    <input type="text" id="userInput" placeholder="Type something to convert..." />
+    <button class="btn" onclick="generateFonts()">Generate Fancy Fonts</button>
+
+    <div class="output" id="outputFonts"></div>
+  </div>
+
+  <script>
+    const fonts = [
+      str => str.split('').map(c => c + '\u0336').join(''), // strikethrough
+      str => str.toUpperCase(), // upper
+      str => str.toLowerCase(), // lower
+      str => str.split('').map(c => c + '̲').join(''), // underline
+      str => str.split('').reverse().join(''), // reverse
+      str => str.replace(/[a-z]/gi, c =>
+        String.fromCharCode(c.charCodeAt(0) + 119743)
+      ), // fancy unicode
+    ];
+
+    function generateFonts() {
+      const input = document.getElementById("userInput").value;
+      const outputDiv = document.getElementById("outputFonts");
+      outputDiv.innerHTML = "";
+
+      if (!input) {
+        outputDiv.innerHTML = "<p>Please enter text above.</p>";
+        return;
+      }
+
+      fonts.forEach((format, index) => {
+        const fancy = format(input);
+        const div = document.createElement("div");
+        div.className = "fancy-box";
+        div.innerHTML = `
+          <span>${fancy}</span>
+          <button class="copy-btn" onclick="copyText('${fancy}')">Copy</button>
+        `;
+        outputDiv.appendChild(div);
+      });
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
