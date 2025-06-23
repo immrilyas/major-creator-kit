@@ -8,77 +8,84 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f9f9f9;
-      color: #222;
+      background: #f8f8f8;
       margin: 0;
       padding: 0;
     }
 
     .blog-header {
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
       padding: 2rem;
       text-align: center;
-      color: white;
     }
 
     .blog-header h1 {
-      margin: 0;
       font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-header p {
+      font-size: 1rem;
+      margin: 0;
     }
 
     .blog-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem;
       padding: 2rem;
     }
 
     .blog-card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      background: #fff;
       padding: 1.5rem;
-      transition: all 0.3s ease;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+      transition: 0.3s ease;
     }
 
     .blog-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
     .blog-card h2 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       margin-bottom: 0.5rem;
     }
 
     .blog-card p {
       font-size: 0.95rem;
-      margin-bottom: 1rem;
       color: #555;
     }
 
     .blog-card a {
-      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
       color: #2575fc;
-      font-weight: 600;
+      font-weight: bold;
+      text-decoration: none;
     }
 
-    .back-home {
-      display: block;
+    .back-link {
       text-align: center;
-      margin: 2rem 0;
+      margin: 2rem;
+    }
+
+    .back-link a {
       color: #333;
-      font-weight: bold;
       text-decoration: underline;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <header class="blog-header">
-    <h1>📚 Instagram Growth Blog</h1>
-    <p>Tips, tricks & updates from Major Creator Kit</p>
-  </header>
+  <div class="blog-header">
+    <h1>📖 Our Blog</h1>
+    <p>Instagram Tips & Tricks from Major Creator Kit</p>
+  </div>
 
   <section class="blog-list">
     <div class="blog-card">
@@ -89,18 +96,595 @@
 
     <div class="blog-card">
       <h2>How to Use Hashtags in 2025 for Maximum Reach</h2>
-      <p>Reach more people by learning the newest hashtag strategy with our generator.</p>
+      <p>Reach more users with updated hashtag strategies.</p>
       <a href="best-time-to-post.html">Read More →</a>
     </div>
 
     <div class="blog-card">
-      <h2>Instagram Shadowban: What It Is & How to Avoid It</h2>
-      <p>Shadowbans kill reach. Learn how to prevent them using our Banned Hashtag Checker.</p>
+      <h2>Instagram Shadowban Guide</h2>
+      <p>Prevent shadowbans using our Banned Hashtag Checker.</p>
       <a href="instagram-shadowban-guide.html">Read More →</a>
     </div>
   </section>
 
-  <a class="back-home" href="../index.html">← Back to Home</a>
+  <div class="back-link">
+    <a href="../index.html">← Back to Home</a>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .blog-header {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .blog-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-header p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .blog-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .blog-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+      transition: 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .blog-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .blog-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #2575fc;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .back-link {
+      text-align: center;
+      margin: 2rem;
+    }
+
+    .back-link a {
+      color: #333;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blog-header">
+    <h1>📖 Our Blog</h1>
+    <p>Instagram Tips & Tricks from Major Creator Kit</p>
+  </div>
+
+  <section class="blog-list">
+    <div class="blog-card">
+      <h2>10 Tips to Write the Perfect Instagram Bio</h2>
+      <p>Craft a killer bio using our Bio Generator tool and these expert tips.</p>
+      <a href="top-10-instagram-growth-tips.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>How to Use Hashtags in 2025 for Maximum Reach</h2>
+      <p>Reach more users with updated hashtag strategies.</p>
+      <a href="best-time-to-post.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>Instagram Shadowban Guide</h2>
+      <p>Prevent shadowbans using our Banned Hashtag Checker.</p>
+      <a href="instagram-shadowban-guide.html">Read More →</a>
+    </div>
+  </section>
+
+  <div class="back-link">
+    <a href="../index.html">← Back to Home</a>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .blog-header {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .blog-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-header p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .blog-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .blog-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+      transition: 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .blog-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .blog-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #2575fc;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .back-link {
+      text-align: center;
+      margin: 2rem;
+    }
+
+    .back-link a {
+      color: #333;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blog-header">
+    <h1>📖 Our Blog</h1>
+    <p>Instagram Tips & Tricks from Major Creator Kit</p>
+  </div>
+
+  <section class="blog-list">
+    <div class="blog-card">
+      <h2>10 Tips to Write the Perfect Instagram Bio</h2>
+      <p>Craft a killer bio using our Bio Generator tool and these expert tips.</p>
+      <a href="top-10-instagram-growth-tips.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>How to Use Hashtags in 2025 for Maximum Reach</h2>
+      <p>Reach more users with updated hashtag strategies.</p>
+      <a href="best-time-to-post.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>Instagram Shadowban Guide</h2>
+      <p>Prevent shadowbans using our Banned Hashtag Checker.</p>
+      <a href="instagram-shadowban-guide.html">Read More →</a>
+    </div>
+  </section>
+
+  <div class="back-link">
+    <a href="../index.html">← Back to Home</a>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .blog-header {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .blog-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-header p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .blog-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .blog-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+      transition: 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .blog-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .blog-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #2575fc;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .back-link {
+      text-align: center;
+      margin: 2rem;
+    }
+
+    .back-link a {
+      color: #333;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blog-header">
+    <h1>📖 Our Blog</h1>
+    <p>Instagram Tips & Tricks from Major Creator Kit</p>
+  </div>
+
+  <section class="blog-list">
+    <div class="blog-card">
+      <h2>10 Tips to Write the Perfect Instagram Bio</h2>
+      <p>Craft a killer bio using our Bio Generator tool and these expert tips.</p>
+      <a href="top-10-instagram-growth-tips.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>How to Use Hashtags in 2025 for Maximum Reach</h2>
+      <p>Reach more users with updated hashtag strategies.</p>
+      <a href="best-time-to-post.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>Instagram Shadowban Guide</h2>
+      <p>Prevent shadowbans using our Banned Hashtag Checker.</p>
+      <a href="instagram-shadowban-guide.html">Read More →</a>
+    </div>
+  </section>
+
+  <div class="back-link">
+    <a href="../index.html">← Back to Home</a>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .blog-header {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .blog-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-header p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .blog-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .blog-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+      transition: 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .blog-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .blog-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #2575fc;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .back-link {
+      text-align: center;
+      margin: 2rem;
+    }
+
+    .back-link a {
+      color: #333;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blog-header">
+    <h1>📖 Our Blog</h1>
+    <p>Instagram Tips & Tricks from Major Creator Kit</p>
+  </div>
+
+  <section class="blog-list">
+    <div class="blog-card">
+      <h2>10 Tips to Write the Perfect Instagram Bio</h2>
+      <p>Craft a killer bio using our Bio Generator tool and these expert tips.</p>
+      <a href="top-10-instagram-growth-tips.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>How to Use Hashtags in 2025 for Maximum Reach</h2>
+      <p>Reach more users with updated hashtag strategies.</p>
+      <a href="best-time-to-post.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>Instagram Shadowban Guide</h2>
+      <p>Prevent shadowbans using our Banned Hashtag Checker.</p>
+      <a href="instagram-shadowban-guide.html">Read More →</a>
+    </div>
+  </section>
+
+  <div class="back-link">
+    <a href="../index.html">← Back to Home</a>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .blog-header {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .blog-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-header p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .blog-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .blog-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+      transition: 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .blog-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .blog-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #2575fc;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .back-link {
+      text-align: center;
+      margin: 2rem;
+    }
+
+    .back-link a {
+      color: #333;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blog-header">
+    <h1>📖 Our Blog</h1>
+    <p>Instagram Tips & Tricks from Major Creator Kit</p>
+  </div>
+
+  <section class="blog-list">
+    <div class="blog-card">
+      <h2>10 Tips to Write the Perfect Instagram Bio</h2>
+      <p>Craft a killer bio using our Bio Generator tool and these expert tips.</p>
+      <a href="top-10-instagram-growth-tips.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>How to Use Hashtags in 2025 for Maximum Reach</h2>
+      <p>Reach more users with updated hashtag strategies.</p>
+      <a href="best-time-to-post.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>Instagram Shadowban Guide</h2>
+      <p>Prevent shadowbans using our Banned Hashtag Checker.</p>
+      <a href="instagram-shadowban-guide.html">Read More →</a>
+    </div>
+  </section>
+
+  <div class="back-link">
+    <a href="../index.html">← Back to Home</a>
+  </div>
 
 </body>
 </html>
