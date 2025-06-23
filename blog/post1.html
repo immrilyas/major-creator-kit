@@ -1,31 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Top 10 Instagram Growth Tips</title>
-  <link rel="stylesheet" href="../style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Deep Dive into CSS Gradients | Major Creator Kit</title>
+    <style>
+        /* Yeh styles blog.html se copy kiye gaye hain - behtar hai ki ek common style.css file banayein */
+        :root {
+            --dark-bg: #1a1a1a;
+            --card-bg: #252525;
+            --primary-text: #ffffff;
+            --secondary-text: #aaaaaa;
+            --accent-color: #007bff;
+            --font-family: 'Inter', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); background-color: var(--dark-bg); color: var(--primary-text); line-height: 1.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+
+        /* Single Post Styles */
+        .single-post-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .single-post-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .post-meta {
+            color: var(--secondary-text);
+            font-size: 1rem;
+        }
+        .feature-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .post-content h2 {
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        .post-content h3 {
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .post-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #dcdcdc; /* Thora sa off-white */
+        }
+        .post-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .post-content a:hover {
+            text-decoration: underline;
+        }
+        .post-content blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--secondary-text);
+        }
+        .post-content pre {
+            background-color: #0d1117; /* GitHub Dark */
+            color: #c9d1d9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        .post-content code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Top 10 Instagram Growth Tips in 2025</h1>
-  </header>
+    <main>
+        <article class="container">
+            <header class="single-post-header">
+                <h1>A Deep Dive into CSS Gradients</h1>
+                <div class="post-meta">
+                    <span>By Ilyas Khan</span> | <span>June 23, 2025</span>
+                </div>
+            </header>
 
-  <main class="blog-content">
-    <p>Want to grow on Instagram? Here are 10 top tips for 2025:</p>
-    <ol>
-      <li>Optimize your bio with a clear CTA.</li>
-      <li>Use high-converting hashtags.</li>
-      <li>Post consistently with a content calendar.</li>
-      <li>Leverage Reels for viral growth.</li>
-      <li>Collaborate with creators in your niche.</li>
-      <li>Use Instagram Stories daily.</li>
-      <li>Track performance using insights.</li>
-      <li>Engage with your community authentically.</li>
-      <li>Run giveaways or contests.</li>
-      <li>Use Major Creator Kit tools to speed things up!</li>
-    </ol>
-    <a href="../index.html">← Back to Home</a>
-  </main>
-</body>
+            <img class="feature-image" src="https://placehold.co/800x400/007bff/FFFFFF?text=CSS+Gradients" alt="CSS Gradients Feature Image">
+
+            <div class="post-content">
+                <p>Gradients are one of the most powerful tools in a web designer's arsenal. They allow us to create smooth transitions between two or more colors, adding depth, realism, and visual interest to our designs. Long gone are the days of flat, boring backgrounds.</p>
+                
+                <h2>Understanding Linear Gradients</h2>
+                <p>The most common type of gradient is the linear gradient. It creates a straight line of color transition. You can control its direction using angles or keywords like <code>to right</code>, <code>to bottom left</code>, etc.</p>
+                
+                <pre><code>body {
+  background-image: linear-gradient(to right, #007bff, #e83e8c);
+}</code></pre>
+
+                <blockquote>This is a blockquote. It's a great way to highlight a key point or a quote from an expert. The line on the left helps it stand out from the rest of the content.</blockquote>
+
+                <h2>Exploring Radial Gradients</h2>
+                <p>Unlike linear gradients, radial gradients emerge from a single point and spread outwards in a circular or elliptical shape. This is perfect for creating spotlights or sunburst effects.</p>
+                
+                <p>This is a long and detailed blog post. Filling it with high-quality, original content of over 1000 words is essential for good user experience and, most importantly, for **Google AdSense approval**.</p>
+                
+                 <p>For more information, you can always visit the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/gradient" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>.</p>
+            </div>
+        </article>
+    </main>
+    
+    </body>
 </html>
