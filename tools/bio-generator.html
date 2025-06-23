@@ -1,1 +1,51 @@
-<h2>Instagram Bio Generator</h2><p>Generate creative bios.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram Bio Generator - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Major Creator Kit</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="bio-generator.html">Bio Generator</a>
+      <a href="../blog/index.html">Blog</a>
+    </nav>
+  </header>
+
+  <main style="padding: 2rem;">
+    <h2>Instagram Bio Generator</h2>
+    <p>Generate stylish and creative Instagram bios in one click.</p>
+
+    <textarea id="bioOutput" rows="4" style="width: 100%; margin: 1rem 0;"></textarea>
+    <button onclick="generateBio()">Generate New Bio</button>
+
+    <section style="margin-top: 2rem;">
+      <h3>How to Use This Tool</h3>
+      <ul>
+        <li>Click the "Generate New Bio" button</li>
+        <li>Copy the text and paste it in your Instagram profile</li>
+        <li>Try again to get more variations</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const bios = [
+      "✨ Dream big, hustle harder.",
+      "🎯 Building my empire, one post at a time.",
+      "🌍 Sharing my world, one story at a time.",
+      "💫 Chasing vibes, not likes.",
+      "🚀 On a mission to inspire."
+    ];
+
+    function generateBio() {
+      const random = Math.floor(Math.random() * bios.length);
+      document.getElementById('bioOutput').value = bios[random];
+    }
+  </script>
+</body>
+</html>
