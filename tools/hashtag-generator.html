@@ -8,19 +8,53 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f8f8f8;
+      margin: 0;
+      background: #f7f8fc;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
     }
 
     .container {
       max-width: 800px;
       margin: 2rem auto;
-      background: #fff;
+      background: white;
       padding: 2rem;
       border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
-    input, textarea {
+    h2 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    p.description {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    input[type="text"] {
       width: 100%;
       padding: 1rem;
       font-size: 16px;
@@ -30,7 +64,8 @@
     }
 
     .btn {
-      background: linear-gradient(135deg, #1abc9c, #16a085);
+      display: inline-block;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
       color: #fff;
       padding: 0.75rem 2rem;
       border: none;
@@ -41,20 +76,42 @@
     }
 
     .btn:hover {
-      box-shadow: 0 4px 14px rgba(22, 160, 133, 0.4);
-      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(0,114,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin-top: 1rem;
+      padding: 1rem;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+
+    .copy-btn {
+      margin-top: 1rem;
+      display: none;
+      background: #28c76f;
+    }
+
+    .copy-btn.show {
+      display: inline-block;
     }
 
     footer {
       text-align: center;
-      margin-top: 3rem;
+      margin: 3rem 0 1rem;
       color: #888;
       font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <header class="header">
+
+  <header>
     <h1>Major Creator Kit</h1>
     <nav>
       <a href="../index.html">Home</a>
@@ -64,15 +121,16 @@
     </nav>
   </header>
 
-  <main class="container">
+  <div class="container">
     <h2>Instagram Hashtag Generator</h2>
-    <p>Type a topic or keyword and get suggested hashtags!</p>
+    <p class="description">Type a keyword or niche and get high-performing hashtags for your content.</p>
 
-    <input type="text" id="keyword" placeholder="e.g., travel, fitness, food" />
+    <input type="text" id="keyword" placeholder="e.g., fashion, travel, fitness" />
     <button class="btn" onclick="generateHashtags()">🚀 Generate Hashtags</button>
 
-    <textarea id="hashtagOutput" placeholder="Your hashtags will appear here..." readonly></textarea>
-  </main>
+    <textarea id="output" readonly placeholder="Generated hashtags will appear here..."></textarea>
+    <button class="btn copy-btn" id="copyBtn" onclick="copyHashtags()">📋 Copy Hashtags</button>
+  </div>
 
   <footer>
     <p>© 2025 Major Creator Kit. All Rights Reserved. A project by MajorSMMPanel.online.</p>
@@ -80,29 +138,45 @@
 
   <script>
     function generateHashtags() {
-      const keyword = document.getElementById('keyword').value.trim().toLowerCase();
-      const output = document.getElementById('hashtagOutput');
+      const keyword = document.getElementById("keyword").value.trim().toLowerCase();
+      const output = document.getElementById("output");
+      const copyBtn = document.getElementById("copyBtn");
 
       if (!keyword) {
-        output.value = "Please enter a keyword!";
+        output.value = "❌ Please enter a keyword first!";
+        copyBtn.classList.remove("show");
         return;
       }
 
       const hashtags = [
         `#${keyword}`,
         `#${keyword}life`,
-        `#${keyword}vibes`,
-        `#${keyword}lovers`,
-        `#${keyword}goals`,
+        `#${keyword}love`,
+        `#${keyword}style`,
         `#insta${keyword}`,
-        `#love${keyword}`,
         `#explore${keyword}`,
         `#daily${keyword}`,
-        `#${keyword}community`
+        `#${keyword}gram`,
+        `#${keyword}community`,
+        `#trending${keyword}`
       ];
 
-      output.value = hashtags.join(' ');
+      output.value = hashtags.join(" ");
+      copyBtn.classList.add("show");
+    }
+
+    function copyHashtags() {
+      const output = document.getElementById("output");
+      output.select();
+      document.execCommand("copy");
+
+      const copyBtn = document.getElementById("copyBtn");
+      copyBtn.innerText = "✅ Copied!";
+      setTimeout(() => {
+        copyBtn.innerText = "📋 Copy Hashtags";
+      }, 2000);
     }
   </script>
+
 </body>
 </html>
