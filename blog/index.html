@@ -1,22 +1,106 @@
-<!-- Blog Section -->
-<section class="blog-preview">
-  <h2 class="section-title">Latest Blog Posts</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
 
-  <div class="blog-card">
-    <h4>Top 10 Instagram Growth Tips in 2025</h4>
-    <p>Learn how to grow your Instagram fast with proven strategies and real-world tools.</p>
-    <a href="blog/top-10-instagram-growth-tips.html">Read More →</a>
-  </div>
+    .blog-header {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      padding: 2rem;
+      text-align: center;
+      color: white;
+    }
 
-  <div class="blog-card">
-    <h4>Best Time to Post on Instagram [Updated]</h4>
-    <p>Know exactly when your followers are most active and how to schedule content for max engagement.</p>
-    <a href="blog/best-time-to-post.html">Read More →</a>
-  </div>
+    .blog-header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
 
-  <div class="blog-card">
-    <h4>Instagram Shadowban: What It Is & How to Avoid It</h4>
-    <p>Understand the Instagram shadowban and how to protect your account from being hidden or penalized.</p>
-    <a href="blog/instagram-shadowban-guide.html">Read More →</a>
-  </div>
-</section>
+    .blog-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .blog-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .blog-card a {
+      text-decoration: none;
+      color: #2575fc;
+      font-weight: 600;
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin: 2rem 0;
+      color: #333;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="blog-header">
+    <h1>📚 Instagram Growth Blog</h1>
+    <p>Tips, tricks & updates from Major Creator Kit</p>
+  </header>
+
+  <section class="blog-list">
+    <div class="blog-card">
+      <h2>10 Tips to Write the Perfect Instagram Bio</h2>
+      <p>Craft a killer bio using our Bio Generator tool and these expert tips.</p>
+      <a href="top-10-instagram-growth-tips.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>How to Use Hashtags in 2025 for Maximum Reach</h2>
+      <p>Reach more people by learning the newest hashtag strategy with our generator.</p>
+      <a href="best-time-to-post.html">Read More →</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>Instagram Shadowban: What It Is & How to Avoid It</h2>
+      <p>Shadowbans kill reach. Learn how to prevent them using our Banned Hashtag Checker.</p>
+      <a href="instagram-shadowban-guide.html">Read More →</a>
+    </div>
+  </section>
+
+  <a class="back-home" href="../index.html">← Back to Home</a>
+
+</body>
+</html>
