@@ -3,70 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Instagram Post Preview Tool</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <title>Instagram Post Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
-      background-color: #0f0f12;
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 2rem;
+      background-color: #0d0d0d;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
     }
-    .container {
+    .tool-wrapper {
       max-width: 600px;
       margin: auto;
-      background: #1c1c22;
+      background: #1a1a1a;
       padding: 2rem;
       border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
     }
     h2 {
-      color: #00ffcc;
       text-align: center;
+      color: #00ffc3;
       margin-bottom: 1.5rem;
     }
-    input[type="file"],
-    textarea {
+    input[type="file"], textarea {
       width: 100%;
       margin-bottom: 1rem;
-      background: #101014;
-      color: #00ffcc;
       padding: 0.8rem;
-      border: 1px solid #333;
+      border: none;
       border-radius: 8px;
+      background-color: #121212;
+      color: #00ffc3;
     }
     textarea {
       height: 120px;
-      resize: vertical;
     }
     button {
-      background: #00ffcc;
+      width: 100%;
+      background-color: #00ffc3;
       color: #000;
+      padding: 0.8rem;
       border: none;
-      padding: 0.7rem 2rem;
       border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
+      transition: 0.3s ease;
     }
     button:hover {
-      background: #00e0b3;
+      background-color: #00e6b0;
     }
-    .preview {
+    .preview-box {
       display: none;
       margin-top: 2rem;
-      background: #101014;
-      padding: 1rem;
+      background: #111;
       border-radius: 12px;
+      padding: 1rem;
     }
-    .preview img {
+    .preview-box img {
       width: 100%;
-      max-height: 400px;
-      object-fit: cover;
       border-radius: 10px;
     }
-    .preview p {
+    .preview-caption {
       margin-top: 1rem;
       white-space: pre-wrap;
       font-size: 1rem;
@@ -75,40 +72,38 @@
 </head>
 <body>
 
-  <div class="container">
-    <h2>📸 Instagram Post Preview Tool</h2>
+  <div class="tool-wrapper">
+    <h2>Instagram Post Preview</h2>
     <input type="file" id="imageInput" accept="image/*" />
     <textarea id="captionInput" placeholder="Write your Instagram caption here..."></textarea>
-    <button onclick="showPreview()">Preview Post</button>
+    <button onclick="generatePreview()">Show Preview</button>
 
-    <div class="preview" id="previewSection">
-      <img id="previewImage" src="" alt="Preview Image" />
-      <p id="previewCaption"></p>
+    <div class="preview-box" id="previewBox">
+      <img id="postImage" src="" alt="Preview Image" />
+      <div class="preview-caption" id="postCaption"></div>
     </div>
   </div>
 
   <script>
-    function showPreview() {
-      const imageInput = document.getElementById('imageInput');
-      const captionText = document.getElementById('captionInput').value;
-      const previewImage = document.getElementById('previewImage');
-      const previewCaption = document.getElementById('previewCaption');
-      const previewSection = document.getElementById('previewSection');
+    function generatePreview() {
+      const imgInput = document.getElementById("imageInput");
+      const caption = document.getElementById("captionInput").value;
+      const postImage = document.getElementById("postImage");
+      const postCaption = document.getElementById("postCaption");
+      const previewBox = document.getElementById("previewBox");
 
-      if (!imageInput.files.length) {
-        alert("Please upload an image.");
+      if (!imgInput.files.length) {
+        alert("Please select an image to preview.");
         return;
       }
 
-      const file = imageInput.files[0];
+      const file = imgInput.files[0];
       const reader = new FileReader();
-
-      reader.onload = function (e) {
-        previewImage.src = e.target.result;
-        previewCaption.textContent = captionText || "(No caption added)";
-        previewSection.style.display = "block";
+      reader.onload = function(e) {
+        postImage.src = e.target.result;
+        postCaption.textContent = caption || "(No caption)";
+        previewBox.style.display = "block";
       };
-
       reader.readAsDataURL(file);
     }
   </script>
