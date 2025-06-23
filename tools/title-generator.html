@@ -1,1 +1,115 @@
-<h2>Title Generator</h2><p>Create catchy Instagram post titles.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram Title Generator - Major Creator Kit</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      resize: none;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: #fff;
+      padding: 0.6rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 114, 255, 0.3);
+    }
+
+    .output {
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Instagram Title Generator</h1>
+    <p>Enter your topic or keyword below:</p>
+    <input type="text" id="topicInput" placeholder="e.g. Fashion, Travel, Motivation" />
+    <button class="btn" onclick="generateTitle()">Generate Title</button>
+
+    <div id="resultBox" style="display:none;">
+      <h3>Generated Title:</h3>
+      <div class="output" id="outputTitle"></div>
+      <button class="btn" onclick="copyTitle()">Copy Title</button>
+    </div>
+  </div>
+
+  <script>
+    function generateTitle() {
+      const topic = document.getElementById("topicInput").value.trim();
+      const output = document.getElementById("outputTitle");
+      const resultBox = document.getElementById("resultBox");
+
+      if (!topic) {
+        output.innerHTML = "Please enter a topic!";
+        resultBox.style.display = "block";
+        return;
+      }
+
+      const templates = [
+        `Top 10 ${topic} Ideas That Will Blow Your Mind!`,
+        `Ultimate Guide to ${topic} You Can't Miss`,
+        `Why ${topic} Is Taking Over Instagram Right Now`,
+        `Proven ${topic} Tips for More Engagement`,
+        `Secret Tricks to Dominate ${topic} in 2025`
+      ];
+
+      const randomTitle = templates[Math.floor(Math.random() * templates.length)];
+      output.innerText = randomTitle;
+      resultBox.style.display = "block";
+    }
+
+    function copyTitle() {
+      const titleText = document.getElementById("outputTitle").innerText;
+      navigator.clipboard.writeText(titleText).then(() => {
+        alert("Title copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
