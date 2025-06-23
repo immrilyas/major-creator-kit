@@ -6,13 +6,18 @@
   <title>Instagram Bio Generator - Major Creator Kit</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+    }
+
     .container {
       max-width: 800px;
       margin: 2rem auto;
       background: #fff;
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
     }
 
     textarea {
@@ -20,25 +25,40 @@
       height: 120px;
       padding: 1rem;
       font-size: 16px;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid #ccc;
       margin-top: 1rem;
       margin-bottom: 1rem;
       resize: none;
+      background: #fefefe;
     }
 
-    button {
-      background: #9b59b6;
+    .btn {
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
       color: #fff;
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 2rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 30px;
       cursor: pointer;
       font-size: 16px;
+      transition: all 0.3s ease;
+      margin-right: 1rem;
     }
 
-    button:hover {
-      background: #8e44ad;
+    .btn:hover {
+      box-shadow: 0 4px 14px rgba(155, 89, 182, 0.4);
+      transform: scale(1.03);
+    }
+
+    .copy-msg {
+      color: green;
+      margin-top: 10px;
+      display: none;
+    }
+
+    #copyBtn {
+      display: none;
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
     }
 
     ul {
@@ -47,6 +67,13 @@
 
     ul li {
       margin-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #888;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -65,20 +92,25 @@
     <p>Generate stylish and creative Instagram bios in one click.</p>
 
     <textarea id="bioOutput" placeholder="Your generated bio will appear here..."></textarea>
-    <br />
-    <button onclick="generateBio()">Generate New Bio</button>
+
+    <div>
+      <button class="btn" onclick="generateBio()">🎲 Generate New Bio</button>
+      <button class="btn" id="copyBtn" onclick="copyBio()">📋 Copy Bio</button>
+    </div>
+
+    <p id="copiedMsg" class="copy-msg">✅ Bio copied to clipboard!</p>
 
     <section>
       <h3>How to Use This Tool</h3>
       <ul>
         <li>Click the "Generate New Bio" button</li>
-        <li>Copy the text and paste it into your Instagram profile</li>
-        <li>Try again for more bio ideas</li>
+        <li>Use the "Copy Bio" button to quickly copy the generated text</li>
+        <li>Paste it into your Instagram profile</li>
       </ul>
     </section>
   </main>
 
-  <footer style="text-align: center; padding: 2rem 1rem;">
+  <footer>
     <p>© 2025 Major Creator Kit. All Rights Reserved. A project by MajorSMMPanel.online.</p>
   </footer>
 
@@ -99,6 +131,16 @@
     function generateBio() {
       const random = Math.floor(Math.random() * bios.length);
       document.getElementById('bioOutput').value = bios[random];
+      document.getElementById('copyBtn').style.display = 'inline-block';
+      document.getElementById('copiedMsg').style.display = 'none';
+    }
+
+    function copyBio() {
+      const textArea = document.getElementById('bioOutput');
+      textArea.select();
+      textArea.setSelectionRange(0, 99999); // For mobile
+      document.execCommand("copy");
+      document.getElementById('copiedMsg').style.display = 'block';
     }
   </script>
 </body>
