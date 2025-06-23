@@ -1,1 +1,159 @@
-<h2>Username Checker</h2><p>Check username availability.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram Username Checker - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #5851DB, #833AB4);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    p.description {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 1rem;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      box-shadow: 0 4px 12px rgba(0,114,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .result {
+      margin-top: 2rem;
+      padding: 1rem;
+      border-radius: 10px;
+      background: #e5f9e7;
+      color: #28a745;
+      display: none;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .error {
+      background: #ffe5e5;
+      color: #dc3545;
+    }
+
+    footer {
+      text-align: center;
+      margin: 3rem 0 1rem;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Major Creator Kit</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="bio-generator.html">Bio Generator</a>
+      <a href="username-checker.html">Username Checker</a>
+      <a href="../blog/index.html">Blog</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Instagram Username Checker</h2>
+    <p class="description">Check if your desired Instagram username is available or taken.</p>
+
+    <input type="text" id="username" placeholder="Enter a username to check..." />
+    <button class="btn" onclick="checkUsername()">🔍 Check Availability</button>
+
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <footer>
+    <p>© 2025 Major Creator Kit. All Rights Reserved. A project by MajorSMMPanel.online.</p>
+  </footer>
+
+  <script>
+    function checkUsername() {
+      const username = document.getElementById("username").value.trim();
+      const resultBox = document.getElementById("resultBox");
+
+      if (username === "") {
+        resultBox.className = "result error";
+        resultBox.innerText = "❌ Please enter a username.";
+        resultBox.style.display = "block";
+        return;
+      }
+
+      // Simulated result (actual Instagram username check requires API or backend)
+      const isAvailable = Math.random() > 0.5;
+
+      if (isAvailable) {
+        resultBox.className = "result";
+        resultBox.innerText = `✅ Good news! The username "@${username}" is available.`;
+      } else {
+        resultBox.className = "result error";
+        resultBox.innerText = `❌ Sorry, the username "@${username}" is already taken.`;
+      }
+
+      resultBox.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
