@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background: #f3f4f6;
+      background: #f5f7fa;
       margin: 0;
       padding: 0;
     }
@@ -16,21 +16,27 @@
     header {
       background: linear-gradient(to right, #6a11cb, #2575fc);
       color: white;
-      text-align: center;
       padding: 20px;
-      font-size: 24px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
     }
 
     main {
-      max-width: 700px;
+      max-width: 600px;
       margin: 40px auto;
-      background: white;
+      background: #ffffff;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
     }
 
-    input {
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
       width: 100%;
       padding: 14px;
       font-size: 16px;
@@ -45,33 +51,43 @@
       font-size: 16px;
       background: linear-gradient(to right, #00c6ff, #0072ff);
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       color: white;
       cursor: pointer;
       font-weight: bold;
     }
 
     .output {
-      text-align: center;
       margin-top: 30px;
+      text-align: center;
     }
 
     .output img {
-      max-width: 200px;
+      max-width: 180px;
       border-radius: 50%;
-      margin-bottom: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .how-to {
+    .download-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #22c55e;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .instructions {
       margin-top: 40px;
     }
 
-    .how-to h3 {
+    .instructions h3 {
       margin-bottom: 10px;
     }
 
-    .how-to ul {
+    .instructions ul {
       padding-left: 20px;
     }
 
@@ -79,6 +95,7 @@
       text-align: center;
       padding: 20px;
       color: #777;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -87,24 +104,27 @@
   <header>Instagram Profile Picture Downloader</header>
 
   <main>
-    <h2>Enter Instagram Username</h2>
-    <input type="text" id="username" placeholder="e.g. natgeo" />
-    <button class="btn" onclick="generateImage()">Download DP</button>
+    <h2>Download Any Instagram Profile Picture</h2>
+
+    <input type="text" id="username" placeholder="Enter Instagram Username" />
+
+    <button class="btn" onclick="generateImage()">Fetch DP</button>
 
     <div class="output" id="outputArea"></div>
 
-    <section class="how-to">
+    <div class="instructions">
       <h3>How to Use This Tool:</h3>
       <ul>
-        <li>Enter any Instagram username above.</li>
-        <li>Click the "Download DP" button.</li>
-        <li>The profile picture will appear below.</li>
-        <li>You can right-click the image to save it.</li>
+        <li>Enter the Instagram username (like `natgeo`, `therock`, etc).</li>
+        <li>Click the "Fetch DP" button.</li>
+        <li>Profile picture will appear below. You can right-click to save or use download button.</li>
       </ul>
-    </section>
+    </div>
   </main>
 
-  <footer>© 2025 Major Creator Kit. All Rights Reserved.</footer>
+  <footer>
+    © 2025 Major Creator Kit. All Rights Reserved. A project by MajorSMMPanel.online.
+  </footer>
 
   <script>
     function generateImage() {
@@ -112,17 +132,17 @@
       const output = document.getElementById('outputArea');
 
       if (!username) {
-        output.innerHTML = "<p>Please enter a valid username.</p>";
+        output.innerHTML = "<p style='color: red;'>Please enter a valid username.</p>";
         return;
       }
 
-      // Simulated image URL (doesn't work with real IG usernames in this demo)
-      const imgURL = `https://avatars.dicebear.com/api/initials/${username}.svg`;
+      // Demo profile picture (replace with real one if using API or backend)
+      const dpURL = `https://avatars.dicebear.com/api/initials/${encodeURIComponent(username)}.svg`;
 
       output.innerHTML = `
-        <img src="${imgURL}" alt="Profile Picture">
+        <img src="${dpURL}" alt="Profile Picture of ${username}">
         <br>
-        <a href="${imgURL}" download="${username}_dp.png" class="btn" style="margin-top: 10px; display: inline-block;">Download Image</a>
+        <a href="${dpURL}" download="${username}_dp.png" class="download-link">Download Image</a>
       `;
     }
   </script>
