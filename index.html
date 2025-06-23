@@ -1,57 +1,242 @@
-<section class="tools-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 2rem;">
-  
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Username Checker</h3>
-    <p>Check if your Instagram username is available.</p>
-    <a href="tools/username-checker.html" class="btn">Use Tool</a>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Major Creator Kit - Instagram Tools</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
+      color: #ffffff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #00ffc3;
+    }
+    nav a {
+      color: #ffffff;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #00ffc3;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #1f1f1f, #111);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #00ffc3;
+    }
+    .hero p {
+      margin: 1rem auto;
+      max-width: 600px;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    .cta-btn {
+      padding: 0.75rem 1.5rem;
+      background-color: #00ffc3;
+      color: #111;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .tools-grid {
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .tool-card {
+      background-color: #1c1c1c;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 12px rgba(0, 255, 195, 0.05);
+    }
+    .tool-card h3 {
+      color: #fff;
+    }
+    .tool-card p {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .tool-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #00ffc3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .blog-preview {
+      background-color: #111;
+      padding: 3rem 2rem;
+    }
+    .blog-preview h2 {
+      text-align: center;
+      color: #00ffc3;
+      margin-bottom: 2rem;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .blog-card {
+      background-color: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,255,195,0.1);
+    }
+    .blog-card h3 {
+      color: #fff;
+    }
+    .blog-card p {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .blog-card a {
+      color: #00ffc3;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    footer {
+      background-color: #111;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    footer a {
+      color: #00ffc3;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
 
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Bio Generator</h3>
-    <p>Generate the perfect Instagram bio.</p>
-    <a href="tools/bio-generator.html" class="btn">Use Tool</a>
-  </div>
+<header>
+  <div class="logo">Major Creator Kit</div>
+  <nav>
+    <a href="bio-generator.html">Bio Generator</a>
+    <a href="hashtag-generator.html">Hashtag Tool</a>
+    <a href="profile-pic-downloader.html">Profile Pic</a>
+    <a href="fancy-fonts.html">Fancy Fonts</a>
+    <a href="grid-planner.html">Grid Planner</a>
+    <a href="banned-hashtags.html">Banned Checker</a>
+    <a href="post-preview.html">Post Preview</a>
+    <a href="blog/index.html">Blog</a>
+  </nav>
+</header>
 
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Hashtag Generator</h3>
-    <p>Find trending hashtags for your posts.</p>
-    <a href="tools/hashtag-generator.html" class="btn">Use Tool</a>
-  </div>
-
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Profile Pic Downloader</h3>
-    <p>Download full-size Instagram profile pictures.</p>
-    <a href="tools/profile-pic-downloader.html" class="btn">Use Tool</a>
-  </div>
-
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Fancy Fonts Generator</h3>
-    <p>Create stylish fonts for Instagram bio & captions.</p>
-    <a href="tools/fancy-fonts.html" class="btn">Use Tool</a>
-  </div>
-
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Title Generator</h3>
-    <p>Generate catchy Instagram post titles.</p>
-    <a href="tools/title-generator.html" class="btn">Use Tool</a>
-  </div>
-
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Grid Planner</h3>
-    <p>Visualize and organize your Instagram feed layout.</p>
-    <a href="tools/grid-planner.html" class="btn">Use Tool</a>
-  </div>
-
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Banned Hashtag Checker</h3>
-    <p>Check which hashtags are banned or shadowbanned.</p>
-    <a href="tools/banned-hashtag-checker.html" class="btn">Use Tool</a>
-  </div>
-
-  <div class="tool-card" style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-    <h3>Post Preview Tool</h3>
-    <p>Preview how your post will look on Instagram.</p>
-    <a href="tools/post-preview.html" class="btn">Use Tool</a>
-  </div>
-
+<section class="hero">
+  <h1>The Ultimate Toolkit for Instagram Creators</h1>
+  <p>Get free tools to craft the perfect bio, find hashtags, plan your grid, and more.</p>
+  <a href="#tools" class="cta-btn">Explore Free Tools</a>
 </section>
+
+<section id="tools" class="tools-grid">
+  <div class="tool-card">
+    <h3>Username Checker</h3>
+    <p>Check if your Instagram handle is available.</p>
+    <a href="username-checker.html">Use Tool →</a>
+  </div>
+  <div class="tool-card">
+    <h3>Bio Generator</h3>
+    <p>Create catchy Instagram bios with one click.</p>
+    <a href="bio-generator.html">Use Tool →</a>
+  </div>
+  <div class="tool-card">
+    <h3>Hashtag Generator</h3>
+    <p>Get the best hashtags for your posts.</p>
+    <a href="hashtag-generator.html">Use Tool →</a>
+  </div>
+  <div class="tool-card">
+    <h3>Profile Pic Downloader</h3>
+    <p>Download anyone’s profile pic in HD.</p>
+    <a href="profile-pic-downloader.html">Use Tool →</a>
+  </div>
+  <div class="tool-card">
+    <h3>Fancy Fonts Generator</h3>
+    <p>Style your bio with cool fonts.</p>
+    <a href="fancy-fonts.html">Use Tool →</a>
+  </div>
+  <div class="tool-card">
+    <h3>Title Generator</h3>
+    <p>Create powerful Instagram titles.</p>
+    <a href="title-generator.html">Use Tool →</a>
+  </div>
+  <div class="tool-card">
+    <h3>Grid Planner</h3>
+    <p>Visualize and plan your feed grid.</p>
+    <a href="grid-planner.html">Use Tool →</a>
+  </div>
+  <div class="tool-card">
+    <h3>Banned Hashtag Checker</h3>
+    <p>Find out if a hashtag is banned.</p>
+    <a href="banned-hashtags.html">Use Tool →</a>
+  </div>
+  <div class="tool-card">
+    <h3>Post Preview Tool</h3>
+    <p>Preview your post before uploading.</p>
+    <a href="post-preview.html">Use Tool →</a>
+  </div>
+</section>
+
+<section class="blog-preview">
+  <h2>📚 Latest from Our Blog</h2>
+  <div class="blog-grid">
+    <div class="blog-card">
+      <h3>10 Tips to Write the Perfect Instagram Bio</h3>
+      <p>Boost your profile with a professional, catchy bio that attracts followers...</p>
+      <a href="blog/bio-tips.html">Read More →</a>
+    </div>
+    <div class="blog-card">
+      <h3>How to Use Hashtags in 2025</h3>
+      <p>Learn the latest hashtag strategy to reach more users in 2025...</p>
+      <a href="blog/hashtags-2025.html">Read More →</a>
+    </div>
+    <div class="blog-card">
+      <h3>Creating a Stunning Instagram Feed</h3>
+      <p>Grid planning and aesthetic design ideas to stand out on Instagram...</p>
+      <a href="blog/instagram-feed-guide.html">Read More →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Major Creator Kit. All Rights Reserved. A project by <a href="https://majorsmmpanel.online" target="_blank">MajorSMMPanel.online</a> |
+  <a href="about.html">About</a> |
+  <a href="contact.html">Contact</a> |
+  <a href="privacy.html">Privacy</a> |
+  <a href="terms.html">Terms</a> |
+  <a href="disclaimer.html">Disclaimer</a>
+</footer>
+
+</body>
+</html>
