@@ -1,1 +1,108 @@
-<h2>Hashtag Generator</h2><p>Find trending hashtags.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram Hashtag Generator - Major Creator Kit</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8f8;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 1rem;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #1abc9c, #16a085);
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      box-shadow: 0 4px 14px rgba(22, 160, 133, 0.4);
+      transform: scale(1.03);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>Major Creator Kit</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="bio-generator.html">Bio Generator</a>
+      <a href="hashtag-generator.html">Hashtag Generator</a>
+      <a href="../blog/index.html">Blog</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Instagram Hashtag Generator</h2>
+    <p>Type a topic or keyword and get suggested hashtags!</p>
+
+    <input type="text" id="keyword" placeholder="e.g., travel, fitness, food" />
+    <button class="btn" onclick="generateHashtags()">🚀 Generate Hashtags</button>
+
+    <textarea id="hashtagOutput" placeholder="Your hashtags will appear here..." readonly></textarea>
+  </main>
+
+  <footer>
+    <p>© 2025 Major Creator Kit. All Rights Reserved. A project by MajorSMMPanel.online.</p>
+  </footer>
+
+  <script>
+    function generateHashtags() {
+      const keyword = document.getElementById('keyword').value.trim().toLowerCase();
+      const output = document.getElementById('hashtagOutput');
+
+      if (!keyword) {
+        output.value = "Please enter a keyword!";
+        return;
+      }
+
+      const hashtags = [
+        `#${keyword}`,
+        `#${keyword}life`,
+        `#${keyword}vibes`,
+        `#${keyword}lovers`,
+        `#${keyword}goals`,
+        `#insta${keyword}`,
+        `#love${keyword}`,
+        `#explore${keyword}`,
+        `#daily${keyword}`,
+        `#${keyword}community`
+      ];
+
+      output.value = hashtags.join(' ');
+    }
+  </script>
+</body>
+</html>
