@@ -9,7 +9,7 @@
         id="imageUploader" 
         accept="image/*" 
         multiple 
-        style="margin-bottom: 2rem; padding: 0.7rem; border-radius: 8px; background: #1f1f22; color: #00ffab; border: 1px solid #333;">
+        style="margin-bottom: 2rem; padding: 0.7rem 1.2rem; border-radius: 8px; background: #1f1f22; color: #00ffab; border: 1px solid #333; cursor: pointer;">
     </div>
 
     <div id="gridPreview" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 600px; margin: auto;"></div>
@@ -20,7 +20,7 @@
     const gridPreview = document.getElementById('gridPreview');
 
     imageUploader.addEventListener('change', function () {
-      const files = [...this.files].slice(0, 9); // max 9 images
+      const files = [...this.files].slice(0, 9); // Max 9 images
       gridPreview.innerHTML = '';
 
       files.forEach(file => {
@@ -29,7 +29,6 @@
           const img = document.createElement('img');
           img.src = e.target.result;
           img.style.width = '100%';
-          img.style.height = 'auto';
           img.style.aspectRatio = '1 / 1';
           img.style.objectFit = 'cover';
           img.style.borderRadius = '12px';
