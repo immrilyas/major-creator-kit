@@ -5,6 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Instagram Bio Generator - Major Creator Kit</title>
   <link rel="stylesheet" href="../style.css" />
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 1rem;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      resize: none;
+    }
+
+    button {
+      background: #9b59b6;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #8e44ad;
+    }
+
+    ul {
+      margin-top: 1rem;
+    }
+
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -16,22 +60,27 @@
     </nav>
   </header>
 
-  <main style="padding: 2rem;">
+  <main class="container">
     <h2>Instagram Bio Generator</h2>
     <p>Generate stylish and creative Instagram bios in one click.</p>
 
-    <textarea id="bioOutput" rows="4" style="width: 100%; margin: 1rem 0;"></textarea>
+    <textarea id="bioOutput" placeholder="Your generated bio will appear here..."></textarea>
+    <br />
     <button onclick="generateBio()">Generate New Bio</button>
 
-    <section style="margin-top: 2rem;">
+    <section>
       <h3>How to Use This Tool</h3>
       <ul>
         <li>Click the "Generate New Bio" button</li>
-        <li>Copy the text and paste it in your Instagram profile</li>
-        <li>Try again to get more variations</li>
+        <li>Copy the text and paste it into your Instagram profile</li>
+        <li>Try again for more bio ideas</li>
       </ul>
     </section>
   </main>
+
+  <footer style="text-align: center; padding: 2rem 1rem;">
+    <p>© 2025 Major Creator Kit. All Rights Reserved. A project by MajorSMMPanel.online.</p>
+  </footer>
 
   <script>
     const bios = [
@@ -39,7 +88,12 @@
       "🎯 Building my empire, one post at a time.",
       "🌍 Sharing my world, one story at a time.",
       "💫 Chasing vibes, not likes.",
-      "🚀 On a mission to inspire."
+      "🚀 On a mission to inspire.",
+      "🧩 Just another piece of the puzzle.",
+      "📸 Capturing life one click at a time.",
+      "🌈 Color outside the lines.",
+      "👑 Be your own kind of queen/king.",
+      "🔥 Powered by ambition."
     ];
 
     function generateBio() {
