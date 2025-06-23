@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Instagram Post Preview</title>
+  <title>Instagram Post Preview Tool</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
@@ -19,7 +19,7 @@
       background: #1a1a1a;
       padding: 2rem;
       border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
     }
     h2 {
       text-align: center;
@@ -89,24 +89,23 @@
       <div class="preview-caption" id="postCaption"></div>
     </div>
 
-    <button id="downloadBtn" onclick="downloadImage()">Download Post Image</button>
+    <button id="downloadBtn" onclick="downloadPost()">Download Post Image</button>
   </div>
 
   <script>
     function generatePreview() {
       const imgInput = document.getElementById("imageInput");
-      const caption = document.getElementById("captionInput").value;
+      const caption = document.getElementById("captionInput").value.trim();
       const postImage = document.getElementById("postImage");
       const postCaption = document.getElementById("postCaption");
       const previewBox = document.getElementById("previewBox");
       const downloadBtn = document.getElementById("downloadBtn");
 
       if (!imgInput.files.length) {
-        alert("Please select an image to preview.");
+        alert("Please upload an image.");
         return;
       }
 
-      const file = imgInput.files[0];
       const reader = new FileReader();
       reader.onload = function(e) {
         postImage.src = e.target.result;
@@ -114,14 +113,14 @@
         previewBox.style.display = "block";
         downloadBtn.style.display = "block";
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(imgInput.files[0]);
     }
 
-    function downloadImage() {
+    function downloadPost() {
       const img = document.getElementById("postImage");
       const link = document.createElement("a");
       link.href = img.src;
-      link.download = "instagram-post.png";
+      link.download = "instagram-post-preview.png";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
