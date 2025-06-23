@@ -1,39 +1,43 @@
-<section id="bannedHashtagChecker" style="padding: 4rem 1rem; background: #0f0f10; color: #fff; font-family: 'Poppins', sans-serif;">
-  <div style="max-width: 800px; margin: auto;">
-    <h2 style="text-align: center; color: #00ffab; font-size: 2rem;">🚫 Banned Hashtag Checker</h2>
-    <p style="text-align: center; margin-bottom: 2rem;">Check if your hashtags are safe to use on Instagram. Avoid shadowbans by using clean tags.</p>
+<section id="grid-planner" style="padding: 4rem 1rem; background: #0e0e11; color: #fff; font-family: 'Poppins', sans-serif;">
+  <div style="max-width: 1000px; margin: auto;">
+    <h2 style="text-align: center; font-size: 2.5rem; color: #00ffab; margin-bottom: 1rem;">📲 Instagram Grid Planner</h2>
+    <p style="text-align: center; margin-bottom: 2rem;">Upload up to 9 images to preview your Instagram profile layout.</p>
 
-    <textarea id="hashtagsInput" rows="6" placeholder="#fashion\n#followme\n#like4like" style="width: 100%; padding: 1rem; font-size: 1rem; border-radius: 8px; border: none; resize: vertical;"></textarea>
+    <div style="text-align: center;">
+      <input 
+        type="file" 
+        id="imageUploader" 
+        accept="image/*" 
+        multiple 
+        style="margin-bottom: 2rem; padding: 0.7rem; border-radius: 8px; background: #1f1f22; color: #00ffab; border: 1px solid #333;">
+    </div>
 
-    <button onclick="checkHashtags()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: #00ffab; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Check Hashtags</button>
-
-    <div id="resultsContainer" style="margin-top: 2rem;"></div>
+    <div id="gridPreview" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 600px; margin: auto;"></div>
   </div>
 
   <script>
-    const bannedList = [
-      "beautyblogger", "dating", "adulting", "bikinibody", "humpday", 
-      "killingit", "models", "parties", "pushups", "sugarbaby"
-    ];
+    const imageUploader = document.getElementById('imageUploader');
+    const gridPreview = document.getElementById('gridPreview');
 
-    function checkHashtags() {
-      const input = document.getElementById("hashtagsInput").value;
-      const lines = input.split("\n").map(tag => tag.trim().replace("#", "").toLowerCase());
-      const resultsContainer = document.getElementById("resultsContainer");
-      resultsContainer.innerHTML = "";
+    imageUploader.addEventListener('change', function () {
+      const files = [...this.files].slice(0, 9); // max 9 images
+      gridPreview.innerHTML = '';
 
-      lines.forEach(tag => {
-        if (!tag) return;
-        const isBanned = bannedList.includes(tag);
-        const result = document.createElement("div");
-        result.style = "background: #1c1c1f; margin-bottom: 0.5rem; padding: 0.75rem 1rem; border-radius: 6px; display: flex; justify-content: space-between;";
-        result.innerHTML = `
-          <span>#${tag}</span>
-          <span style="color: ${isBanned ? '#ff4d4d' : '#00ffab'}; font-weight: bold;">
-            ${isBanned ? 'Banned ❌' : 'Safe ✅'}
-          </span>`;
-        resultsContainer.appendChild(result);
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.width = '100%';
+          img.style.height = 'auto';
+          img.style.aspectRatio = '1 / 1';
+          img.style.objectFit = 'cover';
+          img.style.borderRadius = '12px';
+          img.style.border = '2px solid #00ffab';
+          gridPreview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
       });
-    }
+    });
   </script>
 </section>
