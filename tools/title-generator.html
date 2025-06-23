@@ -3,111 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Instagram Title Generator - Major Creator Kit</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Title Generator</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f7f9fc;
+      background: #f0f4f8;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
 
     .container {
-      max-width: 700px;
-      margin: auto;
       background: #fff;
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
     }
 
-    h1 {
-      font-size: 28px;
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
       color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
       margin-bottom: 15px;
     }
 
-    textarea, input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      font-size: 16px;
-      resize: none;
-    }
-
     .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      color: #fff;
-      padding: 0.6rem 1.5rem;
-      border-radius: 30px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: 0.3s ease;
-      cursor: pointer;
+      width: 100%;
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      color: white;
+      padding: 12px;
       border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 114, 255, 0.3);
+      opacity: 0.9;
     }
 
     .output {
-      background: #f1f1f1;
+      margin-top: 20px;
+      background: #f5f5f5;
       padding: 15px;
       border-radius: 10px;
-      margin-top: 15px;
-      word-wrap: break-word;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      background: #00c896;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Instagram Title Generator</h1>
-    <p>Enter your topic or keyword below:</p>
-    <input type="text" id="topicInput" placeholder="e.g. Fashion, Travel, Motivation" />
+    <h2>Instagram Title Generator</h2>
+    <input type="text" id="topicInput" placeholder="Enter a topic (e.g. Travel, Fashion)" />
     <button class="btn" onclick="generateTitle()">Generate Title</button>
 
-    <div id="resultBox" style="display:none;">
-      <h3>Generated Title:</h3>
-      <div class="output" id="outputTitle"></div>
-      <button class="btn" onclick="copyTitle()">Copy Title</button>
+    <div id="outputSection" style="display:none;">
+      <div class="output" id="generatedTitle"></div>
+      <button class="copy-btn" onclick="copyTitle()">Copy Title</button>
     </div>
   </div>
 
   <script>
     function generateTitle() {
-      const topic = document.getElementById("topicInput").value.trim();
-      const output = document.getElementById("outputTitle");
-      const resultBox = document.getElementById("resultBox");
+      const topic = document.getElementById('topicInput').value.trim();
+      const output = document.getElementById('generatedTitle');
+      const outputSection = document.getElementById('outputSection');
 
       if (!topic) {
-        output.innerHTML = "Please enter a topic!";
-        resultBox.style.display = "block";
+        output.innerText = "Please enter a topic.";
+        outputSection.style.display = "block";
         return;
       }
 
-      const templates = [
-        `Top 10 ${topic} Ideas That Will Blow Your Mind!`,
-        `Ultimate Guide to ${topic} You Can't Miss`,
-        `Why ${topic} Is Taking Over Instagram Right Now`,
-        `Proven ${topic} Tips for More Engagement`,
-        `Secret Tricks to Dominate ${topic} in 2025`
+      const titles = [
+        `Top 10 ${topic} Tips You Need Today!`,
+        `How to Master ${topic} in 2025`,
+        `${topic} Hacks That Actually Work!`,
+        `Boost Your ${topic} Game Instantly`,
+        `Most Creative ${topic} Ideas Ever`
       ];
 
-      const randomTitle = templates[Math.floor(Math.random() * templates.length)];
+      const randomTitle = titles[Math.floor(Math.random() * titles.length)];
       output.innerText = randomTitle;
-      resultBox.style.display = "block";
+      outputSection.style.display = "block";
     }
 
     function copyTitle() {
-      const titleText = document.getElementById("outputTitle").innerText;
-      navigator.clipboard.writeText(titleText).then(() => {
-        alert("Title copied to clipboard!");
+      const title = document.getElementById('generatedTitle').innerText;
+      navigator.clipboard.writeText(title).then(() => {
+        alert("Title copied!");
       });
     }
   </script>
