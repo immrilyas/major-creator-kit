@@ -7,39 +7,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #f4f6fa;
+      background: #f7f9fc;
       color: #333;
+      margin: 0;
+      padding: 0;
     }
 
     header {
-      background: linear-gradient(135deg, #8e44ad, #3498db);
-      padding: 20px;
+      background: linear-gradient(135deg, #9b59b6, #3498db);
       color: white;
+      padding: 20px;
       text-align: center;
       font-size: 24px;
       font-weight: bold;
     }
 
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: 30px auto;
       padding: 20px;
       background: white;
       border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    p {
-      text-align: center;
-      color: #666;
-      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
 
     input {
@@ -62,10 +52,6 @@
       border-radius: 30px;
       cursor: pointer;
       margin-bottom: 30px;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
     }
 
     .fancy-output {
@@ -94,10 +80,6 @@
       font-size: 14px;
     }
 
-    .copy-btn:hover {
-      background: #019875;
-    }
-
     footer {
       text-align: center;
       padding: 20px;
@@ -108,66 +90,84 @@
 </head>
 <body>
 
-  <header>
-    Fancy Fonts Generator
-  </header>
+<header>Fancy Fonts Generator</header>
 
-  <main>
-    <h2>Create Cool & Stylish Text for Instagram</h2>
-    <p>Type something below and generate fancy fonts instantly.</p>
+<main>
+  <h2 style="text-align:center;">Create 30+ Stylish Instagram Fonts</h2>
+  <input type="text" id="userInput" placeholder="Enter your text..." />
+  <button class="btn" onclick="generateFonts()">Generate Fancy Fonts</button>
 
-    <input type="text" id="userInput" placeholder="Enter your text here..." />
-    <button class="btn" onclick="generateFonts()">Generate Fonts</button>
+  <div id="outputFonts" class="fancy-output"></div>
+</main>
 
-    <div class="fancy-output" id="outputFonts"></div>
-  </main>
+<footer>
+  © 2025 Major Creator Kit. All Rights Reserved.
+</footer>
 
-  <footer>
-    © 2025 Major Creator Kit. All Rights Reserved.
-  </footer>
+<script>
+  const fonts = [
+    str => `✧･ﾟ: *✧･ﾟ:* ${str} *:･ﾟ✧*:･ﾟ✧`,
+    str => `★彡 ${str} 彡★`,
+    str => `•°¯${str}¯°•`,
+    str => `(${str})ツ`,
+    str => `⫷ ${str} ⫸`,
+    str => `『${str}』`,
+    str => `【${str}】`,
+    str => `♡ ${str} ♡`,
+    str => `░▒▓█ ${str} █▓▒░`,
+    str => `(づ｡◕‿‿◕｡)づ ${str}`,
+    str => `-> ${str} <-`,
+    str => `°•. ${str} .•°`,
+    str => `¤¸¸.•´¯${str}¯·.¸¸¤`,
+    str => `★·.·´¯·.·★ ${str} ★·.·´¯·.·★`,
+    str => `→ ${str} ←`,
+    str => `༺ ${str} ༻`,
+    str => `✿ ${str} ✿`,
+    str => `๑۩۞۩๑ ${str} ๑۩۞۩๑`,
+    str => `♛ ${str} ♛`,
+    str => `☁️ ${str} ☁️`,
+    str => `🦋 ${str} 🦋`,
+    str => `✨ ${str} ✨`,
+    str => `💎 ${str} 💎`,
+    str => `🎀 ${str} 🎀`,
+    str => `🔥 ${str} 🔥`,
+    str => `🌸 ${str} 🌸`,
+    str => `🌈 ${str} 🌈`,
+    str => `💫 ${str} 💫`,
+    str => `👑 ${str} 👑`,
+    str => `🖤 ${str} 🖤`,
+    str => `🎧 ${str} 🎧`,
+    str => `💥 ${str} 💥`
+  ];
 
-  <script>
-    const fonts = [
-      str => str.split('').map(c => c + '\u0336').join(''), // strikethrough
-      str => str.toUpperCase(),
-      str => str.toLowerCase(),
-      str => str.split('').map(c => c + '̲').join(''), // underline
-      str => str.split('').reverse().join(''),
-      str => str.replace(/[A-Za-z]/g, c =>
-        String.fromCharCode(
-          c <= 'Z' ? c.charCodeAt(0) + 120211 : c.charCodeAt(0) + 120205
-        )
-      ),
-    ];
+  function generateFonts() {
+    const input = document.getElementById("userInput").value.trim();
+    const output = document.getElementById("outputFonts");
+    output.innerHTML = "";
 
-    function generateFonts() {
-      const input = document.getElementById("userInput").value.trim();
-      const outputDiv = document.getElementById("outputFonts");
-      outputDiv.innerHTML = "";
-
-      if (!input) {
-        outputDiv.innerHTML = "<p>Please enter some text above.</p>";
-        return;
-      }
-
-      fonts.forEach(fn => {
-        const fancy = fn(input);
-        const div = document.createElement("div");
-        div.className = "output-item";
-        div.innerHTML = `
-          <span>${fancy}</span>
-          <button class="copy-btn" onclick="copyText(\`${fancy}\`)">Copy</button>
-        `;
-        outputDiv.appendChild(div);
-      });
+    if (!input) {
+      output.innerHTML = "<p>Please enter text above.</p>";
+      return;
     }
 
-    function copyText(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Copied to clipboard!");
-      });
-    }
-  </script>
+    fonts.forEach(fn => {
+      const styled = fn(input);
+      const div = document.createElement("div");
+      div.className = "output-item";
+      div.innerHTML = `
+        <span>${styled}</span>
+        <button class="copy-btn" onclick="copyText(\`${styled}\`)">Copy</button>
+      `;
+      output.appendChild(div);
+    });
+  }
+
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Copied to clipboard!");
+    });
+  }
+</script>
 
 </body>
 </html>
