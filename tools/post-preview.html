@@ -48,6 +48,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s ease;
+      margin-top: 10px;
     }
     button:hover {
       background-color: #00e6b0;
@@ -68,6 +69,11 @@
       white-space: pre-wrap;
       font-size: 1rem;
     }
+    #downloadBtn {
+      display: none;
+      background-color: #ff2d75;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -82,6 +88,8 @@
       <img id="postImage" src="" alt="Preview Image" />
       <div class="preview-caption" id="postCaption"></div>
     </div>
+
+    <button id="downloadBtn" onclick="downloadImage()">Download Post Image</button>
   </div>
 
   <script>
@@ -91,6 +99,7 @@
       const postImage = document.getElementById("postImage");
       const postCaption = document.getElementById("postCaption");
       const previewBox = document.getElementById("previewBox");
+      const downloadBtn = document.getElementById("downloadBtn");
 
       if (!imgInput.files.length) {
         alert("Please select an image to preview.");
@@ -103,8 +112,19 @@
         postImage.src = e.target.result;
         postCaption.textContent = caption || "(No caption)";
         previewBox.style.display = "block";
+        downloadBtn.style.display = "block";
       };
       reader.readAsDataURL(file);
+    }
+
+    function downloadImage() {
+      const img = document.getElementById("postImage");
+      const link = document.createElement("a");
+      link.href = img.src;
+      link.download = "instagram-post.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   </script>
 
