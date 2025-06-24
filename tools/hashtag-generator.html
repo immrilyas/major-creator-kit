@@ -1,182 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Instagram Hashtag Generator - Major Creator Kit</title>
-  <link rel="stylesheet" href="../style.css" />
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: #f7f8fc;
-      color: #333;
-    }
-
-    header {
-      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-
-    nav a {
-      color: white;
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-
-    p.description {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #555;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 1rem;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-bottom: 1rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      color: #fff;
-      padding: 0.75rem 2rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      box-shadow: 0 4px 12px rgba(0,114,255,0.3);
-      transform: translateY(-2px);
-    }
-
-    textarea {
-      width: 100%;
-      height: 150px;
-      margin-top: 1rem;
-      padding: 1rem;
-      font-size: 16px;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      resize: none;
-    }
-
-    .copy-btn {
-      margin-top: 1rem;
-      display: none;
-      background: #28c76f;
-    }
-
-    .copy-btn.show {
-      display: inline-block;
-    }
-
-    footer {
-      text-align: center;
-      margin: 3rem 0 1rem;
-      color: #888;
-      font-size: 14px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Creator Kit - Hashtag Generator</title>
+    <style>
+        :root {
+            --primary-color: #405DE6;
+            --secondary-color: #833AB4;
+            --accent-color: #E1306C;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: var(--dark-color);
+        }
+        
+        header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .creator {
+            font-style: italic;
+            margin-bottom: 0;
+        }
+        
+        .input-group {
+            margin: 1.5rem 0;
+        }
+        
+        input[type="text"], select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        .result-container {
+            margin-top: 1.5rem;
+        }
+        
+        .hashtags-box {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            min-height: 150px;
+            word-wrap: break-word;
+        }
+        
+        .copy-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        .copy-btn:hover {
+            background-color: #C13584;
+        }
+        
+        .hashtag-count {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--dark-color);
+            color: white;
+            margin-top: 2rem;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .time-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f0f5ff;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .time-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+        
+        .time-tab {
+            padding: 0.5rem 1rem;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .time-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .time-content {
+            display: none;
+        }
+        
+        .time-content.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>Major Creator Kit</h1>
+    <header>
+        <h1>Major Creator Kit</h1>
+        <p class="creator">by Major SMP Panel</p>
+    </header>
+    
     <nav>
-      <a href="../index.html">Home</a>
-      <a href="bio-generator.html">Bio Generator</a>
-      <a href="hashtag-generator.html">Hashtag Generator</a>
-      <a href="../blog/index.html">Blog</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/how-to-use">How to Use</a></li>
+            <li><a href="/oper-tool">Oper Tool</a></li>
+        </ul>
     </nav>
-  </header>
+    
+    <div class="container">
+        <div class="tool-card">
+            <h2>Instagram Hashtag Generator</h2>
+            <p>Generate relevant hashtags to increase your Instagram reach</p>
+            
+            <div class="input-group">
+                <label for="keyword">Main Keyword/Topic:</label>
+                <input type="text" id="keyword" placeholder="e.g., fashion, travel, food">
+                
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="general">General</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="travel">Travel</option>
+                    <option value="food">Food</option>
+                    <option value="fitness">Fitness</option>
+                    <option value="photography">Photography</option>
+                    <option value="business">Business</option>
+                    <option value="lifestyle">Lifestyle</option>
+                    <option value="beauty">Beauty</option>
+                </select>
+                
+                <button id="generate-btn">Generate Hashtags</button>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Generating hashtags...</p>
+                </div>
+            </div>
+            
+            <div class="result-container">
+                <div class="hashtags-box" id="hashtags-result"></div>
+                <div class="hashtag-count" id="hashtag-count">0 hashtags generated</div>
+                <button class="copy-btn" id="copy-btn">Copy Hashtags</button>
+            </div>
+            
+            <!-- New Trending Now Section -->
+            <div class="time-section">
+                <h3>Trending Hashtags Right Now</h3>
+                <p>Time-sensitive hashtags that are currently trending</p>
+                
+                <div class="time-tabs">
+                    <div class="time-tab active" data-time="morning">🌞 Morning</div>
+                    <div class="time-tab" data-time="afternoon">☀️ Afternoon</div>
+                    <div class="time-tab" data-time="evening">🌆 Evening</div>
+                    <div class="time-tab" data-time="night">🌙 Night</div>
+                    <div class="time-tab" data-time="weekend">🎉 Weekend</div>
+                </div>
+                
+                <div class="time-content active" id="morning-content">
+                    <div class="hashtags-box" id="morning-hashtags"></div>
+                    <button class="copy-btn" onclick="copyTimeHashtags('morning')">Copy Morning Hashtags</button>
+                </div>
+                
+                <div class="time-content" id="afternoon-content">
+                    <div class="hashtags-box" id="afternoon-hashtags"></div>
+                    <button class="copy-btn" onclick="copyTimeHashtags('afternoon')">Copy Afternoon Hashtags</button>
+                </div>
+                
+                <div class="time-content" id="evening-content">
+                    <div class="hashtags-box" id="evening-hashtags"></div>
+                    <button class="copy-btn" onclick="copyTimeHashtags('evening')">Copy Evening Hashtags</button>
+                </div>
+                
+                <div class="time-content" id="night-content">
+                    <div class="hashtags-box" id="night-hashtags"></div>
+                    <button class="copy-btn" onclick="copyTimeHashtags('night')">Copy Night Hashtags</button>
+                </div>
+                
+                <div class="time-content" id="weekend-content">
+                    <div class="hashtags-box" id="weekend-hashtags"></div>
+                    <button class="copy-btn" onclick="copyTimeHashtags('weekend')">Copy Weekend Hashtags</button>
+                </div>
+            </div>
+            
+            <div class="how-to-use">
+                <h3>How to Use</h3>
+                <ol>
+                    <li>Enter your main keyword or topic</li>
+                    <li>Select the most relevant category</li>
+                    <li>Click "Generate Hashtags"</li>
+                    <li>Check trending hashtags for different times of day</li>
+                    <li>Copy the hashtags and use them in your Instagram posts</li>
+                </ol>
+                
+                <h3>About This Tool</h3>
+                <p>This tool helps you find the best hashtags for your Instagram posts. The time-based hashtags are particularly effective as they match when your audience is most active.</p>
+                
+                <h3>Hashtag Tips</h3>
+                <ul>
+                    <li>Post with morning hashtags between 6-9am</li>
+                    <li>Evening hashtags work best from 5-9pm</li>
+                    <li>Weekend hashtags are great for Friday evening through Sunday</li>
+                    <li>Combine time-based hashtags with your niche hashtags</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Major Creator Kit | majorsmmpanel.online</p>
+    </footer>
 
-  <div class="container">
-    <h2>Instagram Hashtag Generator</h2>
-    <p class="description">Type a keyword or niche and get high-performing hashtags for your content.</p>
-
-    <input type="text" id="keyword" placeholder="e.g., fashion, travel, fitness" />
-    <button class="btn" onclick="generateHashtags()">🚀 Generate Hashtags</button>
-
-    <textarea id="output" readonly placeholder="Generated hashtags will appear here..."></textarea>
-    <button class="btn copy-btn" id="copyBtn" onclick="copyHashtags()">📋 Copy Hashtags</button>
-  </div>
-
-  <footer>
-    <p>© 2025 Major Creator Kit. All Rights Reserved. A project by MajorSMMPanel.online.</p>
-  </footer>
-
-  <script>
-    function generateHashtags() {
-      const keyword = document.getElementById("keyword").value.trim().toLowerCase();
-      const output = document.getElementById("output");
-      const copyBtn = document.getElementById("copyBtn");
-
-      if (!keyword) {
-        output.value = "❌ Please enter a keyword first!";
-        copyBtn.classList.remove("show");
-        return;
-      }
-
-      const hashtags = [
-        `#${keyword}`,
-        `#${keyword}life`,
-        `#${keyword}love`,
-        `#${keyword}style`,
-        `#insta${keyword}`,
-        `#explore${keyword}`,
-        `#daily${keyword}`,
-        `#${keyword}gram`,
-        `#${keyword}community`,
-        `#trending${keyword}`
-      ];
-
-      output.value = hashtags.join(" ");
-      copyBtn.classList.add("show");
-    }
-
-    function copyHashtags() {
-      const output = document.getElementById("output");
-      output.select();
-      document.execCommand("copy");
-
-      const copyBtn = document.getElementById("copyBtn");
-      copyBtn.innerText = "✅ Copied!";
-      setTimeout(() => {
-        copyBtn.innerText = "📋 Copy Hashtags";
-      }, 2000);
-    }
-  </script>
-
+    <script>
+        // Initialize time-based hashtags
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTimeHashtags();
+            setupTimeTabs();
+        });
+        
+        // Tab switching for time-based hashtags
+        function setupTimeTabs() {
+            const tabs = document.querySelectorAll('.time-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and contents
+                    document.querySelectorAll('.time-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.time-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    const time = this.getAttribute('data-time');
+                    document.getElementById(`${time}-content`).classList.add('active');
+                });
+            });
+        }
+        
+        // Generate time-based hashtags
+        function generateTimeHashtags() {
+            const morningHashtags = [
+                '#GoodMorning', '#MorningVibes', '#RiseAndShine', '#EarlyBird', 
+                '#MorningMotivation', '#Sunrise', '#NewDay', '#MorningCoffee',
+                '#BreakfastTime', '#FreshStart', '#AM', '#MorningRoutine'
+            ];
+            
+            const afternoonHashtags = [
+                '#AfternoonDelight', '#LunchTime', '#Midday', '#ProductiveAfternoon',
+                '#AfternoonTea', '#Daytime', '#Sunshine', '#AfternoonVibes',
+                '#WorkMode', '#HumpDay', '#Daylight', '#AfternoonBreak'
+            ];
+            
+            const eveningHashtags = [
+                '#GoldenHour', '#Sunset', '#EveningVibes', '#HappyHour',
+                '#DinnerTime', '#Nightfall', '#Twilight', '#EveningWalk',
+                '#EndOfDay', '#EveningRoutine', '#MagicHour', '#EveningSky'
+            ];
+            
+            const nightHashtags = [
+                '#NightTime', '#LateNight', '#NightVibes', '#Nocturnal',
+                '#SleepTime', '#NightSky', '#FullMoon', '#Midnight',
+                '#DreamBig', '#Bedtime', '#NightOwl', '#StarryNight'
+            ];
+            
+            const weekendHashtags = [
+                '#WeekendVibes', '#Saturday', '#SundayFunday', '#WeekendMode',
+                '#WeekendGetaway', '#WeekendBrunch', '#SaturdayNight', '#SundayMorning',
+                '#WeekendWarrior', '#WeekendGoals', '#WeekendAdventures', '#WeekendRelaxation'
+            ];
+            
+            // Display the hashtags
+            document.getElementById('morning-hashtags').textContent = shuffleArray(morningHashtags).slice(0, 15).join(' ');
+            document.getElementById('afternoon-hashtags').textContent = shuffleArray(afternoonHashtags).slice(0, 15).join(' ');
+            document.getElementById('evening-hashtags').textContent = shuffleArray(eveningHashtags).slice(0, 15).join(' ');
+            document.getElementById('night-hashtags').textContent = shuffleArray(nightHashtags).slice(0, 15).join(' ');
+            document.getElementById('weekend-hashtags').textContent = shuffleArray(weekendHashtags).slice(0, 15).join(' ');
+        }
+        
+        // Main hashtag generator
+        document.getElementById('generate-btn').addEventListener('click', generateHashtags);
+        document.getElementById('copy-btn').addEventListener('click', copyHashtags);
+        
+        function generateHashtags() {
+            const keyword = document.getElementById('keyword').value.trim();
+            const category = document.getElementById('category').value;
+            const resultDiv = document.getElementById('hashtags-result');
+            const loadingDiv = document.getElementById('loading');
+            const countDiv = document.getElementById('hashtag-count');
+            
+            if (!keyword) {
+                resultDiv.innerHTML = '<p style="color: red;">Please enter a keyword</p>';
+                countDiv.textContent = '0 hashtags generated';
+                return;
+            }
+            
+            // Show loading
+            loadingDiv.style.display = 'block';
+            resultDiv.innerHTML = '';
+            
+            // Simulate loading
+            setTimeout(() => {
+                loadingDiv.style.display = 'none';
+                
+                const hashtags = getHashtags(keyword, category);
+                resultDiv.innerHTML = hashtags.join(' ');
+                
+                const count = hashtags.length;
+                countDiv.textContent = `${count} hashtags generated`;
+                
+                // Auto-scroll to results
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            }, 800);
+        }
+        
+        function getHashtags(keyword, category) {
+            // Base hashtags that work with any keyword
+            const baseHashtags = [
+                `#${keyword.replace(/\s+/g, '')}`,
+                `#${keyword.replace(/\s+/g, '_')}`,
+                `#${keyword.toLowerCase().replace(/\s+/g, '')}`,
+                `#${keyword.toLowerCase().replace(/\s+/g, '_')}`,
+                `#best${keyword.replace(/\s+/g, '')}`,
+                `#${keyword.replace(/\s+/g, '')}oftheday`,
+                `#${keyword.replace(/\s+/g, '')}lover`,
+                `#${keyword.replace(/\s+/g, '')}life`,
+                `#${keyword.replace(/\s+/g, '')}addict`,
+                `#${keyword.replace(/\s+/g, '')}time`
+            ];
+            
+            // Category-specific hashtags
+            let categoryHashtags = [];
+            
+            switch(category) {
+                case 'fashion':
+                    categoryHashtags = [
+                        '#ootd', '#fashionista', '#style', '#lookgoodfeelgood',
+                        '#outfitoftheday', '#streetstyle', '#fashionblogger',
+                        '#whatiwore', '#instafashion', '#trending'
+                    ];
+                    break;
+                case 'travel':
+                    categoryHashtags = [
+                        '#travelgram', '#wanderlust', '#travelblogger',
+                        '#passportready', '#exploremore', '#discoverearth',
+                        '#travelphotography', '#adventuretime', '#globetrotter',
+                        '#traveladdict'
+                    ];
+                    break;
+                case 'food':
+                    categoryHashtags = [
+                        '#foodie', '#foodphotography', '#instafood',
+                        '#yummy', '#foodstagram', '#foodblogger',
+                        '#homemade', '#delicious', '#eatwell', '#foodlover'
+                    ];
+                    break;
+                case 'fitness':
+                    categoryHashtags = [
+                        '#fitspo', '#fitfam', '#workoutmotivation',
+                        '#trainhard', '#gymlife', '#fitnessmotivation',
+                        '#healthylifestyle', '#exercise', '#strongnotskinny',
+                        '#fitlife'
+                    ];
+                    break;
+                case 'photography':
+                    categoryHashtags = [
+                        '#photooftheday', '#picoftheday', '#instagood',
+                        '#photographyislife', '#snapshot', '#photoshoot',
+                        '#pictureperfect', '#shootandshare', '#capturethemoment',
+                        '#visualsoflife'
+                    ];
+                    break;
+                case 'business':
+                    categoryHashtags = [
+                        '#entrepreneurlife', '#smallbusiness', '#startup',
+                        '#hustle', '#successmindset', '#businessowner',
+                        '#marketingtips', '#leadership', '#businesstips',
+                        '#workfromanywhere'
+                    ];
+                    break;
+                case 'lifestyle':
+                    categoryHashtags = [
+                        '#lifestyleblogger', '#dailyinspiration', '#liveauthentic',
+                        '#goodvibes', '#positivemindset', '#selfcare',
+                        '#mindfulness', '#simpleliving', '#happyday',
+                        '#enjoythelittlethings'
+                    ];
+                    break;
+                case 'beauty':
+                    categoryHashtags = [
+                        '#beautyblogger', '#makeupaddict', '#skincare',
+                        '#glowup', '#beautytips', '#makeuplover',
+                        '#selfcare', '#naturalbeauty', '#beautyhacks',
+                        '#makeupoftheday'
+                    ];
+                    break;
+                default: // general
+                    categoryHashtags = [
+                        '#instadaily', '#instagood', '#photooftheday',
+                        '#picoftheday', '#trending', '#viral',
+                        '#love', '#happy', '#life',
+                        '#bestoftheday'
+                    ];
+            }
+            
+            // Combine and shuffle hashtags
+            let allHashtags = [...new Set([...baseHashtags, ...categoryHashtags])];
+            allHashtags = shuffleArray(allHashtags);
+            
+            // Return 30 hashtags max (Instagram limit)
+            return allHashtags.slice(0, 30);
+        }
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        function copyHashtags() {
+            const resultDiv = document.getElementById('hashtags-result');
+            const range = document.createRange();
+            range.selectNode(resultDiv);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            
+            // Show copied message
+            const copyBtn = document.getElementById('copy-btn');
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = 'Copy Hashtags';
+            }, 2000);
+        }
+        
+        function copyTimeHashtags(time) {
+            const hashtagsDiv = document.getElementById(`${time}-hashtags`);
+            const range = document.createRange();
+            range.selectNode(hashtagsDiv);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            
+            // Show copied message
+            const copyBtn = document.querySelector(`#${time}-content .copy-btn`);
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = `Copy ${time.charAt(0).toUpperCase() + time.slice(1)} Hashtags`;
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
