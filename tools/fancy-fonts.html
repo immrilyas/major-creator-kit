@@ -4,27 +4,232 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fancy Name Maker | Major Creator Kit</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .logo p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav li {
+            margin-left: 1.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        nav a:hover {
+            opacity: 0.8;
+        }
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .tool-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .input-section {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .input-section h2 {
+            margin-top: 0;
+            color: #6c5ce7;
+        }
+        #name-input {
+            width: 80%;
+            padding: 12px 15px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin: 1rem 0;
+            transition: border 0.3s;
+        }
+        #name-input:focus {
+            border-color: #6c5ce7;
+            outline: none;
+        }
+        #generate-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #generate-btn:hover {
+            background: #5649c0;
+        }
+        .results-section {
+            padding: 2rem;
+        }
+        .results-section h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0;
+        }
+        #copy-all {
+            font-size: 0.9rem;
+            color: #6c5ce7;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background: rgba(108, 92, 231, 0.1);
+        }
+        #copy-all:hover {
+            background: rgba(108, 92, 231, 0.2);
+        }
+        .categories {
+            display: flex;
+            gap: 10px;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .category-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .category-btn.active {
+            background: #6c5ce7;
+            color: white;
+        }
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .style-box {
+            background: white;
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .style-box:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+        .style-content {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+        .style-type {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(108, 92, 231, 0.1);
+            color: #6c5ce7;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .style-box:hover .copy-btn {
+            opacity: 1;
+        }
+        #copy-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6c5ce7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        @media (max-width: 768px) {
+            .styles-grid {
+                grid-template-columns: 1fr;
+            }
+            #name-input {
+                width: 100%;
+            }
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 1rem;
+            }
+            nav li {
+                margin: 0 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo">
             <h1>Fancy Name Maker</h1>
-            <p>Create Stylish Social Media Names</p>
+            <p>Major Creator Kit | majersmmpanel.online</p>
         </div>
         <nav>
             <ul>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../about.html">About</a></li>
-                <li><a href="../hashtag-checker/">Hashtag Checker</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../tools/hashtag-checker/">Hashtag Checker</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="tool-container">
+        <div class="tool-container">
             <div class="input-section">
                 <h2>Create Your Fancy Name</h2>
                 <input type="text" id="name-input" placeholder="Enter your name">
@@ -42,14 +247,201 @@
                 </div>
 
                 <div class="styles-grid" id="styles-container">
-                    <!-- Generated styles will appear here -->
+                    <!-- Styles will appear here -->
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <div id="copy-notification">Copied to clipboard!</div>
 
-    <script src="script.js"></script>
+    <script>
+        // Fancy text generators
+        const fancyTextGenerators = [
+            { name: "Small Caps", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'ᴀ','b':'ʙ','c':'ᴄ','d':'ᴅ','e':'ᴇ','f':'ғ','g':'ɢ','h':'ʜ','i':'ɪ',
+                            'j':'ᴊ','k':'ᴋ','l':'ʟ','m':'ᴍ','n':'ɴ','o':'ᴏ','p':'ᴘ','q':'ǫ','r':'ʀ',
+                            's':'s','t':'ᴛ','u':'ᴜ','v':'ᴠ','w':'ᴡ','x':'x','y':'ʏ','z':'ᴢ' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Double Struck", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'𝕒','b':'𝕓','c':'𝕔','d':'𝕕','e':'𝕖','f':'𝕗','g':'𝕘','h':'𝕙','i':'𝕚',
+                            'j':'𝕛','k':'𝕜','l':'𝕝','m':'𝕞','n':'𝕟','o':'𝕠','p':'𝕡','q':'𝕢','r':'𝕣',
+                            's':'𝕤','t':'𝕥','u':'𝕦','v':'𝕧','w':'𝕨','x':'𝕩','y':'𝕪','z':'𝕫' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Cursive", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'𝒶','b':'𝒷','c':'𝒸','d':'𝒹','e':'𝑒','f':'𝒻','g':'𝑔','h':'𝒽','i':'𝒾',
+                            'j':'𝒿','k':'𝓀','l':'𝓁','m':'𝓂','n':'𝓃','o':'𝑜','p':'𝓅','q':'𝓆','r':'𝓇',
+                            's':'𝓈','t':'𝓉','u':'𝓊','v':'𝓋','w':'𝓌','x':'𝓍','y':'𝓎','z':'𝓏' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Bold", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'𝗮','b':'𝗯','c':'𝗰','d':'𝗱','e':'𝗲','f':'𝗳','g':'𝗴','h':'𝗵','i':'𝗶',
+                            'j':'𝗷','k':'𝗸','l':'𝗹','m':'𝗺','n':'𝗻','o':'𝗼','p':'𝗽','q':'𝗾','r':'𝗿',
+                            's':'𝘀','t':'𝘁','u':'𝘂','v':'𝘃','w':'𝘄','x':'𝘅','y':'𝘆','z':'𝘇' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Upside Down", generator: (text) => text.split('').reverse().map(c => {
+                const map = { 'a':'ɐ','b':'q','c':'ɔ','d':'p','e':'ǝ','f':'ɟ','g':'ƃ','h':'ɥ','i':'ᴉ',
+                            'j':'ɾ','k':'ʞ','l':'l','m':'ɯ','n':'u','o':'o','p':'d','q':'b','r':'ɹ',
+                            's':'s','t':'ʇ','u':'n','v':'ʌ','w':'ʍ','x':'x','y':'ʎ','z':'z' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Gothic", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'𝔞','b':'𝔟','c':'𝔠','d':'𝔡','e':'𝔢','f':'𝔣','g':'𝔤','h':'𝔥','i':'𝔦',
+                            'j':'𝔧','k':'𝔨','l':'𝔩','m':'𝔪','n':'𝔫','o':'𝔬','p':'𝔭','q':'𝔮','r':'𝔯',
+                            's':'𝔰','t':'𝔱','u':'𝔲','v':'𝔳','w':'𝔴','x':'𝔵','y':'𝔶','z':'𝔷' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Monospace", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'𝚊','b':'𝚋','c':'𝚌','d':'𝚍','e':'𝚎','f':'𝚏','g':'𝚐','h':'𝚑','i':'𝚒',
+                            'j':'𝚓','k':'𝚔','l':'𝚕','m':'𝚖','n':'𝚗','o':'𝚘','p':'𝚙','q':'𝚚','r':'𝚛',
+                            's':'𝚜','t':'𝚝','u':'𝚞','v':'𝚟','w':'𝚠','x':'𝚡','y':'𝚢','z':'𝚣' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Italic", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'𝘢','b':'𝘣','c':'𝘤','d':'𝘥','e':'𝘦','f':'𝘧','g':'𝘨','h':'𝘩','i':'𝘪',
+                            'j':'𝘫','k':'𝘬','l':'𝘭','m':'𝘮','n':'𝘯','o':'𝘰','p':'𝘱','q':'𝘲','r':'𝘳',
+                            's':'𝘴','t':'𝘵','u':'𝘶','v':'𝘷','w':'𝘸','x':'𝘹','y':'𝘺','z':'𝘻' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Bold Italic", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'𝙖','b':'𝙗','c':'𝙘','d':'𝙙','e':'𝙚','f':'𝙛','g':'𝙜','h':'𝙝','i':'𝙞',
+                            'j':'𝙟','k':'𝙠','l':'𝙡','m':'𝙢','n':'𝙣','o':'𝙤','p':'𝙥','q':'𝙦','r':'𝙧',
+                            's':'𝙨','t':'𝙩','u':'𝙪','v':'𝙫','w':'𝙬','x':'𝙭','y':'𝙮','z':'𝙯' };
+                return map[c.toLowerCase()] || c;
+            }).join('') },
+            
+            { name: "Squared", generator: (text) => text.split('').map(c => {
+                const map = { 'a':'🄰','b':'🄱','c':'🄲','d':'🄳','e':'🄴','f':'🄵','g':'🄶','h':'🄷','i':'🄸',
+                            'j':'🄹','k':'🄺','l':'🄻','m':'🄼','n':'🄽','o':'🄾','p':'🄿','q':'🅀','r':'🅁',
+                            's':'🅂','t':'🅃','u':'🅄','v':'🅅','w':'🅆','x':'🅇','y':'🅈','z':'🅉' };
+                return map[c.toLowerCase()] || c;
+            }).join('') }
+        ];
+
+        // Emoji combinations
+        const emojiCombinations = [
+            { name: "Sparkle Emoji", generator: (text) => `✨ ${text} ✨` },
+            { name: "Star Eyes", generator: (text) => `🤩 ${text} 🤩` },
+            { name: "Heart Wrapped", generator: (text) => `❤️ ${text} ❤️` },
+            { name: "Flower Frame", generator: (text) => `🌸 ${text} 🌸` },
+            { name: "Fire Energy", generator: (text) => `🔥 ${text} 🔥` },
+            { name: "Moon & Stars", generator: (text) => `🌙 ${text} ⭐` },
+            { name: "Crown Royalty", generator: (text) => `👑 ${text} 👑` },
+            { name: "Rainbow Style", generator: (text) => `🌈 ${text} 🌈` },
+            { name: "Butterfly Frame", generator: (text) => `🦋 ${text} 🦋` },
+            { name: "Dragon Magic", generator: (text) => `🐉 ${text} 🐉` }
+        ];
+
+        // Symbol decorations
+        const symbolDecorations = [
+            { name: "Arrow Frame", generator: (text) => `➤ ${text} ➤` },
+            { name: "Star Frame", generator: (text) => `★ ${text} ★` },
+            { name: "Music Notes", generator: (text) => `♫ ${text} ♫` },
+            { name: "Heavy Border", generator: (text) => `▓ ${text} ▓` },
+            { name: "Light Border", generator: (text) => `░ ${text} ░` },
+            { name: "Diamond Frame", generator: (text) => `♦ ${text} ♦` },
+            { name: "Circle Frame", generator: (text) => `◉ ${text} ◉` },
+            { name: "Shadow Effect", generator: (text) => `◈ ${text} ◈` },
+            { name: "Snowflake Frame", generator: (text) => `❄ ${text} ❄` },
+            { name: "Checkmark Frame", generator: (text) => `✓ ${text} ✓` }
+        ];
+
+        document.getElementById('generate-btn').addEventListener('click', generateStyles);
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterStyles(btn.dataset.category);
+            });
+        });
+        document.getElementById('copy-all').addEventListener('click', copyAllStyles);
+
+        function generateStyles() {
+            const name = document.getElementById('name-input').value.trim();
+            if (!name) return;
+            
+            const container = document.getElementById('styles-container');
+            container.innerHTML = '';
+            
+            // Generate fancy text styles
+            fancyTextGenerators.forEach(style => {
+                const fancyText = style.generator(name);
+                addStyleBox(fancyText, `Fancy: ${style.name}`, 'fancy');
+            });
+            
+            // Generate emoji names
+            emojiCombinations.forEach(emoji => {
+                const emojiText = emoji.generator(name);
+                addStyleBox(emojiText, `Emoji: ${emoji.name}`, 'emoji');
+            });
+            
+            // Generate symbol names
+            symbolDecorations.forEach(symbol => {
+                const symbolText = symbol.generator(name);
+                addStyleBox(symbolText, `Symbol: ${symbol.name}`, 'symbol');
+            });
+        }
+
+        function addStyleBox(content, type, category) {
+            const container = document.getElementById('styles-container');
+            const box = document.createElement('div');
+            box.className = `style-box ${category}`;
+            box.dataset.category = category;
+            box.innerHTML = `
+                <div class="style-content">${content}</div>
+                <div class="style-type">${type}</div>
+                <button class="copy-btn" title="Copy">⎘</button>
+            `;
+            container.appendChild(box);
+            
+            box.addEventListener('click', () => {
+                copyToClipboard(content);
+                showNotification();
+            });
+        }
+
+        function filterStyles(category) {
+            document.querySelectorAll('.style-box').forEach(box => {
+                box.style.display = (category === 'all' || box.dataset.category === category) ? 'block' : 'none';
+            });
+        }
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        function copyAllStyles() {
+            const styles = Array.from(document.querySelectorAll('.style-content'))
+                .map(el => el.textContent)
+                .join('\n\n');
+            
+            if (styles) {
+                copyToClipboard(styles);
+                showNotification();
+            }
+        }
+
+        function showNotification() {
+            const notification = document.getElementById('copy-notification');
+            notification.style.opacity = '1';
+            setTimeout(() => notification.style.opacity = '0', 2000);
+        }
+    </script>
 </body>
 </html>
