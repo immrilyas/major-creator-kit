@@ -1,33 +1,592 @@
-<h1>About Us</h1><p>"About Us" Page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Major Creator Kit</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --accent: #fd79a8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* About Page Styles */
+        .about-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(108, 92, 231, 0.8), rgba(108, 92, 231, 0.6)), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            margin-bottom: 4rem;
+        }
+        
+        .about-hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Mission Section */
+        .mission {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .mission-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+        }
+        
+        .mission-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            transform: perspective(1000px) rotateY(15deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .mission-image:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        /* Team Section */
+        .team {
+            background: linear-gradient(rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));
+            padding: 5rem 2rem;
+            margin-bottom: 5rem;
+        }
+        
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 5px solid var(--secondary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .member-role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            text-align: left;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav {
+                margin-top: 1rem;
+            }
+            
+            nav a {
+                margin: 0 0.5rem;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mission {
+                flex-direction: column;
+            }
+            
+            .mission-image {
+                margin-top: 2rem;
+                transform: perspective(1000px) rotateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Major <span>Creator Kit</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="tools.html">Tools</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>We Empower Creators</h1>
+            <p>Major Creator Kit is a suite of powerful tools designed to help content creators, social media managers, and digital marketers produce professional-quality content with ease.</p>
+        </div>
+    </section>
+    
+    <section class="mission">
+        <div class="mission-content">
+            <h2 class="section-title">Our Mission</h2>
+            <p>At Major Creator Kit, we believe that everyone should have access to professional-grade creative tools without the complexity or high costs of traditional software.</p>
+            <p>Founded in 2023, our platform has helped over 50,000 creators enhance their workflow and produce better content faster. We're constantly innovating to bring you the most useful tools for your creative process.</p>
+            <p>Our team of designers, developers, and content creators work tirelessly to ensure our tools are intuitive, powerful, and accessible to everyone.</p>
+        </div>
+        <div class="mission-image"></div>
+    </section>
+    
+    <section class="team">
+        <div class="team-container">
+            <h2 class="section-title" style="text-align: center;">Meet The Team</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">We're a passionate group of creatives and technologists dedicated to building tools that make your creative process smoother.</p>
+            
+            <div class="team-members">
+                <div class="team-member animate delay-1">
+                    <div class="member-image">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                    </div>
+                    <h3 class="member-name">Sarah Johnson</h3>
+                    <p class="member-role">CEO & Founder</p>
+                    <p>Visionary leader with 10+ years in digital content creation</p>
+                </div>
+                
+                <div class="team-member animate delay-2">
+                    <div class="member-image">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                    </div>
+                    <h3 class="member-name">Michael Chen</h3>
+                    <p class="member-role">Lead Developer</p>
+                    <p>Full-stack wizard who makes the magic happen</p>
+                </div>
+                
+                <div class="team-member animate delay-3">
+                    <div class="member-image">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Patel">
+                    </div>
+                    <h3 class="member-name">Priya Patel</h3>
+                    <p class="member-role">Design Director</p>
+                    <p>Creates beautiful, intuitive user experiences</p>
+                </div>
+                
+                <div class="team-member animate">
+                    <div class="member-image">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David Kim">
+                    </div>
+                    <h3 class="member-name">David Kim</h3>
+                    <p class="member-role">Marketing Lead</p>
+                    <p>Helps creators discover our tools</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="stat-item animate">
+            <div class="stat-number" id="user-count">0</div>
+            <div class="stat-label">Active Users</div>
+        </div>
+        
+        <div class="stat-item animate delay-1">
+            <div class="stat-number" id="tool-count">0</div>
+            <div class="stat-label">Creative Tools</div>
+        </div>
+        
+        <div class="stat-item animate delay-2">
+            <div class="stat-number" id="image-count">0</div>
+            <div class="stat-label">Images Enhanced</div>
+        </div>
+        
+        <div class="stat-item animate delay-3">
+            <div class="stat-number" id="country-count">0</div>
+            <div class="stat-label">Countries</div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Major Creator Kit</h3>
+                <p>Your all-in-one toolkit for content creation and social media management.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Tools</h3>
+                <ul>
+                    <li><a href="#">Image Enhancer</a></li>
+                    <li><a href="#">Content Planer</a></li>
+                    <li><a href="#">Collage Maker</a></li>
+                    <li><a href="#">Video Editor</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li>support@majorsmmpanel.online</li>
+                    <li>+1 (555) 123-4567</li>
+                    <li>123 Creator Street<br>Digital City, DC 10001</li>
+                </ul>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 majorsmmpanel.online - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
 
-(This is the text that will be visible on the page itself)
-
-Welcome to Major Creator Kit: Your Secret Weapon for Instagram Growth
-
-Major Creator Kit is a comprehensive suite of free, powerful, and easy-to-use tools designed to help you optimize, manage, and elevate your Instagram presence.
-
-In the competitive world of social media, standing out is everything. From finding the perfect username and generating a compelling bio, to discovering trending hashtags and planning your visual grid, we provide everything you need to capture attention and grow your audience.
-
-Whether you're an aspiring influencer, a small business owner, a social media manager, or just looking to improve your personal profile, our tools are here to make your life easier and your strategy more effective.
-
-Our Mission
-
-Our mission is simple: **to democratize Instagram success.
-
-We believe that everyone deserves the chance to build a strong brand and connect with their audience, without needing to pay for expensive software or hire a large team. The Instagram algorithm is always changing, and keeping up with the latest trends can be tough and time-consuming.
-
-That's why we created this toolkit—to provide simple, effective, and reliable solutions that handle the hard work for you. We want you to spend less time on tedious tasks and more time on what you do best: **creating amazing content.**
-
-The Creator Behind the Kit
-
-Major Creator Kit was founded and developed by majorsmmpanel, a web developer and social media enthusiast based in Islamabad, Pakistan.
-
-As someone who has managed and grown social media profiles, Ilyas saw a need for a single, reliable place where creators could find all the essential tools without any cost. He noticed that many simple utilities were scattered across different websites, often filled with intrusive ads, slow to load, or requiring a signup.
-
-He decided to build Major Creator Kit to bring all these essential utilities under one roof, with a clean, fast interface and a commitment to being **100% free for the community.** This project is a combination of his passion for web development and his understanding of the challenges faced by content creators today.
-
-**Get in Touch**
-
-We are always working on adding new tools and improving the existing ones based on the latest Instagram trends. Your feedback and suggestions are what drive this project forward.
-
-Have an idea for a new tool that would help you? Found a bug? Please let us know through our **[Contact Page]**.</p>
+    <script>
+        // Animate team members when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            // Count up animation for stats
+            const animateCount = (element, target, duration = 2000) => {
+                const start = 0;
+                const increment = target / (duration / 16);
+                let current = start;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    element.textContent = Math.floor(current).toLocaleString();
+                }, 16);
+            };
+            
+            // Set the target numbers for your stats
+            animateCount(document.getElementById('user-count'), 50000);
+            animateCount(document.getElementById('tool-count'), 12);
+            animateCount(document.getElementById('image-count'), 250000);
+            animateCount(document.getElementById('country-count'), 45);
+            
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.team-member, .stat-item').forEach(item => {
+                observer.observe(item);
+            });
+            
+            // Add Font Awesome for social icons (you can remove if not needed)
+            const fontAwesome = document.createElement('link');
+            fontAwesome.rel = 'stylesheet';
+            fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css';
+            document.head.appendChild(fontAwesome);
+        });
+    </script>
+</body>
+</html>
