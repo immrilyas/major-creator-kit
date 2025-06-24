@@ -1,39 +1,64 @@
-<section id="bannedHashtagChecker" style="padding: 4rem 1rem; background: #0f0f10; color: #fff; font-family: 'Poppins', sans-serif;">
-  <div style="max-width: 800px; margin: auto;">
-    <h2 style="text-align: center; color: #00ffab; font-size: 2rem;">🚫 Banned Hashtag Checker</h2>
-    <p style="text-align: center; margin-bottom: 2rem;">Check if your hashtags are safe to use on Instagram. Avoid shadowbans by using clean tags.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashtag Checker | Major Creator Kit</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Hashtag Checker</h1>
+            <p>Major Creator Kit Tool</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <textarea id="hashtagsInput" rows="6" placeholder="#fashion\n#followme\n#like4like" style="width: 100%; padding: 1rem; font-size: 1rem; border-radius: 8px; border: none; resize: vertical;"></textarea>
+    <main>
+        <section class="tool-container">
+            <h2>Check Your Hashtags</h2>
+            <div class="input-area">
+                <textarea placeholder="Enter your hashtags here, separated by spaces or commas"></textarea>
+                <select id="category">
+                    <option value="fitness">Fitness</option>
+                    <option value="travel">Travel</option>
+                    <option value="health">Health</option>
+                    <option value="food">Food</option>
+                    <option value="lifestyle">Lifestyle</option>
+                </select>
+                <button id="check-btn">Check Hashtags</button>
+            </div>
 
-    <button onclick="checkHashtags()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: #00ffab; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Check Hashtags</button>
+            <div class="results">
+                <div class="good-hashtags">
+                    <h3>Effective Hashtags</h3>
+                    <ul id="good-list"></ul>
+                </div>
+                <div class="bad-hashtags">
+                    <h3>Overused Hashtags</h3>
+                    <ul id="bad-list"></ul>
+                </div>
+            </div>
 
-    <div id="resultsContainer" style="margin-top: 2rem;"></div>
-  </div>
+            <div class="predefined-lists">
+                <h3>Predefined Hashtag Lists</h3>
+                <div class="hashtag-categories">
+                    <button data-category="fitness">Fitness Hashtags</button>
+                    <button data-category="travel">Travel Hashtags</button>
+                    <button data-category="health">Health Hashtags</button>
+                </div>
+                <div id="predefined-list"></div>
+            </div>
+        </section>
+    </main>
 
-  <script>
-    const bannedList = [
-      "beautyblogger", "dating", "adulting", "bikinibody", "humpday", 
-      "killingit", "models", "parties", "pushups", "sugarbaby"
-    ];
-
-    function checkHashtags() {
-      const input = document.getElementById("hashtagsInput").value;
-      const lines = input.split("\n").map(tag => tag.trim().replace("#", "").toLowerCase());
-      const resultsContainer = document.getElementById("resultsContainer");
-      resultsContainer.innerHTML = "";
-
-      lines.forEach(tag => {
-        if (!tag) return;
-        const isBanned = bannedList.includes(tag);
-        const result = document.createElement("div");
-        result.style = "background: #1c1c1f; margin-bottom: 0.5rem; padding: 0.75rem 1rem; border-radius: 6px; display: flex; justify-content: space-between;";
-        result.innerHTML = `
-          <span>#${tag}</span>
-          <span style="color: ${isBanned ? '#ff4d4d' : '#00ffab'}; font-weight: bold;">
-            ${isBanned ? 'Banned ❌' : 'Safe ✅'}
-          </span>`;
-        resultsContainer.appendChild(result);
-      });
-    }
-  </script>
-</section>
+    <script src="script.js"></script>
+</body>
+</html>
