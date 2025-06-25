@@ -4,7 +4,6 @@ File: style.css
 ========================================
 */
 
-/* -- NEW -- Vibrant Color Palette */
 :root {
     --dark-bg: #1A0B2E;         /* Rich Dark Purple */
     --card-bg: #2A1A45;         /* Lighter Purple */
@@ -24,10 +23,12 @@ File: style.css
     --icon-color-4: #4361EE;
     --icon-color-5: #F48C06; /* Orange */
     --icon-color-6: #9EF01A; /* Lime Green */
-    /* -- NEW ICONS -- */
     --icon-color-7: #ff4d6d; /* Bright Red-Pink */
     --icon-color-8: #ffd166; /* Bright Yellow */
     --icon-color-9: #06d6a0; /* Bright Teal */
+    /* -- NEW AI TOOL ICON -- */
+    --icon-color-10: #fefae0; /* Cream White for AI Star */
+
 }
 
 /* Basic Reset and Body Styles */
