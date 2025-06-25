@@ -3,474 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Major Creator Kit - Instagram Bio Generator</title>
+    <title>AI Bio Generator | Major Creator Kit</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Linking External CSS File -->
+    <link rel="stylesheet" href="style.css">
+
     <style>
-        :root {
-            --primary-color: #E1306C;
-            --secondary-color: #F56040;
-            --gradient: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737);
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #fafafa;
-            color: var(--dark-color);
-        }
-        
-        header {
-            background: var(--gradient);
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .container {
+        /* Is page ke liye kuch extra styles */
+        .tool-container {
             max-width: 800px;
             margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 2.5rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        
-        .tool-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
+
+        .tool-header {
+            text-align: center;
             margin-bottom: 2rem;
         }
-        
-        h1 {
-            margin: 0;
-            font-size: 2rem;
+
+        .tool-header h1 {
+            font-size: 2.8rem;
+            color: var(--heading-text);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
         
-        h2 {
-            color: var(--primary-color);
-            margin-top: 0;
+        .tool-header p {
+            font-size: 1.1rem;
+            color: var(--primary-text);
         }
-        
-        .creator {
-            font-style: italic;
-            margin-bottom: 0;
-        }
-        
-        .tab-buttons {
-            display: flex;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .tab-btn {
-            padding: 0.75rem 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            color: var(--dark-color);
-            position: relative;
-        }
-        
-        .tab-btn.active {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .category-selector {
+
+        .form-group {
             margin-bottom: 1.5rem;
         }
-        
-        select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        .generate-btn {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            margin: 1rem 0;
+
+        .form-group label {
             display: block;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .form-group textarea {
             width: 100%;
-        }
-        
-        .generate-btn:hover {
-            opacity: 0.9;
-        }
-        
-        .result-container {
-            margin-top: 1.5rem;
-        }
-        
-        textarea {
-            width: 100%;
-            min-height: 150px;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
+            padding: 0.85rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-family: var(--font-family);
             font-size: 1rem;
+            min-height: 100px;
             resize: vertical;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .copy-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 0.5rem;
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--grad-mid);
+            box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
         }
-        
-        .copy-btn:hover {
-            background-color: #C13584;
-        }
-        
-        .emoji-picker {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-        
-        .emoji-btn {
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.25rem;
-        }
-        
-        .emoji-btn:hover {
-            transform: scale(1.2);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: var(--dark-color);
-            color: white;
-            margin-top: 2rem;
-        }
-        
-        nav {
-            background-color: var(--dark-color);
-            padding: 0.5rem 0;
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        nav li {
-            margin: 0 1rem;
-        }
-        
-        nav a {
-            color: white;
+
+        .generate-btn {
+            background-image: linear-gradient(90deg, var(--grad-start) 0%, var(--grad-mid) 100%);
+            color: var(--heading-text);
+            padding: 0.8rem 2rem;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.25);
         }
         
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         
-        @media (max-width: 600px) {
-            .tab-buttons {
-                flex-direction: column;
-            }
-            
-            .tab-btn {
-                text-align: left;
-                border-bottom: 1px solid #eee;
-            }
+        #result-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            background-color: var(--dark-bg);
+            min-height: 150px;
+            white-space: pre-wrap; /* Yeh lines ko preserve karta hai */
+            line-height: 1.7;
+            font-size: 1.1rem;
+            color: #dcdcdc;
+            transition: border-color 0.3s ease;
         }
+        
+        #result-container.loading {
+            border-color: var(--grad-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>Major Creator Kit</h1>
-        <p class="creator">by Major SMP Panel</p>
+
+    <!-- Header Code (Same as index.html) -->
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:var(--grad-start);" />
+                            <stop offset="100%" style="stop-color:var(--grad-end);" />
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z" />
+                </svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html#tools">Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
     </header>
-    
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/how-to-use">How to Use</a></li>
-            <li><a href="/oper-tool">Oper Tool</a></li>
-        </ul>
-    </nav>
-    
-    <div class="container">
-        <div class="tool-card">
-            <h2>Instagram Bio Generator</h2>
-            <p>Create stylish and trending Instagram bios in seconds</p>
-            
-            <div class="tab-buttons">
-                <button class="tab-btn active" data-tab="stylish">Stylish Bio</button>
-                <button class="tab-btn" data-tab="trending">Trending Bio</button>
+
+    <main>
+        <div class="tool-container">
+            <header class="tool-header">
+                <h1>AI Bio Generator</h1>
+                <p>Describe your niche, and let our AI create the perfect bio for you.</p>
+            </header>
+
+            <div class="form-group">
+                <label for="prompt-input">What do you do? (e.g., "Food blogger from Karachi" or "Fitness coach who loves yoga")</label>
+                <textarea id="prompt-input" rows="3" placeholder="Yahan likhein..."></textarea>
             </div>
-            
-            <div class="tab-content active" id="stylish-tab">
-                <div class="category-selector">
-                    <label for="stylish-category">Select Style:</label>
-                    <select id="stylish-category">
-                        <option value="minimal">Minimal</option>
-                        <option value="fancy">Fancy Fonts</option>
-                        <option value="aesthetic">Aesthetic</option>
-                        <option value="professional">Professional</option>
-                        <option value="creative">Creative</option>
-                    </select>
-                </div>
-                
-                <button class="generate-btn" id="generate-stylish">Generate Stylish Bio</button>
-                
-                <div class="emoji-picker">
-                    <div>Add Emoji:</div>
-                    <button class="emoji-btn">✨</button>
-                    <button class="emoji-btn">🌸</button>
-                    <button class="emoji-btn">🔥</button>
-                    <button class="emoji-btn">💫</button>
-                    <button class="emoji-btn">💖</button>
-                    <button class="emoji-btn">🎨</button>
-                    <button class="emoji-btn">📸</button>
-                    <button class="emoji-btn">🌿</button>
-                </div>
-                
-                <div class="result-container">
-                    <textarea id="stylish-result" placeholder="Your generated bio will appear here..."></textarea>
-                    <button class="copy-btn" id="copy-stylish">Copy Bio</button>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="trending-tab">
-                <div class="category-selector">
-                    <label for="trending-category">Select Trend:</label>
-                    <select id="trending-category">
-                        <option value="influencer">Influencer</option>
-                        <option value="travel">Travel</option>
-                        <option value="fitness">Fitness</option>
-                        <option value="foodie">Foodie</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="business">Business</option>
-                        <option value="quotes">Quotes</option>
-                    </select>
-                </div>
-                
-                <button class="generate-btn" id="generate-trending">Generate Trending Bio</button>
-                
-                <div class="result-container">
-                    <textarea id="trending-result" placeholder="Your generated bio will appear here..."></textarea>
-                    <button class="copy-btn" id="copy-trending">Copy Bio</button>
-                </div>
-            </div>
-            
-            <div class="how-to-use">
-                <h3>How to Use</h3>
-                <ol>
-                    <li>Select between <strong>Stylish</strong> or <strong>Trending</strong> bio types</li>
-                    <li>Choose your preferred category/style</li>
-                    <li>Click "Generate" button</li>
-                    <li>Copy your bio and paste it in your Instagram profile</li>
-                    <li>For stylish bios, you can add emojis by clicking them</li>
-                </ol>
-                
-                <h3>About This Tool</h3>
-                <p>This tool helps you create unique Instagram bios with stylish fonts or trending phrases. The stylish generator creates aesthetic bios with special characters, while the trending generator uses popular phrases from different niches.</p>
+
+            <button class="generate-btn" id="generate-btn">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M15.36,16.25L14.05,17.56L12,15.53L9.95,17.56L8.64,16.25L10.67,14.22L8.64,12.19L9.95,10.88L12,12.91L14.05,10.88L15.36,12.19L13.33,14.22L15.36,16.25M18,9.5L17.25,7.75L15.5,7L17.25,6.25L18,4.5L18.75,6.25L20.5,7L18.75,7.75L18,9.5Z" />
+                </svg>
+                <span id="btn-text">Generate Bio</span>
+            </button>
+
+            <div class="form-group" style="margin-top: 2rem;">
+                <label for="result-container">AI Generated Bios:</label>
+                <div id="result-container">Your AI-generated bios will appear here...</div>
             </div>
         </div>
-    </div>
-    
-    <footer>
-        <p>&copy; 2023 Major Creator Kit | majorsmmpanel.online</p>
+    </main>
+
+    <!-- Footer Code (Same as index.html) -->
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
     </footer>
 
     <script>
-        // Tab switching functionality
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tabId = btn.getAttribute('data-tab');
+        // JavaScript for AI Bio Generator
+        const generateBtn = document.getElementById('generate-btn');
+        const btnText = document.getElementById('btn-text');
+        const promptInput = document.getElementById('prompt-input');
+        const resultContainer = document.getElementById('result-container');
+
+        generateBtn.addEventListener('click', async () => {
+            const userPrompt = promptInput.value;
+            if (!userPrompt.trim()) {
+                resultContainer.textContent = "⚠️ Please describe what you do first!";
+                return;
+            }
+
+            // Disable button and show loading state
+            generateBtn.disabled = true;
+            btnText.textContent = 'Generating...';
+            resultContainer.classList.add('loading');
+            resultContainer.textContent = 'AI is thinking... ✨';
+
+            // Construct the final prompt for the API
+            const finalPrompt = `Generate 3 creative and professional Instagram bios for a person who is a: "${userPrompt}". 
+            Each bio should be short, engaging, and include relevant emojis. 
+            Each bio must be on a new line, starting with a number (e.g., 1., 2., 3.).`;
+
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: finalPrompt }] }];
+                const payload = { contents: chatHistory };
                 
-                // Remove active class from all buttons and contents
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
+                // The API Key will be automatically provided by the Canvas environment
+                // You do not need to add it manually
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
                 
-                // Add active class to clicked button and corresponding content
-                btn.classList.add('active');
-                document.getElementById(`${tabId}-tab`).classList.add('active');
-            });
-        });
-        
-        // Emoji picker functionality
-        const emojiBtns = document.querySelectorAll('.emoji-btn');
-        const stylishResult = document.getElementById('stylish-result');
-        
-        emojiBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                stylishResult.value += btn.textContent;
-            });
-        });
-        
-        // Bio generators
-        const stylishCategories = {
-            minimal: [
-                "Living my truth",
-                "Simplicity is the ultimate sophistication",
-                "Less is more",
-                "Just me",
-                "Be yourself, everyone else is taken"
-            ],
-            fancy: [
-                "𝓛𝓲𝓿𝓲𝓷𝓰 𝓶𝔂 𝓫𝓮𝓼𝓽 𝓵𝓲𝓯𝓮 ✨",
-                "𝒯𝒽𝑒 𝒷𝑒𝒶𝓊��𝒾𝒻𝓊� 𝒻��𝒶𝑔𝓈 𝒶𝓇𝑒 �𝒽𝑒 �𝒽𝒶𝑔�𝒹𝒾𝑔𝓈𝓉",
-                "𝒟𝓇𝑒𝒶𝓂 𝓈𝒸𝒽𝑒𝓂𝑒𝓇 ✧ 𝓋𝒾𝓈𝒾𝑜𝓃𝒶𝓇𝓎",
-                "𝒮𝑜𝒻𝓉 𝓈𝓉𝒶𝓇𝑔𝒾𝓇𝓁 ✦",
-                "𝒞𝒽𝒶𝓈𝒾𝓃𝑔 𝓂𝑜𝓂𝑒𝓃𝓉𝓈, 𝓃𝑜𝓉 𝓉𝒽𝒾𝓃𝑔𝓈"
-            ],
-            aesthetic: [
-                "soft girl summer 🌸✨",
-                "lost in the right direction 🗺️",
-                "collecting moments, not things 📸",
-                "sunshine mixed with a little hurricane ☀️🌪️",
-                "living in a daydream 🌙"
-            ],
-            professional: [
-                "Digital creator | Content strategist",
-                "Helping brands tell their stories",
-                "Turning ideas into reality",
-                "Building my empire one post at a time",
-                "Creative mind | Business heart"
-            ],
-            creative: [
-                "Professional overthinker",
-                "Part-time mermaid 🧜‍♀️",
-                "Certified snack enthusiast 🍕",
-                "I put the 'pro' in procrastination",
-                "Here for a good time, not a long time"
-            ]
-        };
-        
-        const trendingCategories = {
-            influencer: [
-                "Digital creator | Collabs open 📩",
-                "Turning my passion into my profession",
-                "Creating content that matters",
-                "Your daily dose of [niche]",
-                "Living creatively ✨"
-            ],
-            travel: [
-                "Collecting passport stamps ✈️",
-                "Not all who wander are lost",
-                "Travel now, worry later",
-                "Professional sunset chaser 🌅",
-                "Born to travel, forced to work"
-            ],
-            fitness: [
-                "Transforming my body & mind",
-                "Sweat now, shine later",
-                "Progress over perfection",
-                "Strong looks good on me 💪",
-                "One rep at a time"
-            ],
-            foodie: [
-                "Professional eater 🍴",
-                "Will travel for food",
-                "Calories don't count on weekends",
-                "Food = happiness",
-                "Eating my way through [city]"
-            ],
-            fashion: [
-                "Style is a way to say who you are without speaking",
-                "Dress like you're already famous",
-                "Fashion is my passion",
-                "Shop my looks below 👇",
-                "Outfit repeater and proud"
-            ],
-            business: [
-                "Helping you build your dream business",
-                "Entrepreneur life | CEO of [business]",
-                "Turning dreams into plans",
-                "Hustle until your haters ask if you're hiring",
-                "Small business owner | Supporting small shops"
-            ],
-            quotes: [
-                "She believed she could, so she did",
-                "Be the energy you want to attract",
-                "Good vibes only",
-                "Create your own sunshine",
-                "She turned her can't into can and her dreams into plans"
-            ]
-        };
-        
-        document.getElementById('generate-stylish').addEventListener('click', () => {
-            const category = document.getElementById('stylish-category').value;
-            const bios = stylishCategories[category];
-            const randomBio = bios[Math.floor(Math.random() * bios.length)];
-            stylishResult.value = randomBio;
-        });
-        
-        document.getElementById('generate-trending').addEventListener('click', () => {
-            const category = document.getElementById('trending-category').value;
-            const bios = trendingCategories[category];
-            const randomBio = bios[Math.floor(Math.random() * bios.length)];
-            document.getElementById('trending-result').value = randomBio;
-        });
-        
-        // Copy buttons
-        document.getElementById('copy-stylish').addEventListener('click', () => {
-            stylishResult.select();
-            document.execCommand('copy');
-            alert('Bio copied to clipboard!');
-        });
-        
-        document.getElementById('copy-trending').addEventListener('click', () => {
-            const trendingResult = document.getElementById('trending-result');
-            trendingResult.select();
-            document.execCommand('copy');
-            alert('Bio copied to clipboard!');
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    resultContainer.textContent = text.trim();
+                } else {
+                     throw new Error("Unexpected API response structure.");
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+                // In case of an API error, show a helpful message
+                resultContainer.textContent = `Sorry, something went wrong. Please try again.\n\nFor demo, here's a sample response for "Food blogger from Karachi":\n\n1.  Karachi on a plate 🍽️ | Exploring the city's best eats.\n✨ Food Blogger & Storyteller\n👇 New food adventure out now!\n\n2. From Burns Road to Boat Basin  बिरयानी ❤️\n📍 Karachi Food Explorer\n💌 DM for collabs & foodie chats!\n\n3. Documenting my foodie journey through Karachi 📸\n🍕 Pizza > Everything\n📧: you@example.com`;
+            } finally {
+                // Re-enable the button and reset text
+                generateBtn.disabled = false;
+                btnText.textContent = 'Generate Bio';
+                resultContainer.classList.remove('loading');
+            }
         });
     </script>
+
 </body>
 </html>
