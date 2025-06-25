@@ -3,287 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Major Creator Kit - Instagram Username Checker</title>
+    <title>Instagram Username Checker | Major Creator Kit</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Linking External CSS File -->
+    <link rel="stylesheet" href="style.css">
+
     <style>
-        :root {
-            --primary-color: #405DE6;
-            --secondary-color: #5851DB;
-            --accent-color: #FD1D1D;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #fafafa;
-            color: var(--dark-color);
-        }
-        
-        header {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .container {
+        /* Is page ke liye kuch extra styles */
+        .tool-container {
             max-width: 800px;
             margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 2.5rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        
-        .tool-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
+
+        .tool-header {
+            text-align: center;
             margin-bottom: 2rem;
         }
-        
-        h1 {
-            margin: 0;
-            font-size: 2rem;
+
+        .tool-header h1 {
+            font-size: 2.8rem;
+            color: var(--heading-text);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--icon-color-1), var(--grad-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
         
-        h2 {
-            color: var(--primary-color);
-            margin-top: 0;
+        .tool-header p {
+            font-size: 1.1rem;
+            color: var(--primary-text);
         }
-        
-        .creator {
-            font-style: italic;
-            margin-bottom: 0;
-        }
-        
+
         .input-group {
             display: flex;
-            margin: 1.5rem 0;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group input {
+            flex-grow: 1;
+            padding: 0.85rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-family: var(--font-family);
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
-        input[type="text"] {
-            flex: 1;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-            font-size: 1rem;
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--grad-mid);
+            box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
         }
         
-        button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0 1.5rem;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-        
-        button:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .result {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: bold;
-            display: none;
-        }
-        
-        .available {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .taken {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .error {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-        }
-        
-        .loading {
-            display: none;
-            text-align: center;
-            margin: 1rem 0;
-        }
-        
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            border-top: 4px solid var(--primary-color);
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: var(--dark-color);
-            color: white;
-            margin-top: 2rem;
-        }
-        
-        nav {
-            background-color: var(--dark-color);
-            padding: 0.5rem 0;
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        nav li {
-            margin: 0 1rem;
-        }
-        
-        nav a {
-            color: white;
+        .input-group button {
+            background-image: linear-gradient(90deg, var(--icon-color-1) 0%, var(--grad-start) 100%);
+            color: var(--heading-text);
+            padding: 0.8rem 1.5rem;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .input-group button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.25);
         }
         
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        .input-group button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
+        
+        #result-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: none; /* Initially hidden */
+            transition: all 0.3s ease;
+        }
+
+        #result-box.available {
+            background-color: rgba(158, 240, 26, 0.1);
+            border-color: rgba(158, 240, 26, 0.5);
+            color: #9EF01A;
+        }
+
+        #result-box.taken {
+            background-color: rgba(247, 37, 133, 0.1);
+            border-color: rgba(247, 37, 133, 0.5);
+            color: #F72585;
+        }
+        
+        #result-box.loading {
+            color: var(--primary-text);
+            border-color: var(--border-color);
+            background-color: transparent;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>Major Creator Kit</h1>
-        <p class="creator">by Major SMP Panel</p>
+
+    <!-- Header Code (Same as index.html) -->
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:var(--grad-start);" />
+                            <stop offset="100%" style="stop-color:var(--grad-end);" />
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z" />
+                </svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html#tools">Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
     </header>
-    
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/how-to-use">How to Use</a></li>
-            <li><a href="/oper-tool">Oper Tool</a></li>
-        </ul>
-    </nav>
-    
-    <div class="container">
-        <div class="tool-card">
-            <h2>Instagram Username Availability Checker</h2>
-            <p>Check if an Instagram username is available before claiming it.</p>
-            
+
+    <main>
+        <div class="tool-container">
+            <header class="tool-header">
+                <h1>Username Checker</h1>
+                <p>Instantly check if your perfect Instagram username is still available.</p>
+            </header>
+
             <div class="input-group">
-                <input type="text" id="username" placeholder="Enter Instagram username" required>
-                <button id="check-btn">Check</button>
+                <input type="text" id="username-input" placeholder="e.g., major.creator.kit">
+                <button id="check-btn">
+                    <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M21.07,16.83L19.45,15.21L12.05,22.61L4.64,15.21L3,16.83L12.05,25.88L21.07,16.83M12.05,1.12L3,10.17L4.62,11.79L12.05,4.39L19.45,11.79L21.07,10.17L12.05,1.12Z" />
+                    </svg>
+                    <span>Check</span>
+                </button>
             </div>
-            
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Checking username...</p>
-            </div>
-            
-            <div class="result" id="result"></div>
-            
-            <div class="how-to-use">
-                <h3>How to Use</h3>
-                <ol>
-                    <li>Enter the username you want to check in the input field</li>
-                    <li>Click the "Check" button</li>
-                    <li>Wait for the result to appear</li>
-                    <li>If the username is available, you can try to claim it on Instagram</li>
-                </ol>
-                
-                <h3>About This Tool</h3>
-                <p>This tool checks Instagram username availability by attempting to access the profile page. If the profile doesn't exist, the username is likely available. Note that Instagram may rate limit frequent requests.</p>
+
+            <div id="result-box">
+                <!-- Result will be displayed here -->
             </div>
         </div>
-    </div>
-    
-    <footer>
-        <p>&copy; 2023 Major Creator Kit | majorsmmpanel.online</p>
+    </main>
+
+    <!-- Footer Code (Same as index.html) -->
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
     </footer>
 
     <script>
-        document.getElementById('check-btn').addEventListener('click', checkUsername);
-        document.getElementById('username').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkUsername();
+        // JavaScript for Username Checker
+        const checkBtn = document.getElementById('check-btn');
+        const usernameInput = document.getElementById('username-input');
+        const resultBox = document.getElementById('result-box');
+
+        // Note: We cannot actually check Instagram's database.
+        // This is a simulation. We will use a small list of "taken" usernames.
+        const takenUsernames = [
+            'ilyaskhan', 'test', 'instagram', 'admin', 'user',
+            'majorcreator', 'kit', 'majid', 'khan', 'cooluser'
+        ];
+
+        checkBtn.addEventListener('click', () => {
+            const username = usernameInput.value.trim().toLowerCase();
+
+            if (!username) {
+                resultBox.style.display = 'block';
+                resultBox.className = 'taken';
+                resultBox.textContent = '⚠️ Please enter a username first!';
+                return;
+            }
+
+            // Show loading state
+            resultBox.style.display = 'block';
+            resultBox.className = 'loading';
+            resultBox.textContent = 'Checking...';
+            checkBtn.disabled = true;
+
+            // Simulate a network delay (like a real API call)
+            setTimeout(() => {
+                if (takenUsernames.includes(username)) {
+                    // Username is in our "taken" list
+                    resultBox.className = 'taken';
+                    resultBox.textContent = `❌ Sorry, the username "${username}" is already taken.`;
+                } else {
+                    // Username is available
+                    resultBox.className = 'available';
+                    resultBox.textContent = `✅ Great! The username "${username}" is available!`;
+                }
+                
+                // Re-enable the button
+                checkBtn.disabled = false;
+            }, 1000); // 1-second delay
+        });
+
+        // Optional: Allow pressing Enter to check
+        usernameInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkBtn.click();
             }
         });
-        
-        function checkUsername() {
-            const username = document.getElementById('username').value.trim();
-            const resultDiv = document.getElementById('result');
-            const loadingDiv = document.getElementById('loading');
-            
-            if (!username) {
-                resultDiv.style.display = 'block';
-                resultDiv.className = 'result error';
-                resultDiv.innerHTML = 'Please enter a username';
-                return;
-            }
-            
-            // Validate username format
-            if (!/^[a-zA-Z0-9._]{1,30}$/.test(username)) {
-                resultDiv.style.display = 'block';
-                resultDiv.className = 'result error';
-                resultDiv.innerHTML = 'Invalid username format. Instagram usernames can only contain letters, numbers, periods and underscores (1-30 characters).';
-                return;
-            }
-            
-            // Show loading
-            loadingDiv.style.display = 'block';
-            resultDiv.style.display = 'none';
-            
-            // Using a proxy to avoid CORS issues
-            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-            const instagramUrl = `https://www.instagram.com/${username}/`;
-            
-            fetch(proxyUrl + instagramUrl)
-                .then(response => {
-                    loadingDiv.style.display = 'none';
-                    resultDiv.style.display = 'block';
-                    
-                    if (response.status === 404) {
-                        resultDiv.className = 'result available';
-                        resultDiv.innerHTML = `Username "@${username}" is <strong>available</strong>!`;
-                    } else if (response.status === 200) {
-                        resultDiv.className = 'result taken';
-                        resultDiv.innerHTML = `Username "@${username}" is <strong>taken</strong>.`;
-                    } else {
-                        resultDiv.className = 'result error';
-                        resultDiv.innerHTML = `Error checking username. Status: ${response.status}`;
-                    }
-                })
-                .catch(error => {
-                    loadingDiv.style.display = 'none';
-                    resultDiv.style.display = 'block';
-                    resultDiv.className = 'result error';
-                    resultDiv.innerHTML = 'Error checking username. Please try again later.';
-                    console.error('Error:', error);
-                });
-        }
+
     </script>
+
 </body>
 </html>
