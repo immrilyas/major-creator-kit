@@ -45,10 +45,38 @@
             color: var(--primary-text);
         }
 
+        /* -- NEW -- Form Group for better layout */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-family: var(--font-family);
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--grad-mid);
+            box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
+        }
+
         .input-group {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1.5rem;
         }
 
         .input-group input {
@@ -139,7 +167,6 @@
              transform: scale(1.05);
         }
         
-        /* Content Section Styles */
         .content-section {
             margin-top: 4rem;
             color: #dcdcdc;
@@ -204,9 +231,22 @@
                 <p>Enter a keyword to generate relevant hashtags for your posts.</p>
             </header>
 
-            <div class="input-group">
-                <input type="text" id="keyword-input" placeholder="e.g., travel, food, fitness...">
-                <button class="generate-btn" id="generate-btn">Generate</button>
+            <!-- ======================= NEW LANGUAGE SELECTOR ======================= -->
+            <div class="form-group">
+                <label for="lang-select">Select Language:</label>
+                <select id="lang-select">
+                    <option value="en" selected>English</option>
+                    <option value="ur">Urdu (Roman)</option>
+                </select>
+            </div>
+            <!-- ======================= END OF NEW SECTION ======================= -->
+            
+            <div class="form-group">
+                <label for="keyword-input">Enter a Keyword:</label>
+                <div class="input-group">
+                    <input type="text" id="keyword-input" placeholder="e.g., travel, food, fitness...">
+                    <button class="generate-btn" id="generate-btn">Generate</button>
+                </div>
             </div>
 
             <div class="results-header">
@@ -218,7 +258,6 @@
             </div>
         </div>
         
-        <!-- ======================= BLOG STYLE CONTENT SECTION ======================= -->
         <article class="content-section">
             <h2>Your Complete Guide to Instagram Hashtags</h2>
             <p>
@@ -261,20 +300,35 @@
         const keywordInput = document.getElementById('keyword-input');
         const hashtagsOutput = document.getElementById('hashtags-output');
         const copyBtn = document.getElementById('copy-btn');
+        // -- NEW -- Get language selector
+        const langSelector = document.getElementById('lang-select');
 
+        // -- NEW -- Restructured database for multiple languages
         const hashtagDatabase = {
-            travel: ["travelgram", "instatravel", "wanderlust", "travelphotography", "explore", "vacation", "trip", "adventure", "travelling", "tourist", "travelblogger", "beautifuldestinations", "passionpassport", "traveltheworld", "getaway", "pakistantravel", "northernareas"],
-            food: ["foodie", "foodporn", "instafood", "foodphotography", "yummy", "delicious", "foodblogger", "foodstagram", "homemade", "foodlover", "tasty", "healthyfood", "dinner", "lunch", "breakfast", "karachifood", "lahorefood"],
-            fitness: ["fitness", "gym", "workout", "fitnessmotivation", "fit", "motivation", "training", "health", "lifestyle", "fitfam", "healthy", "sport", "gymlife", "personaltrainer", "muscle", "pakistanfitness"],
-            fashion: ["fashion", "style", "love", "ootd", "instafashion", "fashionblogger", "instagood", "styleblogger", "model", "fashionista", "outfitoftheday", "instastyle", "picoftheday", "look", "streetstyle", "pakistanifashion"],
-            default: ["instagood", "love", "photooftheday", "fashion", "beautiful", "happy", "picoftheday", "art", "cute", "follow", "tbt", "like4like", "followme", "nature", "summer", "pakistan", "instadaily"]
+            en: {
+                travel: ["travelgram", "instatravel", "wanderlust", "travelphotography", "explore", "vacation", "trip", "adventure", "travelling", "tourist", "travelblogger", "beautifuldestinations", "passionpassport", "traveltheworld", "getaway", "pakistantravel", "northernareas"],
+                food: ["foodie", "foodporn", "instafood", "foodphotography", "yummy", "delicious", "foodblogger", "foodstagram", "homemade", "foodlover", "tasty", "healthyfood", "dinner", "lunch", "breakfast", "karachifood", "lahorefood"],
+                fitness: ["fitness", "gym", "workout", "fitnessmotivation", "fit", "motivation", "training", "health", "lifestyle", "fitfam", "healthy", "sport", "gymlife", "personaltrainer", "muscle", "pakistanfitness"],
+                fashion: ["fashion", "style", "love", "ootd", "instafashion", "fashionblogger", "instagood", "styleblogger", "model", "fashionista", "outfitoftheday", "instastyle", "picoftheday", "look", "streetstyle", "pakistanifashion"],
+                default: ["instagood", "love", "photooftheday", "fashion", "beautiful", "happy", "picoftheday", "art", "cute", "follow", "tbt", "like4like", "followme", "nature", "summer", "pakistan", "instadaily"]
+            },
+            ur: {
+                travel: ["safar", "pakistantourism", "sair", "manzar", "gardish", "ghumphir", "khubsuratpakistan", "jannatpakistan", "urdutravel"],
+                food: ["khanay", "pakistanifood", "lazeez", "mazedar", "karachifoodies", "lahorifood", "desifood", "biryani", "urdufood"],
+                fashion: ["fashionpakistan", "libas", "stylepk", "kapray", "dulhanwear", "shadiseason", "urdufashion"],
+                default: ["urdu", "pakistan", "karachi", "lahore", "islamabad", "instapakistan", "igpakistan", "urdupost", "shayari"]
+            }
         };
 
         function generateHashtags() {
             const keyword = keywordInput.value.trim().toLowerCase();
+            // -- NEW -- Get selected language
+            const selectedLang = langSelector.value;
             hashtagsOutput.innerHTML = '';
             
-            let hashtags = hashtagDatabase[keyword] || hashtagDatabase['default'];
+            const langDb = hashtagDatabase[selectedLang];
+            let hashtags = langDb[keyword] || langDb['default'];
+            
             hashtags = hashtags.sort(() => 0.5 - Math.random());
             const count = Math.floor(Math.random() * (30 - 15 + 1)) + 15;
             const selectedHashtags = hashtags.slice(0, count);
