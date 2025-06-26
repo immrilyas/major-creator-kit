@@ -1,126 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Title Generator</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f0f4f8;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Instagram Caption Generator | Major Creator Kit</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    .container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 500px;
-    }
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #333;
-    }
+    <style>
+        /* Page-specific styles */
+        .tool-wrapper {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-bottom: 15px;
-    }
+        .tool-container {
+            padding: 2.5rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
 
-    .btn {
-      width: 100%;
-      background: linear-gradient(135deg, #6e8efb, #a777e3);
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
+        .tool-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .btn:hover {
-      opacity: 0.9;
-    }
+        .tool-header h1 {
+            font-size: 2.8rem;
+            color: var(--heading-text);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--icon-color-7), var(--grad-end));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;
+        }
+        
+        .tool-header p {
+            font-size: 1.1rem;
+            color: var(--primary-text);
+        }
 
-    .output {
-      margin-top: 20px;
-      background: #f5f5f5;
-      padding: 15px;
-      border-radius: 10px;
-      font-size: 16px;
-      position: relative;
-    }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
 
-    .copy-btn {
-      margin-top: 10px;
-      background: #00c896;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      display: block;
-      width: 100%;
-    }
-  </style>
+        .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-family: var(--font-family);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--grad-mid);
+            box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
+        }
+        
+        .generate-btn {
+            background-image: linear-gradient(90deg, var(--icon-color-7) 0%, var(--grad-start) 100%);
+            color: var(--heading-text);
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.25);
+        }
+        
+        #results-area {
+            margin-top: 2.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        .caption-suggestion {
+            background-color: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .caption-text {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            white-space: pre-wrap;
+            margin-bottom: 1rem;
+        }
+
+        .copy-caption-btn {
+            background-color: transparent;
+            color: var(--grad-start);
+            border: 1px solid var(--grad-start);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .copy-caption-btn:hover {
+            background-color: var(--grad-start);
+            color: var(--heading-text);
+        }
+        
+        .content-section {
+            margin-top: 4rem;
+            color: #dcdcdc;
+        }
+        
+        .content-section h2 {
+            font-size: 2.2rem;
+            color: var(--heading-text);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--icon-color-7);
+            padding-left: 1rem;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Instagram Title Generator</h2>
-    <input type="text" id="topicInput" placeholder="Enter a topic (e.g. Travel, Fashion)" />
-    <button class="btn" onclick="generateTitle()">Generate Title</button>
 
-    <div id="outputSection" style="display:none;">
-      <div class="output" id="generatedTitle"></div>
-      <button class="copy-btn" onclick="copyTitle()">Copy Title</button>
-    </div>
-  </div>
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../index.html#tools">Tools</a>
+                <a href="../blog/blog.html">Blog</a>
+                <a href="../legal/about.html">About</a>
+            </nav>
+        </div>
+    </header>
 
-  <script>
-    function generateTitle() {
-      const topic = document.getElementById('topicInput').value.trim();
-      const output = document.getElementById('generatedTitle');
-      const outputSection = document.getElementById('outputSection');
+    <main class="tool-wrapper">
+        <div class="tool-container">
+            <header class="tool-header">
+                <h1>AI Caption Generator</h1>
+                <p>Never run out of ideas. Generate engaging captions for your posts in seconds.</p>
+            </header>
 
-      if (!topic) {
-        output.innerText = "Please enter a topic.";
-        outputSection.style.display = "block";
-        return;
-      }
+            <div class="form-group">
+                <label for="prompt-input">What is your post about?</label>
+                <textarea id="prompt-input" rows="4" placeholder="e.g., A picture of me enjoying coffee on a rainy day."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="tone-select">Choose a Tone</label>
+                <select id="tone-select">
+                    <option value="Casual" selected>Casual</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Funny">Funny</option>
+                    <option value="Inspirational">Inspirational</option>
+                    <option value="Question">Question (to engage)</option>
+                </select>
+            </div>
 
-      const titles = [
-        `Top 10 ${topic} Tips You Need Today!`,
-        `How to Master ${topic} in 2025`,
-        `${topic} Hacks That Actually Work!`,
-        `Boost Your ${topic} Game Instantly`,
-        `Most Creative ${topic} Ideas Ever`
-      ];
+            <button class="generate-btn" id="generate-btn">Generate Captions</button>
 
-      const randomTitle = titles[Math.floor(Math.random() * titles.length)];
-      output.innerText = randomTitle;
-      outputSection.style.display = "block";
-    }
+            <div id="results-area">
+                 <p style="text-align: center; opacity: 0.7; margin-top: 2rem;">Your AI-generated captions will appear here...</p>
+            </div>
+        </div>
+        
+        <article class="content-section">
+            <h2>How to Write an Unforgettable Instagram Caption</h2>
+            <p>
+               A stunning photo can make users pause, but a great caption is what makes them stay, engage, and connect with your brand. A caption gives context to your visual, tells a story, and provides an opportunity to drive action. This AI-powered tool is designed to help you craft compelling captions that resonate with your audience.
+            </p>
+            <h3>The Anatomy of a Great Caption</h3>
+            <ol style="list-style-position: inside; padding-left: 1rem;">
+                <li style="margin-bottom: 0.5rem;"><strong>A Strong Hook:</strong> The first sentence is crucial as Instagram often truncates captions. Start with something that grabs attention, asks a question, or creates curiosity.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Storytelling:</strong> Share the story behind the photo. People connect with narratives and authenticity.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Value Proposition:</strong> Offer value to your audience. This could be a tip, a piece of advice, a relatable experience, or educational content.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>A Clear Call-to-Action (CTA):</strong> What do you want your audience to do next? Ask them a question, tell them to tag a friend, or direct them to the link in your bio.</li>
+            </ol>
+        </article>
+    </main>
 
-    function copyTitle() {
-      const title = document.getElementById('generatedTitle').innerText;
-      navigator.clipboard.writeText(title).then(() => {
-        alert("Title copied!");
-      });
-    }
-  </script>
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
+    </footer>
+
+    <script>
+        const generateBtn = document.getElementById('generate-btn');
+        const promptInput = document.getElementById('prompt-input');
+        const toneSelect = document.getElementById('tone-select');
+        const resultsArea = document.getElementById('results-area');
+
+        generateBtn.addEventListener('click', async () => {
+            const description = promptInput.value.trim();
+            const tone = toneSelect.value;
+
+            if (!description) {
+                alert("Please describe your post first!");
+                return;
+            }
+
+            generateBtn.disabled = true;
+            generateBtn.textContent = 'Generating...';
+            resultsArea.innerHTML = '<p style="text-align: center; opacity: 0.7;">AI is writing the perfect captions for you... ✨</p>';
+
+            const finalPrompt = `Generate 4 unique and engaging Instagram captions for a post described as: "${description}". The tone of voice should be "${tone}". Include relevant emojis in each caption. Each caption must be on a new line and start with a number (e.g., 1., 2., etc.).`;
+
+            try {
+                // --- API KEY ADDED HERE ---
+                const apiKey = "AIzaSyA8cpH8FSaTJJof93-JjpNyosQ0T2xvZOE"; 
+
+                let chatHistory = [{ role: "user", parts: [{ text: finalPrompt }] }];
+                const payload = { contents: chatHistory };
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates[0].content.parts[0].text) {
+                    const captionsText = result.candidates[0].content.parts[0].text;
+                    const captionsArray = captionsText.split('\n').filter(caption => caption.trim() !== '' && caption.match(/^\d+\.\s*/));
+                    displayCaptions(captionsArray);
+                } else {
+                    throw new Error("Unexpected API response.");
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+                const demoCaptions = [
+                    `1. Just enjoying this moment. ✨ What's your favorite part of a rainy day? ☕️`,
+                    `2. Some days are for coffee and contemplation. 🌧️`,
+                    `3. Rainy day mood: Activated. 😌`,
+                    `4. Who else loves the sound of rain? Let me know below! 👇`
+                ];
+                displayCaptions(demoCaptions, true);
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = 'Generate Captions';
+            }
+        });
+
+        function displayCaptions(captions, isDemo = false) {
+            resultsArea.innerHTML = '';
+            if (isDemo) {
+                 resultsArea.innerHTML = '<p style="text-align: center; color: var(--icon-color-8); margin-bottom: 1rem;">API Error. Showing demo results:</p>';
+            }
+            captions.forEach(caption => {
+                const captionElement = document.createElement('div');
+                captionElement.className = 'caption-suggestion';
+                
+                const captionText = document.createElement('p');
+                captionText.className = 'caption-text';
+                captionText.textContent = caption.replace(/^\d+\.\s*/, '');
+
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-caption-btn';
+                copyButton.textContent = 'Copy';
+                copyButton.onclick = () => {
+                    navigator.clipboard.writeText(captionText.textContent).then(() => {
+                        copyButton.textContent = 'Copied!';
+                        setTimeout(() => { copyButton.textContent = 'Copy'; }, 1500);
+                    });
+                };
+
+                captionElement.appendChild(captionText);
+                captionElement.appendChild(copyButton);
+                resultsArea.appendChild(captionElement);
+            });
+        }
+    </script>
+
 </body>
 </html>
