@@ -3,50 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Blog | Major Creator Kit</title>
+    <title>Blog | Major Creator Kit</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
     <style>
-        /* CSS Styles - Aap isko alag style.css file mein bhi daal sakte hain */
-        :root {
-            --dark-bg: #1a1a1a;
-            --card-bg: #252525;
-            --primary-text: #ffffff;
-            --secondary-text: #aaaaaa;
-            --accent-color: #007bff;
-            --font-family: 'Inter', sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background-color: var(--dark-bg);
-            color: var(--primary-text);
-            line-height: 1.6;
-        }
-
-        .container {
+        /* Page-specific styles */
+        .blog-wrapper {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
-
         .blog-header {
             text-align: center;
             margin-bottom: 3rem;
+            padding: 2rem 0;
         }
-
         .blog-header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;
+            margin-bottom: 1rem;
         }
-
         .blog-header p {
-            font-size: 1.1rem;
-            color: var(--secondary-text);
+            font-size: 1.2rem;
+            color: var(--primary-text);
         }
 
         .blog-grid {
@@ -55,112 +41,116 @@
             gap: 2rem;
         }
 
-        .blog-card {
+        /* Re-using tool-card style for consistency, with minor tweaks */
+        .post-card {
             background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--primary-text);
+            transition: transform 0.3s ease, border-color 0.3s ease;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        .post-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--grad-mid);
         }
-
-        .blog-card img {
+        .post-card-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-        
-        .blog-card-content {
+        .post-card-content {
             padding: 1.5rem;
-            flex-grow: 1;
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
         }
-        
-        .blog-card-content h3 {
+        .post-card-content h3 {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            color: var(--heading-text);
+            margin-bottom: 0.75rem;
         }
-        
-        .blog-card-content p {
-            color: var(--secondary-text);
+        .post-card-content p {
             font-size: 1rem;
             flex-grow: 1;
             margin-bottom: 1.5rem;
         }
-
-        .blog-card-meta {
+        .post-card-meta {
             font-size: 0.9rem;
-            color: var(--secondary-text);
-        }
-        
-        .blog-card a {
-            text-decoration: none;
-            color: var(--primary-text);
+            color: #9376C4;
+            font-weight: 500;
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <main>
-        <div class="container">
-            <header class="blog-header">
-                <h1>The Creator's Blog</h1>
-                <p>Insights, tutorials, and updates to help you grow your brand.</p>
-            </header>
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../index.html#tools">Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="../legal/about.html">About</a>
+            </nav>
+        </div>
+    </header>
 
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <a href="single-post.html">
-                        <img src="https://placehold.co/600x400/007bff/FFFFFF?text=Blog+Post" alt="Blog Post Thumbnail">
-                        <div class="blog-card-content">
-                            <h3>A Deep Dive into CSS Gradients</h3>
-                            <p>Learn everything from linear to conic and mesh gradients to create stunning visuals for your website...</p>
-                            <div class="blog-card-meta">
-                                <span>By Ilyas Khan</span> | <span>June 23, 2025</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
+    <main class="blog-wrapper">
+        <header class="blog-header">
+            <h1>The Creator's Blog</h1>
+            <p>Insights, tutorials, and strategies to help you master Instagram.</p>
+        </header>
 
-                <article class="blog-card">
-                     <a href="single-post.html">
-                        <img src="https://placehold.co/600x400/28a745/FFFFFF?text=New+Idea" alt="Blog Post Thumbnail">
-                        <div class="blog-card-content">
-                            <h3>Case Study: Redesigning with SVG Blobs</h3>
-                            <p>See how a simple SVG blob background transformed a boring homepage into a modern masterpiece...</p>
-                            <div class="blog-card-meta">
-                                <span>By Ilyas Khan</span> | <span>June 20, 2025</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <article class="blog-card">
-                     <a href="single-post.html">
-                        <img src="https://placehold.co/600x400/dc3545/FFFFFF?text=Guide" alt="Blog Post Thumbnail">
-                        <div class="blog-card-content">
-                            <h3>The Ultimate Guide to CSS Box Shadows</h3>
-                            <p>Move beyond simple shadows. Learn how to create layered, realistic, and neumorphic shadow effects...</p>
-                            <div class="blog-card-meta">
-                                <span>By Ilyas Khan</span> | <span>June 18, 2025</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                
+        <div class="blog-grid">
+            <!-- Blog Post 1 Card -->
+            <a href="post-1.html" class="post-card">
+                <img src="https://placehold.co/600x400/F72585/FFFFFF?text=Guide" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>10 Tips to Write the Perfect Instagram Bio</h3>
+                    <p>Learn how to craft a compelling bio that converts visitors into followers with our expert tips and examples.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 24, 2025</div>
                 </div>
+            </a>
+
+            <!-- Blog Post 2 Card -->
+            <a href="#" class="post-card"> <!-- Link for post-2.html will be added later -->
+                <img src="https://placehold.co/600x400/7209B7/FFFFFF?text=Strategy" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>How to Use Hashtags in 2025 for Max Reach</h3>
+                    <p>The hashtag game has changed. Discover the best strategies that work now to get your content seen by the right audience.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 20, 2025</div>
+                </div>
+            </a>
+
+            <!-- Blog Post 3 Card -->
+            <a href="#" class="post-card"> <!-- Link for post-3.html will be added later -->
+                <img src="https://placehold.co/600x400/4361EE/FFFFFF?text=Aesthetics" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>Creating a Stunning Instagram Feed: A Guide to Aesthetics</h3>
+                    <p>Your grid is your digital storefront. Learn how to plan a cohesive and visually appealing feed that tells your brand's story.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 15, 2025</div>
+                </div>
+            </a>
+            
+            <!-- Add more post cards here as you write more blogs -->
+
         </div>
     </main>
 
-    </body>
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
+        <nav class="footer-nav" style="margin-top: 1rem;">
+            <a href="../legal/privacy-policy.html" style="margin: 0 10px; color: var(--primary-text);">Privacy Policy</a> |
+            <a href="../legal/terms.html" style="margin: 0 10px; color: var(--primary-text);">Terms of Service</a> |
+            <a href="../legal/contact.html" style="margin: 0 10px; color: var(--primary-text);">Contact Us</a>
+        </nav>
+    </footer>
+
+</body>
 </html>
