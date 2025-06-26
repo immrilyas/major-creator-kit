@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Instagram Hashtag Generator | Major Creator Kit</title>
+    <title>AI Instagram Hashtag Generator | Major Creator Kit</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,18 +45,13 @@
             color: var(--primary-text);
         }
 
-        /* -- NEW -- Form Group for better layout */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
         .form-group label {
             display: block;
             font-weight: 500;
             margin-bottom: 0.75rem;
         }
-
-        .form-group select {
+        
+        .form-group textarea {
             width: 100%;
             padding: 0.85rem;
             background-color: var(--dark-bg);
@@ -64,34 +59,12 @@
             border-radius: 8px;
             color: var(--primary-text);
             font-family: var(--font-family);
-            font-size: 1.1rem;
-            cursor: pointer;
-        }
-
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--grad-mid);
-            box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
-        }
-
-        .input-group {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .input-group input {
-            flex-grow: 1;
-            padding: 0.85rem;
-            background-color: var(--dark-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--primary-text);
-            font-family: var(--font-family);
-            font-size: 1.1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
         }
         
-        .input-group input:focus {
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--grad-mid);
             box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
@@ -100,13 +73,15 @@
         .generate-btn {
             background-image: linear-gradient(90deg, var(--icon-color-3) 0%, var(--grad-end) 100%);
             color: var(--heading-text);
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 2rem;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: none;
             cursor: pointer;
+            width: 100%;
+            margin-top: 1.5rem;
         }
 
         .generate-btn:hover:not(:disabled) {
@@ -114,31 +89,8 @@
             box-shadow: 0 10px 20px rgba(76, 201, 240, 0.25);
         }
         
-        .results-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2rem;
-        }
-        
-        .copy-btn {
-            background-color: transparent;
-            color: var(--grad-start);
-            border: 1px solid var(--grad-start);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background-color: var(--grad-start);
-            color: var(--heading-text);
-        }
-        
         #hashtags-output {
-            margin-top: 1rem;
+            margin-top: 2rem;
             padding: 1.5rem;
             border: 1px dashed var(--border-color);
             border-radius: 8px;
@@ -147,6 +99,13 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        #hashtags-output.loading {
+            border-color: var(--grad-mid);
+            align-items: center;
+            justify-content: center;
         }
 
         .hashtag-pill {
@@ -155,57 +114,26 @@
             border-radius: 20px;
             font-size: 1rem;
             font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
             border: 1px solid var(--border-color);
         }
         
-        .hashtag-pill.selected {
-             background-color: var(--grad-mid);
-             color: var(--heading-text);
-             border-color: var(--grad-start);
-             transform: scale(1.05);
+        .copy-all-btn {
+            background-color: var(--grad-start);
+            color: var(--heading-text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: none;
+            margin-top: 1.5rem;
         }
         
         .content-section {
             margin-top: 4rem;
             color: #dcdcdc;
         }
-        
-        .content-section h2 {
-            font-size: 2.2rem;
-            color: var(--heading-text);
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--grad-start);
-            padding-left: 1rem;
-        }
-        
-        .content-section h3 {
-            font-size: 1.6rem;
-            color: var(--primary-text);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .content-section p, .content-section li {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-        
-        .content-section ul {
-            list-style-type: '✓ ';
-            padding-left: 1.5rem;
-        }
-        .content-section a {
-            color: var(--grad-start);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .content-section a:hover {
-            text-decoration: underline;
-        }
-
     </style>
 </head>
 <body>
@@ -227,67 +155,34 @@
     <main class="tool-wrapper">
         <div class="tool-container">
             <header class="tool-header">
-                <h1>Hashtag Generator</h1>
-                <p>Enter a keyword to generate relevant hashtags for your posts.</p>
+                <h1>AI Hashtag Generator</h1>
+                <p>Describe your post, and let AI find the perfect hashtags for you.</p>
             </header>
 
-            <!-- ======================= NEW LANGUAGE SELECTOR ======================= -->
             <div class="form-group">
-                <label for="lang-select">Select Language:</label>
-                <select id="lang-select">
-                    <option value="en" selected>English</option>
-                    <option value="ur">Urdu (Roman)</option>
-                </select>
-            </div>
-            <!-- ======================= END OF NEW SECTION ======================= -->
-            
-            <div class="form-group">
-                <label for="keyword-input">Enter a Keyword:</label>
-                <div class="input-group">
-                    <input type="text" id="keyword-input" placeholder="e.g., travel, food, fitness...">
-                    <button class="generate-btn" id="generate-btn">Generate</button>
-                </div>
+                <label for="prompt-input">Aapki post kis baare mein hai?</label>
+                <textarea id="prompt-input" rows="4" placeholder="e.g., A photo of biryani at a restaurant in Karachi, or, A video of my morning workout at the gym..."></textarea>
             </div>
 
-            <div class="results-header">
-                <label>Click hashtags to select/deselect:</label>
-                <button class="copy-btn" id="copy-btn" style="display: none;">Copy Selected</button>
-            </div>
+            <button class="generate-btn" id="generate-btn">Generate Hashtags</button>
+
             <div id="hashtags-output">
-                <p style="color: var(--primary-text); opacity: 0.7;">Your generated hashtags will appear here...</p>
+                <p style="opacity: 0.7;">Your AI-generated hashtags will appear here...</p>
             </div>
+            
+            <button class="copy-all-btn" id="copy-btn">Copy All</button>
+
         </div>
         
-        <article class="content-section">
-            <h2>Your Complete Guide to Instagram Hashtags</h2>
+        <article class="content-section" style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
+            <h2 style="border-left-color: var(--icon-color-3)">About the AI Hashtag Generator</h2>
             <p>
-                Welcome to the detailed guide for our Hashtag Generator! This isn't just a tool; it's your strategic partner in mastering Instagram's discovery engine. Understanding how to use hashtags effectively can dramatically increase your reach, engagement, and follower growth.
+                Welcome to the next level of hashtag strategy! This isn't just a simple generator; it's an AI-powered tool designed to understand the context of your content and provide highly relevant, effective hashtags to maximize your reach. Instead of matching one keyword, our AI analyzes your post's description to suggest a smart mix of popular, niche, and specific tags.
             </p>
-
-            <h3>Why Are Instagram Hashtags So Important?</h3>
+            <h3>How AI Improves Your Hashtag Game</h3>
             <p>
-                Think of Instagram as a massive digital library and hashtags as the Dewey Decimal System. They categorize billions of pieces of content, making it possible for users to find exactly what they're looking for. When you use relevant hashtags, you're not just decorating your post; you are:
+                A basic generator gives you hashtags for "food". But our AI understands the difference between "homemade biryani" and "fine dining pasta". This contextual understanding allows it to generate a much more targeted and effective set of hashtags, connecting your content with an audience that is genuinely interested in what you're posting. This leads to higher quality engagement and more authentic follower growth.
             </p>
-            <ul>
-                <li><strong>Increasing Discoverability:</strong> Your posts appear on corresponding hashtag pages, exposing your content to users who don't follow you but are interested in your niche.</li>
-                <li><strong>Boosting Engagement:</strong> By reaching a more targeted audience, you're more likely to receive likes, comments, and shares from users who genuinely care about your content.</li>
-                <li><strong>Building a Community:</strong> Using or creating a branded hashtag can help you build a community around your brand, encouraging user-generated content and fostering loyalty.</li>
-                <li><strong>Analyzing Your Competition:</strong> You can follow hashtags to see what your competitors are posting, helping you stay ahead of trends and refine your own strategy.</li>
-            </ul>
-
-            <h3>Best Practices for Using Hashtags in 2025</h3>
-            <p>The rules of the hashtag game are always changing. Here’s what works now:</p>
-            <ul>
-                <li><strong>Use a Mix:</strong> Don't just use the most popular hashtags. A good strategy includes a mix of popular (1M+ posts), niche (50k-500k posts), and hyper-specific (under 50k posts) tags. Our generator aims to provide this mix.</li>
-                <li><strong>How Many?:</strong> Instagram allows up to 30 hashtags. While you don't have to use all 30, studies show that posts with more hashtags (between 20-30) often get better reach.</li>
-                <li><strong>Where to Put Them:</strong> You can place them directly at the end of your caption or hide them in the first comment. Both methods work equally well for reach; it's a matter of aesthetic preference.</li>
-                <li><strong>Stay Relevant:</strong> Always use hashtags that are directly related to your photo or video. Using irrelevant but popular tags like #explorepage can actually hurt your post's performance if the algorithm detects that users are not engaging with it on that tag's page.</li>
-            </ul>
-
-            <h3>Frequently Asked Questions (FAQ)</h3>
-            <p><strong>Q: Will this tool give me banned hashtags?</strong><br>A: This generator uses a safe, predefined list of popular hashtags. For an extra layer of security, use our "Banned Hashtag Checker" tool to verify your final list.</p>
-            <p><strong>Q: How does the generator work?</strong><br>A: Our free tool uses a curated database that maps common keywords to relevant and effective hashtags across various niches. For more advanced suggestions, a real-time API would be used in a pro version.</p>
-            <p><strong>Q: Can I use the same hashtags on every post?</strong><br>A: It's not recommended. Instagram's algorithm prefers variety. You should tailor your hashtags specifically for each post to ensure they are as relevant as possible. Keep a few core brand hashtags, but rotate the others.</p>
         </article>
     </main>
 
@@ -297,83 +192,97 @@
 
     <script>
         const generateBtn = document.getElementById('generate-btn');
-        const keywordInput = document.getElementById('keyword-input');
+        const promptInput = document.getElementById('prompt-input');
         const hashtagsOutput = document.getElementById('hashtags-output');
         const copyBtn = document.getElementById('copy-btn');
-        // -- NEW -- Get language selector
-        const langSelector = document.getElementById('lang-select');
 
-        // -- NEW -- Restructured database for multiple languages
-        const hashtagDatabase = {
-            en: {
-                travel: ["travelgram", "instatravel", "wanderlust", "travelphotography", "explore", "vacation", "trip", "adventure", "travelling", "tourist", "travelblogger", "beautifuldestinations", "passionpassport", "traveltheworld", "getaway", "pakistantravel", "northernareas"],
-                food: ["foodie", "foodporn", "instafood", "foodphotography", "yummy", "delicious", "foodblogger", "foodstagram", "homemade", "foodlover", "tasty", "healthyfood", "dinner", "lunch", "breakfast", "karachifood", "lahorefood"],
-                fitness: ["fitness", "gym", "workout", "fitnessmotivation", "fit", "motivation", "training", "health", "lifestyle", "fitfam", "healthy", "sport", "gymlife", "personaltrainer", "muscle", "pakistanfitness"],
-                fashion: ["fashion", "style", "love", "ootd", "instafashion", "fashionblogger", "instagood", "styleblogger", "model", "fashionista", "outfitoftheday", "instastyle", "picoftheday", "look", "streetstyle", "pakistanifashion"],
-                default: ["instagood", "love", "photooftheday", "fashion", "beautiful", "happy", "picoftheday", "art", "cute", "follow", "tbt", "like4like", "followme", "nature", "summer", "pakistan", "instadaily"]
-            },
-            ur: {
-                travel: ["safar", "pakistantourism", "sair", "manzar", "gardish", "ghumphir", "khubsuratpakistan", "jannatpakistan", "urdutravel"],
-                food: ["khanay", "pakistanifood", "lazeez", "mazedar", "karachifoodies", "lahorifood", "desifood", "biryani", "urdufood"],
-                fashion: ["fashionpakistan", "libas", "stylepk", "kapray", "dulhanwear", "shadiseason", "urdufashion"],
-                default: ["urdu", "pakistan", "karachi", "lahore", "islamabad", "instapakistan", "igpakistan", "urdupost", "shayari"]
+        generateBtn.addEventListener('click', async () => {
+            const userPrompt = promptInput.value.trim();
+            if (!userPrompt) {
+                alert("Please describe your post first!");
+                return;
             }
-        };
 
-        function generateHashtags() {
-            const keyword = keywordInput.value.trim().toLowerCase();
-            // -- NEW -- Get selected language
-            const selectedLang = langSelector.value;
+            generateBtn.disabled = true;
+            generateBtn.textContent = 'AI is thinking...';
+            hashtagsOutput.innerHTML = '<p style="opacity: 0.7;">Generating relevant hashtags... ✨</p>';
+            hashtagsOutput.classList.add('loading');
+            copyBtn.style.display = 'none';
+
+            const finalPrompt = `Generate exactly 30 relevant and effective Instagram hashtags for a post about: "${userPrompt}". 
+            Include a mix of popular, niche, and specific tags. 
+            Your response must be ONLY a single line of space-separated hashtags, each starting with #. Do not add any other text.`;
+
+            try {
+                // --- ADD YOUR API KEY HERE ---
+                // Get your free key from Google AI Studio
+                const apiKey = ""; // IMPORTANT: Paste your API Key here
+
+                if (!apiKey) {
+                    throw new Error("API_KEY_MISSING");
+                }
+
+                let chatHistory = [{ role: "user", parts: [{ text: finalPrompt }] }];
+                const payload = { contents: chatHistory };
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates[0].content.parts[0].text) {
+                    const hashtagsText = result.candidates[0].content.parts[0].text;
+                    const hashtagsArray = hashtagsText.split(' ').filter(tag => tag.startsWith('#'));
+                    displayHashtags(hashtagsArray);
+                } else {
+                    throw new Error("Unexpected API response.");
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+                let errorMessage = 'Sorry, something went wrong. Please try again.';
+                if (error.message === 'API_KEY_MISSING') {
+                    errorMessage = 'API Key is missing. Please add your key in the script to use this tool.';
+                }
+                hashtagsOutput.innerHTML = `<p style="color: var(--icon-color-7);">${errorMessage}</p>`;
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = 'Generate Hashtags';
+                hashtagsOutput.classList.remove('loading');
+            }
+        });
+
+        function displayHashtags(hashtags) {
             hashtagsOutput.innerHTML = '';
-            
-            const langDb = hashtagDatabase[selectedLang];
-            let hashtags = langDb[keyword] || langDb['default'];
-            
-            hashtags = hashtags.sort(() => 0.5 - Math.random());
-            const count = Math.floor(Math.random() * (30 - 15 + 1)) + 15;
-            const selectedHashtags = hashtags.slice(0, count);
-
-            selectedHashtags.forEach(tag => {
+            if (hashtags.length === 0) {
+                hashtagsOutput.innerHTML = '<p>No hashtags were generated. Please try a different prompt.</p>';
+                copyBtn.style.display = 'none';
+                return;
+            }
+            hashtags.forEach(tag => {
                 const pill = document.createElement('span');
-                pill.className = 'hashtag-pill selected'; // Start as selected
-                pill.textContent = `#${tag}`;
-                pill.dataset.tag = tag;
+                pill.className = 'hashtag-pill';
+                pill.textContent = tag;
                 hashtagsOutput.appendChild(pill);
             });
-
-            if (selectedHashtags.length > 0) {
-                copyBtn.style.display = 'inline-block';
-            }
+            copyBtn.style.display = 'block';
         }
-        
-        hashtagsOutput.addEventListener('click', (e) => {
-            if (e.target.classList.contains('hashtag-pill')) {
-                e.target.classList.toggle('selected');
-            }
-        });
-
-        generateBtn.addEventListener('click', generateHashtags);
-        
-        keywordInput.addEventListener('keyup', (event) => {
-            if (event.key === 'Enter') generateBtn.click();
-        });
 
         copyBtn.addEventListener('click', () => {
-            const selectedPills = document.querySelectorAll('.hashtag-pill.selected');
-            let textToCopy = Array.from(selectedPills).map(pill => pill.textContent).join(' ');
+            const pills = document.querySelectorAll('.hashtag-pill');
+            let textToCopy = Array.from(pills).map(pill => pill.textContent).join(' ');
 
             if (textToCopy) {
-                const tempTextArea = document.createElement('textarea');
-                tempTextArea.value = textToCopy;
-                document.body.appendChild(tempTextArea);
-                tempTextArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempTextArea);
-
-                copyBtn.textContent = 'Copied!';
-                setTimeout(() => { copyBtn.textContent = 'Copy Selected'; }, 1500);
-            } else {
-                alert("No hashtags selected to copy!");
+                navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => { copyBtn.textContent = 'Copy All'; }, 1500);
+                });
             }
         });
     </script>
