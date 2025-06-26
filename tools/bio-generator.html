@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Bio Generator | Major Creator Kit</title>
+    <title>AI Instagram Bio Generator | Major Creator Kit</title>
     
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Linking External CSS File -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
 
     <style>
-        /* Is page ke liye kuch extra styles */
-        .tool-container {
+        /* Page-specific styles */
+        .tool-wrapper {
             max-width: 800px;
             margin: 2rem auto;
+        }
+
+        .tool-container {
             padding: 2.5rem;
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -34,11 +36,8 @@
             font-size: 2.8rem;
             color: var(--heading-text);
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
+            background: linear-gradient(90deg, var(--icon-color-2), var(--icon-color-7));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;
         }
         
         .tool-header p {
@@ -46,18 +45,23 @@
             color: var(--primary-text);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
         .form-group label {
             display: block;
             font-weight: 500;
             margin-bottom: 0.75rem;
-            font-size: 1.1rem;
         }
 
-        .form-group textarea {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 0.85rem;
             background-color: var(--dark-bg);
@@ -66,22 +70,18 @@
             color: var(--primary-text);
             font-family: var(--font-family);
             font-size: 1rem;
-            min-height: 100px;
-            resize: vertical;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .form-group textarea:focus {
+
+        .form-group input:focus, .form-group select:focus {
             outline: none;
             border-color: var(--grad-mid);
             box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
         }
-
+        
         .generate-btn {
             background-image: linear-gradient(90deg, var(--grad-start) 0%, var(--grad-mid) 100%);
             color: var(--heading-text);
             padding: 0.8rem 2rem;
-            text-decoration: none;
             border-radius: 8px;
             font-weight: 700;
             font-size: 1.1rem;
@@ -89,10 +89,7 @@
             border: none;
             cursor: pointer;
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            margin-top: 1rem;
         }
 
         .generate-btn:hover:not(:disabled) {
@@ -100,156 +97,253 @@
             box-shadow: 0 10px 20px rgba(247, 37, 133, 0.25);
         }
         
-        .generate-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        #results-area {
+            margin-top: 2.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
         }
-        
-        #result-container {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            border: 1px dashed var(--border-color);
-            border-radius: 8px;
+
+        .bio-suggestion {
             background-color: var(--dark-bg);
-            min-height: 150px;
-            white-space: pre-wrap; /* Yeh lines ko preserve karta hai */
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bio-text {
             line-height: 1.7;
             font-size: 1.1rem;
-            color: #dcdcdc;
-            transition: border-color 0.3s ease;
+        }
+
+        .copy-bio-btn {
+            background-color: transparent;
+            color: var(--grad-start);
+            border: 1px solid var(--grad-start);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .copy-bio-btn:hover {
+            background-color: var(--grad-start);
+            color: var(--heading-text);
         }
         
-        #result-container.loading {
-            border-color: var(--grad-mid);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .content-section {
+            margin-top: 4rem;
+            color: #dcdcdc;
+        }
+        
+        .content-section h2 {
+            font-size: 2.2rem;
+            color: var(--heading-text);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--grad-start);
+            padding-left: 1rem;
+        }
+        
+        .content-section h3 {
+            font-size: 1.6rem;
+            color: var(--primary-text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section p, .content-section li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .content-section ul {
+            list-style-type: '✓ ';
+            padding-left: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .tool-header h1 {
+                font-size: 2.2rem;
+            }
         }
 
     </style>
 </head>
 <body>
 
-    <!-- Header Code (Same as index.html) -->
     <header class="main-header">
         <div class="container header-content">
-            <a href="index.html" class="logo">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:var(--grad-start);" />
-                            <stop offset="100%" style="stop-color:var(--grad-end);" />
-                        </linearGradient>
-                    </defs>
-                    <path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z" />
-                </svg>
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
                 <span class="logo-text">Major Creator Kit</span>
             </a>
             <nav class="main-nav">
-                <a href="index.html#tools">Tools</a>
-                <a href="blog.html">Blog</a>
-                <a href="about.html">About</a>
+                <a href="../index.html#tools">Tools</a>
+                <a href="../blog/blog.html">Blog</a>
+                <a href="../legal/about.html">About</a>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="tool-wrapper">
         <div class="tool-container">
             <header class="tool-header">
-                <h1>AI Bio Generator</h1>
-                <p>Describe your niche, and let our AI create the perfect bio for you.</p>
+                <h1>AI Instagram Bio Generator</h1>
+                <p>Generate the perfect bio in seconds. Just tell us about yourself!</p>
             </header>
 
-            <div class="form-group">
-                <label for="prompt-input">What do you do? (e.g., "Food blogger from Karachi" or "Fitness coach who loves yoga")</label>
-                <textarea id="prompt-input" rows="3" placeholder="Yahan likhein..."></textarea>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="niche-input">Your Niche or Industry</label>
+                    <input type="text" id="niche-input" placeholder="e.g., Food Blogger, Fitness Coach">
+                </div>
+                <div class="form-group">
+                    <label for="tone-select">Choose a Tone</label>
+                    <select id="tone-select">
+                        <option value="Professional">Professional</option>
+                        <option value="Friendly" selected>Friendly</option>
+                        <option value="Funny">Funny</option>
+                        <option value="Witty">Witty</option>
+                        <option value="Inspirational">Inspirational</option>
+                    </select>
+                </div>
             </div>
 
-            <button class="generate-btn" id="generate-btn">
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M15.36,16.25L14.05,17.56L12,15.53L9.95,17.56L8.64,16.25L10.67,14.22L8.64,12.19L9.95,10.88L12,12.91L14.05,10.88L15.36,12.19L13.33,14.22L15.36,16.25M18,9.5L17.25,7.75L15.5,7L17.25,6.25L18,4.5L18.75,6.25L20.5,7L18.75,7.75L18,9.5Z" />
-                </svg>
-                <span id="btn-text">Generate Bio</span>
-            </button>
+            <button class="generate-btn" id="generate-btn">Generate Bio</button>
 
-            <div class="form-group" style="margin-top: 2rem;">
-                <label for="result-container">AI Generated Bios:</label>
-                <div id="result-container">Your AI-generated bios will appear here...</div>
+            <div id="results-area">
+                 <p style="text-align: center; opacity: 0.7;">Your AI-generated bios will appear here...</p>
             </div>
         </div>
+        
+        <article class="content-section">
+            <h2>What is an Instagram Bio & Why It Matters</h2>
+            <p>
+                Your Instagram bio is the small section under your username where you can provide a brief description of yourself or your brand. It's one of the very first things a visitor sees on your profile. Think of it as your digital business card. A well-crafted bio can instantly communicate who you are, what you do, and why someone should follow you. It's a critical element for making a great first impression and converting visitors into followers.
+            </p>
+
+            <h3>Key Elements of a Perfect Instagram Bio</h3>
+            <ul>
+                <li><strong>Clarity:</strong> Clearly state what you offer or what your page is about. Avoid jargon.</li>
+                <li><strong>Personality:</strong> Inject your brand's personality. Are you professional and serious, or fun and witty? Our tool helps you with this by letting you choose a tone.</li>
+                <li><strong>Call-to-Action (CTA):</strong> Encourage visitors to take an action. This could be visiting your website, checking out your latest product, or signing up for a newsletter. Use emojis like 👇 to point to your link.</li>
+                <li><strong>Link in Bio:</strong> This is the only place on your Instagram profile where you can place a clickable link, so use it wisely! Link to your website, shop, latest blog post, or a Linktree-style page.</li>
+            </ul>
+
+            <h3>Tips for Using Our Bio Generator Effectively</h3>
+            <p>To get the best results from our AI Bio Generator, follow these simple tips:</p>
+            <ul>
+                <li><strong>Be Specific:</strong> Instead of just "Travel", try "Budget travel blogger exploring Pakistan". The more detail you provide, the better the AI can tailor the bio to your specific needs.</li>
+                <li><strong>Experiment with Tones:</strong> Don't be afraid to try different tones. A "Professional" tone might be great for a business, but a "Witty" one might work better for a personal brand or content creator.</li>
+                <li><strong>Mix and Match:</strong> The generator will provide multiple options. Feel free to take the best parts from different suggestions and combine them to create a bio that is uniquely yours.</li>
+                <li><strong>Add Your Link:</strong> Once you have a bio you love, don't forget to add your unique website or product link in your Instagram profile's "Website" field.</li>
+            </ul>
+        </article>
     </main>
 
-    <!-- Footer Code (Same as index.html) -->
     <footer class="main-footer">
         <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
     </footer>
 
     <script>
-        // JavaScript for AI Bio Generator
         const generateBtn = document.getElementById('generate-btn');
-        const btnText = document.getElementById('btn-text');
-        const promptInput = document.getElementById('prompt-input');
-        const resultContainer = document.getElementById('result-container');
+        const nicheInput = document.getElementById('niche-input');
+        const toneSelect = document.getElementById('tone-select');
+        const resultsArea = document.getElementById('results-area');
 
         generateBtn.addEventListener('click', async () => {
-            const userPrompt = promptInput.value;
-            if (!userPrompt.trim()) {
-                resultContainer.textContent = "⚠️ Please describe what you do first!";
+            const niche = nicheInput.value.trim();
+            const tone = toneSelect.value;
+
+            if (!niche) {
+                alert("Please enter your niche or industry first!");
                 return;
             }
 
-            // Disable button and show loading state
             generateBtn.disabled = true;
-            btnText.textContent = 'Generating...';
-            resultContainer.classList.add('loading');
-            resultContainer.textContent = 'AI is thinking... ✨';
+            generateBtn.textContent = 'Generating...';
+            resultsArea.innerHTML = '<p style="text-align: center; opacity: 0.7;">AI is crafting the perfect bios for you... ✨</p>';
 
-            // Construct the final prompt for the API
-            const finalPrompt = `Generate 3 creative and professional Instagram bios for a person who is a: "${userPrompt}". 
-            Each bio should be short, engaging, and include relevant emojis. 
-            Each bio must be on a new line, starting with a number (e.g., 1., 2., 3.).`;
+            const prompt = `Generate 4 creative and unique Instagram bios for a person whose niche is "${niche}" with a "${tone}" tone of voice. Each bio should be short, engaging, and include relevant emojis. Each bio must be on a new line.`;
 
             try {
-                let chatHistory = [{ role: "user", parts: [{ text: finalPrompt }] }];
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
                 const payload = { contents: chatHistory };
-                
-                // The API Key will be automatically provided by the Canvas environment
-                // You do not need to add it manually
-                const apiKey = "";
+                const apiKey = ""; // API Key will be provided by Canvas environment
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                
+
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
 
-                if (!response.ok) {
-                    throw new Error(`API call failed with status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
                 
                 const result = await response.json();
                 
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    resultContainer.textContent = text.trim();
+                if (result.candidates && result.candidates[0].content.parts[0].text) {
+                    const biosText = result.candidates[0].content.parts[0].text;
+                    const biosArray = biosText.split('\n').filter(bio => bio.trim() !== '');
+                    displayBios(biosArray);
                 } else {
-                     throw new Error("Unexpected API response structure.");
+                    throw new Error("Unexpected API response.");
                 }
 
             } catch (error) {
                 console.error("Error:", error);
-                // In case of an API error, show a helpful message
-                resultContainer.textContent = `Sorry, something went wrong. Please try again.\n\nFor demo, here's a sample response for "Food blogger from Karachi":\n\n1.  Karachi on a plate 🍽️ | Exploring the city's best eats.\n✨ Food Blogger & Storyteller\n👇 New food adventure out now!\n\n2. From Burns Road to Boat Basin  बिरयानी ❤️\n📍 Karachi Food Explorer\n💌 DM for collabs & foodie chats!\n\n3. Documenting my foodie journey through Karachi 📸\n🍕 Pizza > Everything\n📧: you@example.com`;
+                const demoBios = [
+                    `1. ✨ Your Niche: ${niche} | ${tone} Tone`,
+                    `2. Creating content around ${niche} with a ${tone} vibe!`,
+                    `3. Your daily dose of ${niche}. Let's connect! 👇`,
+                    `4. Join me on my ${niche} journey! 🚀`
+                ];
+                displayBios(demoBios, true);
             } finally {
-                // Re-enable the button and reset text
                 generateBtn.disabled = false;
-                btnText.textContent = 'Generate Bio';
-                resultContainer.classList.remove('loading');
+                generateBtn.textContent = 'Generate Bio';
             }
         });
+
+        function displayBios(bios, isDemo = false) {
+            resultsArea.innerHTML = '';
+            if (isDemo) {
+                 resultsArea.innerHTML = '<p style="text-align: center; color: var(--icon-color-8); margin-bottom: 1rem;">API Error. Showing demo results:</p>';
+            }
+            bios.forEach(bio => {
+                const bioElement = document.createElement('div');
+                bioElement.className = 'bio-suggestion';
+                
+                const bioText = document.createElement('p');
+                bioText.className = 'bio-text';
+                // Remove numbering like "1. " from the start of the string
+                bioText.textContent = bio.replace(/^\d+\.\s*/, '');
+
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-bio-btn';
+                copyButton.textContent = 'Copy';
+                copyButton.onclick = () => {
+                    navigator.clipboard.writeText(bioText.textContent).then(() => {
+                        copyButton.textContent = 'Copied!';
+                        setTimeout(() => { copyButton.textContent = 'Copy'; }, 1500);
+                    });
+                };
+
+                bioElement.appendChild(bioText);
+                bioElement.appendChild(copyButton);
+                resultsArea.appendChild(bioElement);
+            });
+        }
     </script>
 
 </body>
