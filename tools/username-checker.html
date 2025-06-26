@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Username Checker | Major Creator Kit</title>
     
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Linking External CSS File -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
 
     <style>
-        /* Is page ke liye kuch extra styles */
-        .tool-container {
+        /* Page-specific styles */
+        .tool-wrapper {
             max-width: 800px;
             margin: 2rem auto;
+        }
+
+        .tool-container {
             padding: 2.5rem;
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -36,10 +37,7 @@
             color: var(--heading-text);
             margin-bottom: 0.5rem;
             background: linear-gradient(90deg, var(--icon-color-1), var(--grad-mid));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;
         }
         
         .tool-header p {
@@ -62,7 +60,6 @@
             color: var(--primary-text);
             font-family: var(--font-family);
             font-size: 1.1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         .input-group input:focus {
@@ -71,32 +68,18 @@
             box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
         }
         
-        .input-group button {
+        .check-btn {
             background-image: linear-gradient(90deg, var(--icon-color-1) 0%, var(--grad-start) 100%);
             color: var(--heading-text);
             padding: 0.8rem 1.5rem;
-            text-decoration: none;
             border-radius: 8px;
             font-weight: 700;
             font-size: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
             border: none;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
         }
-
-        .input-group button:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.25);
-        }
-        
-        .input-group button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+        .check-btn:hover { transform: translateY(-2px); }
         
         #result-box {
             margin-top: 2rem;
@@ -104,58 +87,64 @@
             border: 2px solid transparent;
             border-radius: 8px;
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            display: none; /* Initially hidden */
-            transition: all 0.3s ease;
+            display: none;
         }
 
-        #result-box.available {
-            background-color: rgba(158, 240, 26, 0.1);
-            border-color: rgba(158, 240, 26, 0.5);
-            color: #9EF01A;
-        }
-
-        #result-box.taken {
-            background-color: rgba(247, 37, 133, 0.1);
-            border-color: rgba(247, 37, 133, 0.5);
-            color: #F72585;
-        }
+        #result-box.available { background-color: rgba(6, 214, 160, 0.1); border-color: #06d6a0; color: #06d6a0; }
+        #result-box.taken { background-color: rgba(255, 77, 109, 0.1); border-color: #ff4d6d; color: #ff4d6d; }
         
-        #result-box.loading {
-            color: var(--primary-text);
-            border-color: var(--border-color);
-            background-color: transparent;
+        #suggestions-area {
+            margin-top: 2rem;
+            display: none;
+        }
+        #suggestions-area h3 { color: var(--heading-text); margin-bottom: 1rem; }
+        
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .suggestion-item {
+            background-color: var(--dark-bg);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .suggestion-item:hover {
+            border-color: var(--grad-start);
+            color: var(--grad-start);
+            transform: scale(1.05);
         }
 
+        .content-section { margin-top: 4rem; color: #dcdcdc; }
+        .content-section h2 { font-size: 2.2rem; color: var(--heading-text); margin-bottom: 1.5rem; border-left: 4px solid var(--icon-color-1); padding-left: 1rem; }
+        .content-section p, .content-section li { font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.8; }
+        .content-section ol { list-style-position: inside; padding-left: 1rem; }
     </style>
 </head>
 <body>
 
-    <!-- Header Code (Same as index.html) -->
     <header class="main-header">
         <div class="container header-content">
-            <a href="index.html" class="logo">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:var(--grad-start);" />
-                            <stop offset="100%" style="stop-color:var(--grad-end);" />
-                        </linearGradient>
-                    </defs>
-                    <path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z" />
-                </svg>
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
                 <span class="logo-text">Major Creator Kit</span>
             </a>
             <nav class="main-nav">
-                <a href="index.html#tools">Tools</a>
-                <a href="blog.html">Blog</a>
-                <a href="about.html">About</a>
+                <a href="../index.html#tools">Tools</a>
+                <a href="../blog/blog.html">Blog</a>
+                <a href="../legal/about.html">About</a>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="tool-wrapper">
         <div class="tool-container">
             <header class="tool-header">
                 <h1>Username Checker</h1>
@@ -164,72 +153,103 @@
 
             <div class="input-group">
                 <input type="text" id="username-input" placeholder="e.g., major.creator.kit">
-                <button id="check-btn">
-                    <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M21.07,16.83L19.45,15.21L12.05,22.61L4.64,15.21L3,16.83L12.05,25.88L21.07,16.83M12.05,1.12L3,10.17L4.62,11.79L12.05,4.39L19.45,11.79L21.07,10.17L12.05,1.12Z" />
-                    </svg>
-                    <span>Check</span>
-                </button>
+                <button class="check-btn" id="check-btn">Check</button>
             </div>
 
-            <div id="result-box">
-                <!-- Result will be displayed here -->
+            <div id="result-box"></div>
+            
+            <div id="suggestions-area">
+                <h3>Try these suggestions:</h3>
+                <div class="suggestions-grid" id="suggestions-grid"></div>
             </div>
         </div>
+        
+        <article class="content-section">
+            <h2>How to Choose the Perfect Instagram Username</h2>
+            <p>Your username is your identity on Instagram. It's how people find you, tag you, and remember you. A great username is memorable, easy to spell, and represents your brand or personality. Here's a guide to help you pick the best one and how our tool can assist you.</p>
+
+            <h3>Tips for a Great Username</h3>
+            <ol>
+                <li style="margin-bottom: 0.5rem;"><strong>Keep it Relevant:</strong> Your username should be closely related to your name, your business name, or your niche.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Make it Memorable:</strong> Avoid long strings of numbers or random characters. The easier it is to remember, the easier it is for people to find you.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Be Consistent:</strong> If possible, use the same username across all your social media platforms to build a consistent brand identity.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>What if it's taken?</strong> This is where our tool shines! If your first choice is taken, don't worry. You can add prefixes like "the" or "iam", suffixes like "official" or "hq", or use underscores and periods to create a unique variation. Our suggestion generator automates this process for you.</li>
+            </ol>
+        </article>
     </main>
 
-    <!-- Footer Code (Same as index.html) -->
     <footer class="main-footer">
         <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
     </footer>
 
     <script>
-        // JavaScript for Username Checker
         const checkBtn = document.getElementById('check-btn');
         const usernameInput = document.getElementById('username-input');
         const resultBox = document.getElementById('result-box');
+        const suggestionsArea = document.getElementById('suggestions-area');
+        const suggestionsGrid = document.getElementById('suggestions-grid');
 
-        // Note: We cannot actually check Instagram's database.
-        // This is a simulation. We will use a small list of "taken" usernames.
-        const takenUsernames = [
-            'ilyaskhan', 'test', 'instagram', 'admin', 'user',
-            'majorcreator', 'kit', 'majid', 'khan', 'cooluser'
-        ];
+        // This is a simulation. A real tool would need a backend to check Instagram's servers.
+        const takenUsernames = new Set([
+            'ilyas', 'khan', 'test', 'instagram', 'admin', 'user', 'majid', 'cooluser', 'creator', 'kit', 'major'
+        ]);
 
-        checkBtn.addEventListener('click', () => {
-            const username = usernameInput.value.trim().toLowerCase();
-
+        function checkAvailability() {
+            const username = usernameInput.value.trim().toLowerCase().replace(/[^a-z0-9._]/g, ''); // Sanitize input
+            
             if (!username) {
                 resultBox.style.display = 'block';
                 resultBox.className = 'taken';
                 resultBox.textContent = '⚠️ Please enter a username first!';
+                suggestionsArea.style.display = 'none';
                 return;
             }
 
-            // Show loading state
             resultBox.style.display = 'block';
-            resultBox.className = 'loading';
-            resultBox.textContent = 'Checking...';
-            checkBtn.disabled = true;
+            suggestionsArea.style.display = 'none'; // Hide old suggestions
+            
+            // Simulate check
+            if (takenUsernames.has(username)) {
+                resultBox.className = 'taken';
+                resultBox.textContent = `❌ Sorry, "${username}" is taken.`;
+                generateSuggestions(username);
+            } else {
+                resultBox.className = 'available';
+                resultBox.textContent = `✅ Great! "${username}" is likely available!`;
+            }
+        }
 
-            // Simulate a network delay (like a real API call)
-            setTimeout(() => {
-                if (takenUsernames.includes(username)) {
-                    // Username is in our "taken" list
-                    resultBox.className = 'taken';
-                    resultBox.textContent = `❌ Sorry, the username "${username}" is already taken.`;
-                } else {
-                    // Username is available
-                    resultBox.className = 'available';
-                    resultBox.textContent = `✅ Great! The username "${username}" is available!`;
-                }
-                
-                // Re-enable the button
-                checkBtn.disabled = false;
-            }, 1000); // 1-second delay
-        });
+        function generateSuggestions(baseUsername) {
+            suggestionsGrid.innerHTML = '';
+            const suggestions = [
+                `${baseUsername}_`,
+                `_${baseUsername}`,
+                `the${baseUsername}`,
+                `iam${baseUsername}`,
+                `${baseUsername}.official`,
+                `get${baseUsername}`,
+                `${baseUsername}hq`,
+                `${baseUsername}_live`,
+                `${baseUsername}${new Date().getFullYear()}`
+            ];
 
-        // Optional: Allow pressing Enter to check
+            suggestions.forEach(suggestion => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.textContent = suggestion;
+                item.onclick = () => {
+                    // When a suggestion is clicked, put it in the input box and re-check
+                    usernameInput.value = suggestion;
+                    checkAvailability();
+                };
+                suggestionsGrid.appendChild(item);
+            });
+
+            suggestionsArea.style.display = 'block';
+        }
+
+        checkBtn.addEventListener('click', checkAvailability);
+
         usernameInput.addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {
                 event.preventDefault();
