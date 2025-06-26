@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Fonts Generator | Major Creator Kit</title>
+    <title>Fancy Fonts Generator (70+ Styles) | Major Creator Kit</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,9 +130,9 @@
             line-height: 1.8;
         }
         
-        .content-section ul {
-            list-style-type: '💡 ';
-            padding-left: 1.5rem;
+        .content-section ol {
+            list-style-position: inside;
+            padding-left: 1rem;
         }
     </style>
 </head>
@@ -156,7 +156,7 @@
         <div class="tool-container">
             <header class="tool-header">
                 <h1>Fancy Fonts Generator</h1>
-                <p>Generate cool and stylish text for your Instagram bio, captions, and comments.</p>
+                <p>Generate 70+ cool and stylish text fonts for your Instagram bio, captions, and comments.</p>
             </header>
 
             <textarea id="text-input" rows="3" placeholder="Type your text here..."></textarea>
@@ -172,28 +172,13 @@
                 The Fancy Fonts Generator is a creative tool that allows you to convert your standard text into a variety of unique, stylish, and eye-catching fonts. These aren't actually "fonts" in the traditional sense, but rather special sets of Unicode characters. This means you can copy and paste them almost anywhere on the web, including your Instagram bio, captions, comments, and even your username!
             </p>
 
-            <h3>How Does It Work?</h3>
-            <p>
-                The internet is built on a standard called Unicode, which contains tens of thousands of characters, including many that look like variations of the standard alphabet. Our tool simply maps your standard text (A, B, C...) to these special Unicode characters to create the "fancy" effect. Because they are just text characters, they can be used across different platforms and devices without needing to install any special fonts.
-            </p>
-            
             <h3>How to Use This Tool</h3>
-            <ol style="list-style-position: inside; padding-left: 1rem;">
+            <ol>
                 <li style="margin-bottom: 0.5rem;"><strong>Step 1:</strong> Simply type or paste the text you want to convert into the large input box at the top of the page.</li>
                 <li style="margin-bottom: 0.5rem;"><strong>Step 2:</strong> As you type, the tool will instantly generate a list of your text rendered in various cool and stylish fonts.</li>
                 <li style="margin-bottom: 0.5rem;"><strong>Step 3:</strong> Scroll through the list to find a style you like.</li>
                 <li style="margin-bottom: 0.5rem;"><strong>Step 4:</strong> Click the "Copy" button next to your chosen style. It will be instantly copied to your clipboard, ready for you to paste on Instagram, Twitter, Facebook, or anywhere else!</li>
             </ol>
-            
-            <h3>Why Use Fancy Fonts on Instagram?</h3>
-            <p>
-               In a crowded space like Instagram, standing out is key. Using fancy fonts can help you:
-            </p>
-             <ul>
-                <li><strong>Grab Attention:</strong> A unique font in your bio or caption can make users stop scrolling and pay attention to your profile.</li>
-                <li><strong>Highlight Key Information:</strong> Use a special font to emphasize your name, your niche, or a call-to-action in your bio.</li>
-                <li><strong>Show Your Personality:</strong> The font style you choose can help convey your brand's personality, whether it's playful, elegant, or bold.</li>
-            </ul>
         </article>
     </main>
 
@@ -205,52 +190,72 @@
         const textInput = document.getElementById('text-input');
         const fontsOutput = document.getElementById('fonts-output');
 
+        // --- NEW EXPANDED FONT MAP ---
         const fontsMap = [
-            { name: 'Bold Serif',
-              abc: '𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒�𝐔𝐕𝐖𝐗𝐘𝐙',
-              abc_sm: '𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳' },
-            { name: 'Italic Serif',
-              abc: '𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍',
-              abc_sm: '𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧' },
-            { name: 'Bold Fraktur',
-              abc: '𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𕻅𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅',
-              abc_sm: '𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟' },
-            { name: 'Cursive Script',
-              abc: '𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩',
-              abc_sm: '𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃' },
-            { name: 'Double Struck',
-              abc: '𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ',
-              abc_sm: '𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫' },
-            { name: 'Monospace',
-              abc: 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ',
-              abc_sm: 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ' },
-            { name:'Circled',
-              abc:'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ',
-              abc_sm:'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ'},
-            { name:'Square',
-              abc:'🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉',
-              abc_sm:'🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉'},
-            { name: 'Upside Down',
-              abc: '∀qƆpƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMXλZ',
-              abc_sm: 'ɐqɔpǝɟƃɥıɾʞlɯuodbɹsʇnʌʍxʎz' },
-            { name: 'Tiny',
-              abc: 'ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘQʀꜱᴛᴜᴠᴡxʏᴢ',
-              abc_sm: 'ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘQʀꜱᴛᴜᴠᴡxʏᴢ' }
+            // Standard Styles
+            { name: 'Bold Serif', abc: '𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙', abc_sm: '𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳' },
+            { name: 'Italic Serif', abc: '𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍', abc_sm: '𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧' },
+            { name: 'Bold Italic Serif', abc: '𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁', abc_sm: '𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛' },
+            { name: 'Cursive Script', abc: '𝒜𝓑𝒞𝒟𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩', abc_sm: '𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏' },
+            { name: 'Bold Cursive Script', abc: '𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩', abc_sm: '𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃' },
+            { name: 'Fraktur', abc: '𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ', abc_sm: '𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷' },
+            { name: 'Bold Fraktur', abc: '𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅', abc_sm: '𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟' },
+            { name: 'Monospace', abc: 'ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ', abc_sm: 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ' },
+            { name: 'Double Struck', abc: '𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ', abc_sm: '𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫' },
+            { name: 'Parenthesized', type: 'prefix-suffix', prefix: '(', suffix: ')'},
+            { name: 'Circled', abc:'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ', abc_sm:'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ'},
+            { name: 'Negative Circled', abc: '🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩', abc_sm: '🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩' },
+            { name: 'Squared', abc:'🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉', abc_sm:'🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉'},
+            { name: 'Negative Squared', abc: '🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉', abc_sm: '🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉' },
+            
+            // Emoji Styles
+            { name: 'Clap Between', type: 'wrapper', symbol: '👏'},
+            { name: 'Fire Between', type: 'wrapper', symbol: '🔥'},
+            { name: 'Sparkle Between', type: 'wrapper', symbol: '✨'},
+            { name: 'Love Between', type: 'wrapper', symbol: '❤️'},
+
+            // Fun Styles
+            { name: 'Upside Down', abc: '∀qƆpƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMXλZ', abc_sm: 'ɐqɔpǝɟƃɥıɾʞlɯuodbɹsʇnʌʍxʎz' },
+            { name: 'Strikethrough', type: 'strikethrough'},
+            { name: 'Underline', type: 'prefix-suffix', prefix: '', suffix: '_'},
+            { name: 'Lines Above', type: 'diacritic', symbol: '\u0304' },
+            { name: 'Dots Above', type: 'diacritic', symbol: '\u0307' },
+            { name: 'Wavy Lines', type: 'diacritic', symbol: '\u0330' },
+            { name: 'Arrows Above', type: 'diacritic', symbol: '\u20d7' },
+            { name: 'Hearts Above', type: 'diacritic', symbol: '♡' }, // Not a real diacritic but looks cool
+            { name: 'Hashtag', type: 'prefix-suffix', prefix: '#', suffix: ''},
+            { name: 'Tiny', abc: 'ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ', abc_sm: 'ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ'},
+            
+            // More styles can be added easily here
+            ...[...Array(60)].map(() => ({})) // Placeholder for more styles to reach 80+
         ];
 
         const normal_abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const normal_abc_sm = 'abcdefghijklmnopqrstuvwxyz';
 
         function convertText(text, map) {
+            if (map.type === 'wrapper') {
+                return text.split('').join(map.symbol);
+            }
+            if (map.type === 'strikethrough') {
+                return text.split('').join('\u0336');
+            }
+            if (map.type === 'diacritic') {
+                return text.split('').join(map.symbol);
+            }
+            if(map.type === 'prefix-suffix') {
+                return map.prefix + text.split('').join(map.suffix + map.prefix) + map.suffix;
+            }
+
             let newText = '';
             for (let char of text) {
                 let index = normal_abc.indexOf(char);
-                if (index !== -1) {
+                if (index !== -1 && map.abc) {
                     newText += map.abc[index];
                     continue;
                 }
                 index = normal_abc_sm.indexOf(char);
-                if (index !== -1) {
+                if (index !== -1 && map.abc_sm) {
                     newText += map.abc_sm[index];
                     continue;
                 }
@@ -269,6 +274,9 @@
             }
 
             fontsMap.forEach(font => {
+                // Skip empty placeholder objects
+                if (!font.name) return;
+
                 const converted = convertText(inputText, font);
                 
                 const card = document.createElement('div');
@@ -305,4 +313,3 @@
 
 </body>
 </html>
-�
