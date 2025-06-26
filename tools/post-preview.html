@@ -1,131 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Instagram Post Preview Tool</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      margin: 0;
-      padding: 2rem;
-      background-color: #0d0d0d;
-      font-family: 'Inter', sans-serif;
-      color: #fff;
-    }
-    .tool-wrapper {
-      max-width: 600px;
-      margin: auto;
-      background: #1a1a1a;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-    }
-    h2 {
-      text-align: center;
-      color: #00ffc3;
-      margin-bottom: 1.5rem;
-    }
-    input[type="file"], textarea {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #121212;
-      color: #00ffc3;
-    }
-    textarea {
-      height: 120px;
-    }
-    button {
-      width: 100%;
-      background-color: #00ffc3;
-      color: #000;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
-      margin-top: 10px;
-    }
-    button:hover {
-      background-color: #00e6b0;
-    }
-    .preview-box {
-      display: none;
-      margin-top: 2rem;
-      background: #111;
-      border-radius: 12px;
-      padding: 1rem;
-    }
-    .preview-box img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .preview-caption {
-      margin-top: 1rem;
-      white-space: pre-wrap;
-      font-size: 1rem;
-    }
-    #downloadBtn {
-      display: none;
-      background-color: #ff2d75;
-      color: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Post Preview Tool | Major Creator Kit</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* Page-specific styles */
+        .tool-wrapper {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .preview-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .controls-container, .preview-container {
+            padding: 2.5rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .controls-container h2, .preview-container h2 {
+            font-size: 2rem;
+            color: var(--heading-text);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-family: var(--font-family);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .upload-btn {
+            background-image: linear-gradient(90deg, var(--icon-color-9) 0%, var(--grad-end) 100%);
+            color: var(--heading-text);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* Preview Pane Styles */
+        .insta-post-mockup {
+            background-color: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 400px;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+        }
+        .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--dark-bg);
+        }
+        .username {
+            font-weight: 600;
+            color: #fff;
+            margin-left: 12px;
+        }
+
+        .post-image {
+            width: 100%;
+            padding-top: 100%;
+            background-color: #333;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .post-actions {
+            display: flex;
+            padding: 8px 16px;
+            gap: 16px;
+        }
+        .post-actions svg {
+            width: 24px;
+            height: 24px;
+            color: #fff;
+        }
+
+        .post-caption {
+            padding: 0 16px 16px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        .post-caption .username {
+            font-weight: 600;
+            margin-left: 0;
+            margin-right: 5px;
+        }
+        .caption-text span {
+             white-space: pre-wrap;
+        }
+
+        @media (max-width: 900px) {
+            .preview-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="tool-wrapper">
-    <h2>Instagram Post Preview</h2>
-    <input type="file" id="imageInput" accept="image/*" />
-    <textarea id="captionInput" placeholder="Write your Instagram caption here..."></textarea>
-    <button onclick="generatePreview()">Show Preview</button>
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../index.html#tools">Tools</a>
+                <a href="../blog/blog.html">Blog</a>
+                <a href="../legal/about.html">About</a>
+            </nav>
+        </div>
+    </header>
 
-    <div class="preview-box" id="previewBox">
-      <img id="postImage" src="" alt="Preview Image" />
-      <div class="preview-caption" id="postCaption"></div>
-    </div>
+    <main class="tool-wrapper">
+        <div class="preview-layout">
+            <!-- Left Side: Controls -->
+            <div class="controls-container">
+                <h2>Create Your Preview</h2>
+                <div class="form-group">
+                    <label>Upload Your Image or Video Thumbnail</label>
+                    <label for="image-upload-input" class="upload-btn">Choose File</label>
+                    <input type="file" id="image-upload-input" accept="image/*" style="display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="username-input">Your Instagram Username</label>
+                    <input type="text" id="username-input" placeholder="e.g., major.creator.kit">
+                </div>
+                <div class="form-group">
+                    <label for="caption-input">Your Caption</label>
+                    <textarea id="caption-input" placeholder="Write your amazing caption here..."></textarea>
+                </div>
+            </div>
 
-    <button id="downloadBtn" onclick="downloadPost()">Download Post Image</button>
-  </div>
+            <!-- Right Side: Live Preview -->
+            <div class="preview-container">
+                <h2>Live Post Preview</h2>
+                <div class="insta-post-mockup">
+                    <div class="post-header">
+                        <div class="profile-pic"></div>
+                        <span class="username" id="preview-username">your_username</span>
+                    </div>
+                    <div class="post-image" id="preview-image"></div>
+                    <div class="post-actions">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path></svg>
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.656 17.031l-1.625-1.625c.625-1 .969-2.156.969-3.406 0-3.875-3.125-7-7-7s-7 3.125-7 7 3.125 7 7 7c1.25 0 2.406-.344 3.406-.969l1.625 1.625 1.594-1.594zM12 16c-2.75 0-5-2.25-5-5s2.25-5 5-5 5 2.25 5 5-2.25 5-5 5z"></path></svg>
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M2 21l20-9L2 3v7l14 2-14 2v7z"></path></svg>
+                    </div>
+                    <div class="post-caption">
+                        <span class="username" id="preview-username-caption">your_username</span>
+                        <span class="caption-text" id="preview-caption">Your amazing caption will appear here...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <script>
-    function generatePreview() {
-      const imgInput = document.getElementById("imageInput");
-      const caption = document.getElementById("captionInput").value.trim();
-      const postImage = document.getElementById("postImage");
-      const postCaption = document.getElementById("postCaption");
-      const previewBox = document.getElementById("previewBox");
-      const downloadBtn = document.getElementById("downloadBtn");
+        <article class="content-section" style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+            <h2>About the Instagram Post Preview Tool</h2>
+            <p>Ever published an Instagram post only to realize there's a typo in the first line, or that the "read more" cutoff happens at an awkward spot? Our Post Preview tool is designed to solve exactly that problem. It allows you to see a pixel-perfect mockup of your Instagram post *before* it goes live.</p>
+            <h3>Why Preview Your Posts?</h3>
+            <ul>
+                <li><strong>Perfect Your First Impression:</strong> The first two lines of your caption are critical. This tool shows you exactly what users will see before they have to tap "more".</li>
+                <li><strong>Check Your Aesthetics:</strong> See how your image looks within the Instagram UI, alongside the caption and username. Ensure your visual branding is consistent.</li>
+                <li><strong>Proofread with Context:</strong> Reading your caption in a plain text editor is different from seeing it on the platform. This preview helps you catch errors and awkward phrasing more effectively.</li>
+                <li><strong>Save Time:</strong> Avoid the hassle of deleting and re-uploading a post because of a small mistake. Get it right the first time!</li>
+            </ul>
+        </article>
+    </main>
 
-      if (!imgInput.files.length) {
-        alert("Please upload an image.");
-        return;
-      }
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
+    </footer>
 
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        postImage.src = e.target.result;
-        postCaption.textContent = caption || "(No caption)";
-        previewBox.style.display = "block";
-        downloadBtn.style.display = "block";
-      };
-      reader.readAsDataURL(imgInput.files[0]);
-    }
+    <script>
+        const imageUploadInput = document.getElementById('image-upload-input');
+        const usernameInput = document.getElementById('username-input');
+        const captionInput = document.getElementById('caption-input');
+        
+        const previewImage = document.getElementById('preview-image');
+        const previewUsername = document.getElementById('preview-username');
+        const previewUsernameCaption = document.getElementById('preview-username-caption');
+        const previewCaption = document.getElementById('preview-caption');
 
-    function downloadPost() {
-      const img = document.getElementById("postImage");
-      const link = document.createElement("a");
-      link.href = img.src;
-      link.download = "instagram-post-preview.png";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  </script>
+        // Update image
+        imageUploadInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    previewImage.style.backgroundImage = `url('${event.target.result}')`;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        // Update username live
+        usernameInput.addEventListener('input', (e) => {
+            const username = e.target.value || 'your_username';
+            previewUsername.textContent = username;
+            previewUsernameCaption.textContent = username;
+        });
+
+        // Update caption live
+        captionInput.addEventListener('input', (e) => {
+            previewCaption.textContent = e.target.value || 'Your amazing caption will appear here...';
+        });
+
+    </script>
 
 </body>
 </html>
