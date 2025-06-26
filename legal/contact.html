@@ -1,1 +1,162 @@
-<h1>Contact Us</h1><p><a href='https://docs.google.com/forms/d/e/1FAIpQLScYXydD5KTgArkVaQE-zoH50-mA-tVVTbGZ-bCpeesKc_A9nw/viewform?usp=sharing&ouid=115329634395187822026' target='_blank'>Contact Form</a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Major Creator Kit</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* Page-specific styles */
+        .legal-wrapper {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            color: var(--primary-text);
+            text-align: center;
+        }
+
+        .legal-wrapper h1 {
+            font-size: 2.8rem;
+            color: var(--heading-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .legal-wrapper p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* --- NEW STYLES FOR CONTACT OPTIONS --- */
+        .contact-options {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .contact-option {
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--primary-text);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-option:hover {
+            border-color: var(--grad-start);
+            transform: translateY(-3px);
+            background-color: var(--card-bg);
+        }
+
+        .contact-option svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        .contact-option span {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .separator {
+            margin: 2rem 0;
+            font-weight: 700;
+            color: var(--border-color);
+        }
+
+        .form-btn {
+            background-image: linear-gradient(90deg, var(--grad-start) 0%, var(--grad-mid) 100%);
+            color: var(--heading-text);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            display: inline-flex; /* Use inline-flex for icon alignment */
+            align-items: center;
+            gap: 10px;
+        }
+        .form-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.25);
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../index.html#tools">Tools</a>
+                <a href="../blog/blog.html">Blog</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="legal-wrapper">
+        <h1>Get in Touch</h1>
+        <p>
+            We'd love to hear from you! For suggestions, bug reports, or partnership inquiries, please use our contact form for the quickest response. For other matters, you can reach us via email or WhatsApp.
+        </p>
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScYXydD5KTgArkVaQE-zoH50-mA-tVVTbGZ-bCpeesKc_A9nw/viewform" class="form-btn" target="_blank" rel="noopener noreferrer">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13.5,16V19H10.5V16H8L12,12L16,16H13.5M13,9V3.5L18.5,9H13Z" /></svg>
+            <span>Share Your Problem / Suggestion</span>
+        </a>
+
+        <div class="separator">OR</div>
+        
+        <div class="contact-options">
+            <a href="mailto:immrilyas@gmail.com" class="contact-option">
+                <svg style="color: var(--icon-color-1)" viewBox="0 0 24 24"><path fill="currentColor" d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6M20 6L12 11L4 6H20M20 18H4V8L12 13L20 8V18Z" /></svg>
+                <span>immrilyas@gmail.com</span>
+            </a>
+            <a href="https://wa.me/923427941197" class="contact-option" target="_blank" rel="noopener noreferrer">
+                 <svg style="color: #25D366" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.92C21.95 6.46 17.5 2 12.04 2M12.04 3.67C16.56 3.67 20.28 7.39 20.28 11.92C20.28 16.45 16.56 20.17 12.04 20.17C10.46 20.17 8.96 19.73 7.65 18.96L7.3 18.78L4.47 19.57L5.26 16.82L5.07 16.47C4.24 15.11 3.8 13.53 3.8 11.91C3.8 7.39 7.52 3.67 12.04 3.67M16.55 14.44C16.35 14.9 15.32 15.42 14.88 15.48C14.44 15.54 13.81 15.36 13.48 15.22C13.15 15.08 11.96 14.54 10.76 13.44C9.28 12.08 8.44 10.45 8.17 9.99C7.9 9.53 8.09 9.26 8.23 9.12C8.38 8.98 8.57 8.78 8.71 8.61C8.86 8.44 8.91 8.31 9.01 8.11C9.11 7.91 9.06 7.74 8.96 7.57C8.86 7.4 8.35 6.16 8.15 5.7C7.95 5.24 7.75 5.31 7.61 5.31C7.47 5.31 7.14 5.31 6.88 5.31C6.61 5.31 6.17 5.38 5.8 5.74C5.43 6.1 4.79 6.7 4.79 7.97C4.79 9.24 5.82 10.45 5.97 10.65C6.12 10.85 7.6 13.11 9.89 14.05C12.18 15 12.78 14.78 13.24 14.72C13.7 14.66 14.77 14.1 15.02 13.44C15.27 12.78 15.27 12.23 15.22 12.13C15.17 12.03 15.02 11.93 14.82 11.83C14.62 11.73 14.09 11.46 13.84 11.36C13.59 11.26 13.44 11.21 13.29 11.46C13.14 11.71 12.64 12.33 12.49 12.53C12.34 12.73 12.19 12.78 12 12.68C11.81 12.58 11.01 12.31 10.06 11.45C9.29 10.75 8.77 9.89 8.64 9.64C8.51 9.39 8.61 9.21 8.71 9.11C8.81 9.01 8.93 8.89 9.06 8.78C9.21 8.66 9.29 8.51 9.39 8.36C9.49 8.21 9.44 8.06 9.39 7.96C9.34 7.86 8.87 6.61 8.67 6.15C8.47 5.69 8.27 5.76 8.15 5.76C8.03 5.76 7.78 5.76 7.56 5.76C7.34 5.76 6.97 5.83 6.65 6.17C6.33 6.51 5.64 7.16 5.64 8.49C5.64 9.82 6.69 11.01 6.84 11.21C6.99 11.41 8.53 13.73 10.89 14.71C13.25 15.69 13.83 15.45 14.31 15.39C14.79 15.33 15.9 14.77 16.17 14.05C16.44 13.33 16.44 12.78 16.39 12.68C16.34 12.58 16.19 12.48 15.99 12.38Z"/></svg>
+                <span>+92 342 7941197</span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
+        <nav class="footer-nav" style="margin-top: 1rem;">
+            <a href="privacy-policy.html" style="margin: 0 10px; color: var(--primary-text);">Privacy Policy</a> |
+            <a href="terms.html" style="margin: 0 10px; color: var(--primary-text);">Terms of Service</a> |
+            <a href="contact.html" style="margin: 0 10px; color: var(--primary-text);">Contact Us</a>
+        </nav>
+    </footer>
+
+</body>
+</html>
