@@ -3,80 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Blog - Instagram Tips & Strategies | Major Creator Kit</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Light gray background */
+        /* Page-specific styles */
+        .blog-wrapper {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
-        .thumbnail-container {
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+        .blog-header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .blog-header p {
+            font-size: 1.2rem;
+            color: var(--primary-text);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .post-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--primary-text);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            border-radius: 0.75rem; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
-        .thumbnail-image {
-            transition: transform 0.3s ease-in-out; /* Smooth transition */
+        .post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--grad-mid);
         }
-        .thumbnail-container:hover .thumbnail-image {
-            transform: scale(1.05) rotate(1deg); /* Slightly larger and rotated on hover */
+        .post-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
-        .card {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transition for the card */
+        .post-card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
-        .card:hover {
-            transform: translateY(-5px); /* Lift up slightly on hover */
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+        .post-card-content h3 {
+            font-size: 1.5rem;
+            color: var(--heading-text);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+        .post-card-content p {
+            font-size: 1rem;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+            color: #b0a4c9;
+        }
+        .post-card-meta {
+            font-size: 0.9rem;
+            color: #9376C4;
+            font-weight: 500;
+        }
+
+        /* --- NEW TOOLS SHOWCASE FOOTER --- */
+        .tools-showcase-footer {
+            margin-top: 5rem;
+            padding: 3rem 1.5rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .tools-showcase-footer h2 {
+            font-size: 2.5rem;
+            color: var(--heading-text);
+            margin-bottom: 2rem;
+        }
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .showcase-tool-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--primary-text);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .showcase-tool-card:hover {
+            transform: scale(1.05);
+            border-color: var(--grad-start);
+        }
+        .showcase-tool-card svg {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+        .showcase-tool-card span {
+            font-weight: 500;
+            font-size: 1.1rem;
         }
     </style>
 </head>
-<body class="p-6">
-    <header class="text-center mb-12">
-        <h1 class="text-5xl font-extrabold text-gray-900 mb-4">Our Blog</h1>
-        <p class="text-xl text-gray-600">Discover the latest posts</p>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../index.html#tools">Tools</a>
+                <a href="blog.html">Blog</a>
+                <a href="../legal/about.html">About</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Blog Post Card Template (Will be duplicated 10 times) -->
-            <script>
-                const blogPostsContainer = document.querySelector('.grid');
-                for (let i = 1; i <= 10; i++) {
-                    const postCard = `
-                        <div class="card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center">
-                            <div class="thumbnail-container w-full h-48 mb-6">
-                                <img src="https://placehold.co/600x400/285E61/FFFFFF?text=Blog+${i}" 
-                                     alt="Thumbnail for Blog Post ${i}" 
-                                     class="thumbnail-image w-full h-full object-cover rounded-lg">
-                            </div>
-                            <h2 class="text-2xl font-bold text-gray-800 mb-3">Blog Post Title ${i}</h2>
-                            <p class="text-gray-600 mb-4 line-clamp-3">This is a short description about blog post ${i}, summarizing its content. This is an interesting topic we will discuss today. Click the button to read more.</p>
-                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                                Read More
-                            </a>
-                        </div>
-                    `;
-                    blogPostsContainer.innerHTML += postCard;
-                }
-            </script>
+    <main class="blog-wrapper">
+        <header class="blog-header">
+            <h1>The Creator's Blog</h1>
+            <p>Insights, tutorials, and strategies to help you master Instagram.</p>
+        </header>
+
+        <div class="blog-grid">
+            <!-- Blog Post 1 Card -->
+            <a href="post-1.html" class="post-card">
+                <img src="https://placehold.co/600x400/F72585/FFFFFF?text=Guide" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>10 Tips to Write the Perfect Instagram Bio</h3>
+                    <p>Learn how to craft a compelling bio that converts visitors into followers with our expert tips and examples.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 24, 2025</div>
+                </div>
+            </a>
+            <!-- Blog Post 2 Card -->
+            <a href="post-2.html" class="post-card">
+                <img src="https://placehold.co/600x400/7209B7/FFFFFF?text=Strategy" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>How to Use Hashtags in 2025 for Max Reach</h3>
+                    <p>The hashtag game has changed. Discover the best strategies that work now to get your content seen by the right audience.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 20, 2025</div>
+                </div>
+            </a>
+            <!-- Blog Post 3 Card -->
+            <a href="post-3.html" class="post-card">
+                <img src="https://placehold.co/600x400/4361EE/FFFFFF?text=Aesthetics" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>Creating a Stunning Instagram Feed: A Guide</h3>
+                    <p>Your grid is your digital storefront. Learn how to plan a cohesive and visually appealing feed that tells your brand's story.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 15, 2025</div>
+                </div>
+            </a>
+             <!-- Blog Post 4 -->
+            <a href="#" class="post-card">
+                <img src="https://placehold.co/600x400/4CC9F0/000000?text=AI" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>Using AI to Supercharge Your Content Creation</h3>
+                    <p>Discover how our AI tools can help you generate ideas, write captions, and create bios in a fraction of the time.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 12, 2025</div>
+                </div>
+            </a>
+            <!-- Blog Post 5 -->
+            <a href="#" class="post-card">
+                <img src="https://placehold.co/600x400/F48C06/FFFFFF?text=Safety" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>What is an Instagram Shadowban and How to Avoid It</h3>
+                    <p>A deep dive into shadowbanning, what causes it, and how to protect your account's health and reach.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 10, 2025</div>
+                </div>
+            </a>
+            <!-- Blog Post 6 -->
+            <a href="#" class="post-card">
+                <img src="https://placehold.co/600x400/9EF01A/000000?text=Growth" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>5 Simple Tricks to Get More Instagram Followers</h3>
+                    <p>Forget fake followers. Learn sustainable, organic strategies that attract a real and engaged audience.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 05, 2025</div>
+                </div>
+            </a>
+            <!-- Blog Post 7 -->
+            <a href="#" class="post-card">
+                <img src="https://placehold.co/600x400/ff4d6d/FFFFFF?text=Stories" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>Mastering Instagram Stories: Tips for Engagement</h3>
+                    <p>Go beyond simple pictures. Learn how to use polls, quizzes, and other features to create interactive and engaging Stories.</p>
+                    <div class="post-card-meta">By Ilyas Khan | June 01, 2025</div>
+                </div>
+            </a>
+            <!-- Blog Post 8 -->
+            <a href="#" class="post-card">
+                <img src="https://placehold.co/600x400/ffd166/000000?text=Analytics" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>Understanding Your Instagram Analytics</h3>
+                    <p>What do 'reach' and 'impressions' really mean? A beginner's guide to understanding your data and using it to grow.</p>
+                    <div class="post-card-meta">By Ilyas Khan | May 28, 2025</div>
+                </div>
+            </a>
+            <!-- Blog Post 9 -->
+            <a href="#" class="post-card">
+                <img src="https://placehold.co/600x400/06d6a0/FFFFFF?text=Reels" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>How to Create Instagram Reels That Go Viral</h3>
+                    <p>Breaking down the formula for creating short-form videos that capture attention and get featured on the Reels tab.</p>
+                    <div class="post-card-meta">By Ilyas Khan | May 25, 2025</div>
+                </div>
+            </a>
+             <!-- Blog Post 10 -->
+            <a href="#" class="post-card">
+                <img src="https://placehold.co/600x400/118ab2/FFFFFF?text=Collabs" alt="Blog Post Thumbnail" class="post-card-image">
+                <div class="post-card-content">
+                    <h3>The Ultimate Guide to Collaborating with Brands</h3>
+                    <p>Ready to monetize your account? Learn how to find, pitch, and work with brands for successful collaborations.</p>
+                    <div class="post-card-meta">By Ilyas Khan | May 20, 2025</div>
+                </div>
+            </a>
         </div>
     </main>
 
-    <footer class="text-center mt-12 py-6 bg-gray-800 text-white rounded-t-xl">
-        <p class="mb-4">&copy; 2025 My Blog. All rights reserved.</p>
-        <div class="flex flex-wrap justify-center gap-4 text-sm">
-            <a href="#" class="hover:underline">Privacy Policy</a>
-            <span class="text-gray-500">|</span>
-            <a href="#" class="hover:underline">Terms & Conditions</a>
-            <span class="text-gray-500">|</span>
-            <a href="#" class="hover:underline">Contact Us</a>
-            <span class="text-gray-500">|</span>
-            <a href="#" class="hover:underline">About Us</a>
-            <span class="text-gray-500">|</span>
-            <a href="#" class="hover:underline">All Tools</a>
+    <!-- ========= NEW TOOLS SHOWCASE FOOTER ========= -->
+    <section class="tools-showcase-footer">
+        <h2>Explore Our Free Tools</h2>
+        <div class="showcase-grid">
+            <a href="../tools/ai-bio-generator.html" class="showcase-tool-card">
+                <svg style="color:var(--icon-color-10);" viewBox="0 0 24 24"><path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M15.36,16.25L14.05,17.56L12,15.53L9.95,17.56L8.64,16.25L10.67,14.22L8.64,12.19L9.95,10.88L12,12.91L14.05,10.88L15.36,12.19L13.33,14.22L15.36,16.25M18,9.5L17.25,7.75L15.5,7L17.25,6.25L18,4.5L18.75,6.25L20.5,7L18.75,7.75L18,9.5Z" /></svg>
+                <span>AI Bio Generator</span>
+            </a>
+            <a href="../tools/hashtag-generator.html" class="showcase-tool-card">
+                <svg style="color:var(--icon-color-3);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" /></svg>
+                <span>Hashtag Generator</span>
+            </a>
+             <a href="../tools/fancy-fonts.html" class="showcase-tool-card">
+                <svg style="color:var(--icon-color-5);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10m0 0h12M4 7l4-4m0 0l4 4M4 7h12M12 7l4 4m0 0l4-4m-4 4v10" /></svg>
+                <span>Fancy Fonts</span>
+            </a>
+             <a href="../tools/username-checker.html" class="showcase-tool-card">
+                <svg style="color:var(--icon-color-1);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Username Checker</span>
+            </a>
+             <a href="../tools/banned-hashtag-checker.html" class="showcase-tool-card">
+                 <svg style="color:var(--icon-color-8);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Banned Hashtags</span>
+            </a>
+             <a href="../tools/profile-pic-downloader.html" class="showcase-tool-card">
+                <svg style="color:var(--icon-color-4);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                <span>DP Downloader</span>
+            </a>
         </div>
+    </section>
+    
+    <!-- Standard Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
+        <nav class="footer-nav" style="margin-top: 1rem;">
+            <a href="../legal/privacy-policy.html" style="margin: 0 10px; color: var(--primary-text);">Privacy Policy</a> |
+            <a href="../legal/terms.html" style="margin: 0 10px; color: var(--primary-text);">Terms of Service</a> |
+            <a href="../legal/contact.html" style="margin: 0 10px; color: var(--primary-text);">Contact Us</a>
+        </nav>
     </footer>
+
 </body>
 </html>
