@@ -3,310 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Major Creator Kit | Creative Tools for Content Creators</title>
+    <title>Instagram Grid Planner | Major Creator Kit</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
     <style>
-        /* Global Styles */
-        :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --dark: #2d3436;
-            --light: #f5f6fa;
-            --accent: #fd79a8;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-        }
-        
-        nav a:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-        
-        /* Main Content Styles */
-        main {
-            max-width: 1200px;
+        /* Page-specific styles */
+        .tool-wrapper {
+            max-width: 900px;
             margin: 2rem auto;
-            padding: 0 2rem;
         }
-        
-        .hero {
+
+        .tool-container {
+            padding: 2.5rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .tool-header {
             text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05));
-            border-radius: 12px;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .tool-header h1 {
+            font-size: 2.8rem;
+            color: var(--heading-text);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--icon-color-6), var(--icon-color-3));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;
         }
         
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
+        .tool-header p {
+            font-size: 1.1rem;
+            color: var(--primary-text);
         }
         
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Tools Grid */
-        .tools-grid {
+        #grid-planner {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            border: 2px dashed var(--border-color);
+            padding: 10px;
+            border-radius: 8px;
+            background-color: var(--dark-bg);
         }
         
-        .tool-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+        .grid-cell {
             position: relative;
-            overflow: hidden;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-        }
-        
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-        
-        .tool-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .tool-card p {
-            margin-bottom: 1.5rem;
-            color: #666;
-        }
-        
-        .tool-card button {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            font-weight: 600;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
+            background-size: cover;
+            background-position: center;
         }
         
-        .tool-card button:hover {
+        .grid-cell.over {
             transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+            border: 2px solid var(--grad-start);
         }
         
-        /* Footer Styles */
-        footer {
-            background-color: var(--dark);
-            color: white;
+        .grid-cell:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .grid-cell .upload-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--primary-text);
+            opacity: 0.5;
+            font-size: 3rem;
+        }
+        
+        .grid-cell.has-image .upload-icon {
+            display: none;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .control-btn {
+            background-image: linear-gradient(90deg, var(--grad-mid) 0%, var(--grad-end) 100%);
+            color: var(--heading-text);
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .control-btn:hover {
+            transform: translateY(-2px);
+        }
+        .ai-btn {
+            background-image: linear-gradient(90deg, var(--icon-color-6) 0%, var(--icon-color-3) 100%);
+        }
+
+        #ai-results {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
+            display: none;
         }
         
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav {
-                margin-top: 1rem;
-            }
-            
-            nav a {
-                margin: 0 0.5rem;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
+        #ai-results h3 {
+            margin-bottom: 1rem;
+            color: var(--heading-text);
+        }
+        
+        .palette {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .color-swatch {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .content-section {
+            margin-top: 4rem;
+            color: #dcdcdc;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">Major <span>Creator Kit</span></div>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Tools</a>
-                <a href="#">Contact</a>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../index.html#tools">Tools</a>
+                <a href="../blog/blog.html">Blog</a>
+                <a href="../legal/about.html">About</a>
             </nav>
         </div>
     </header>
-    
-    <main>
-        <section class="hero">
-            <h2>Powerful Tools for Creative Professionals</h2>
-            <p>Enhance your content creation workflow with our collection of premium tools designed to make your work easier and more professional.</p>
-        </section>
+
+    <main class="tool-wrapper">
+        <div class="tool-container">
+            <header class="tool-header">
+                <h1>Instagram Grid Planner</h1>
+                <p>Visually plan your feed's aesthetic by dragging and dropping your photos.</p>
+            </header>
+
+            <div id="grid-planner">
+                <!-- Grid cells will be generated by JavaScript -->
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" id="add-row-btn">Add Row</button>
+                <button class="control-btn ai-btn" id="analyze-btn">AI Color Analyzer</button>
+                <button class="control-btn" id="clear-btn" style="background: var(--icon-color-7);">Clear All</button>
+            </div>
+
+            <div id="ai-results">
+                <h3>AI Suggested Color Palette:</h3>
+                <div class="palette" id="color-palette"></div>
+            </div>
+
+            <input type="file" id="image-upload" accept="image/*" style="display: none;">
+        </div>
         
-        <section class="tools-grid">
-            <div class="tool-card" onclick="openTool('image-enhancer')">
-                <h3>Image Enhancer</h3>
-                <p>Transform low-quality images into high-resolution masterpieces with our AI-powered enhancement tool.</p>
-                <button>Enhance Now</button>
-            </div>
-            
-            <div class="tool-card" onclick="openTool('planer')">
-                <h3>Content Planer</h3>
-                <p>Organize your content strategy with our intuitive planning tool and calendar integration.</p>
-                <button>Start Planning</button>
-            </div>
-            
-            <div class="tool-card" onclick="openTool('collage-maker')">
-                <h3>Collage Maker</h3>
-                <p>Create stunning photo collages with customizable templates and layouts.</p>
-                <button>Make Collage</button>
-            </div>
-            
-            <div class="tool-card" onclick="openTool('video-editor')">
-                <h3>Video Editor</h3>
-                <p>Basic video editing tool with filters, transitions, and text overlays.</p>
-                <button>Edit Video</button>
-            </div>
-            
-            <div class="tool-card" onclick="openTool('hashtag-generator')">
-                <h3>Hashtag Generator</h3>
-                <p>Generate trending hashtags for your social media posts based on your content.</p>
-                <button>Get Hashtags</button>
-            </div>
-            
-            <div class="tool-card" onclick="openTool('analytics')">
-                <h3>Content Analytics</h3>
-                <p>Track your content performance across multiple platforms in one dashboard.</p>
-                <button>View Analytics</button>
-            </div>
-        </section>
+        <article class="content-section" style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
+            <h2>How to Use the Grid Planner</h2>
+            <ol style="list-style-position: inside; padding-left: 1rem; font-size: 1.1rem; line-height: 1.8;">
+                <li style="margin-bottom: 1rem;"><strong>Upload Images:</strong> Click on any empty square (+) to upload an image from your computer.</li>
+                <li style="margin-bottom: 1rem;"><strong>Arrange Your Feed:</strong> Simply drag and drop your uploaded images to reorder them and find the perfect layout for your feed.</li>
+                <li style="margin-bottom: 1rem;"><strong>Expand Your Plan:</strong> Need to plan more posts? Click the "Add Row" button to add more empty slots to your grid.</li>
+                <li style="margin-bottom: 1rem;"><strong>AI Color Analysis:</strong> Once you have a few images uploaded, click the "AI Color Analyzer" button. The tool will analyze the dominant colors in your grid and suggest a harmonizing color palette. This helps you maintain a consistent aesthetic.</li>
+                <li style="margin-bottom: 1rem;"><strong>Start Over:</strong> Click the "Clear All" button to remove all images and start planning from scratch.</li>
+            </ol>
+        </article>
     </main>
-    
-    <footer>
-        <p>&copy; 2023 majorsmmpanel.online - All Rights Reserved</p>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
     </footer>
 
     <script>
-        // Tool interaction functions
-        function openTool(toolName) {
-            alert(`Opening ${toolName.replace('-', ' ')} tool - This would redirect to the actual tool in a full implementation`);
-            // In a real implementation, this would be:
-            // window.location.href = `/tools/${toolName}.html`;
-        }
+        const gridPlanner = document.getElementById('grid-planner');
+        const addRowBtn = document.getElementById('add-row-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const imageUpload = document.getElementById('image-upload');
+        const aiResults = document.getElementById('ai-results');
+        const colorPalette = document.getElementById('color-palette');
         
-        // Animation for tool cards on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const toolCards = document.querySelectorAll('.tool-card');
-            
-            toolCards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
+        let activeCell = null;
+        let draggedItem = null;
+
+        function createGridCells(count) {
+            for(let i = 0; i < count; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'grid-cell';
+                cell.innerHTML = '<div class="upload-icon">+</div>';
+                cell.draggable = true;
                 
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 200 * index);
-            });
-            
-            // Add pulse animation to buttons on hover
-            const buttons = document.querySelectorAll('.tool-card button');
-            buttons.forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.classList.add('pulse');
+                cell.addEventListener('click', () => {
+                    activeCell = cell;
+                    imageUpload.click();
+                });
+
+                // Drag and Drop events
+                cell.addEventListener('dragstart', (e) => {
+                    draggedItem = e.target;
+                    setTimeout(() => e.target.style.opacity = '0.5', 0);
                 });
                 
-                button.addEventListener('mouseleave', function() {
-                    this.classList.remove('pulse');
+                cell.addEventListener('dragend', (e) => {
+                    setTimeout(() => e.target.style.opacity = '1', 0);
+                    draggedItem = null;
                 });
+
+                cell.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.grid-cell').forEach(c => c.classList.remove('over'));
+                    e.target.classList.add('over');
+                });
+                
+                cell.addEventListener('dragleave', (e) => {
+                     e.target.classList.remove('over');
+                });
+                
+                cell.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    e.target.classList.remove('over');
+                    if (draggedItem && draggedItem !== e.target) {
+                        // Swap background images
+                        const draggedBg = draggedItem.style.backgroundImage;
+                        const targetBg = e.target.style.backgroundImage;
+                        
+                        draggedItem.style.backgroundImage = targetBg;
+                        e.target.style.backgroundImage = draggedBg;
+                        
+                        // Swap has-image class
+                        const draggedHasImage = draggedItem.classList.contains('has-image');
+                        const targetHasImage = e.target.classList.contains('has-image');
+
+                        if (draggedHasImage) e.target.classList.add('has-image');
+                        else e.target.classList.remove('has-image');
+                        
+                        if (targetHasImage) draggedItem.classList.add('has-image');
+                        else draggedItem.classList.remove('has-image');
+                    }
+                });
+                
+                gridPlanner.appendChild(cell);
+            }
+        }
+
+        imageUpload.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0] && activeCell) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    activeCell.style.backgroundImage = `url('${event.target.result}')`;
+                    activeCell.classList.add('has-image');
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        addRowBtn.addEventListener('click', () => createGridCells(3));
+        clearBtn.addEventListener('click', () => {
+             gridPlanner.innerHTML = '';
+             createGridCells(9);
+             aiResults.style.display = 'none';
+        });
+
+        analyzeBtn.addEventListener('click', () => {
+            const imageCells = Array.from(document.querySelectorAll('.grid-cell.has-image'));
+            if (imageCells.length < 3) {
+                alert("Please upload at least 3 images to analyze the palette.");
+                return;
+            }
+            aiResults.style.display = 'block';
+            colorPalette.innerHTML = '<span>Analyzing colors...</span>';
+
+            // Simplified AI: Get dominant color from each image and display
+            // A real AI would do more complex harmonization.
+            const dominantColors = [];
+            let processedImages = 0;
+
+            imageCells.forEach(cell => {
+                const img = new Image();
+                img.crossOrigin = "Anonymous";
+                img.src = cell.style.backgroundImage.slice(5, -2); // Extract URL
+                
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                    const colorCounts = {};
+                    let maxCount = 0;
+                    let dominantColor = '';
+
+                    for (let i = 0; i < imageData.length; i += 4) {
+                        const rgb = `rgb(${imageData[i]}, ${imageData[i+1]}, ${imageData[i+2]})`;
+                        colorCounts[rgb] = (colorCounts[rgb] || 0) + 1;
+                        if (colorCounts[rgb] > maxCount) {
+                            maxCount = colorCounts[rgb];
+                            dominantColor = rgb;
+                        }
+                    }
+                    dominantColors.push(dominantColor);
+                    processedImages++;
+
+                    if (processedImages === imageCells.length) {
+                        displayPalette(dominantColors);
+                    }
+                }
             });
         });
-        
-        // Add style for pulse animation dynamically
-        const style = document.createElement('style');
-        style.textContent = `
-            .pulse {
-                animation: pulse 1.5s infinite;
-            }
-            
-            @keyframes pulse {
-                0% {
-                    box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.7);
-                }
-                70% {
-                    box-shadow: 0 0 0 10px rgba(108, 92, 231, 0);
-                }
-                100% {
-                    box-shadow: 0 0 0 0 rgba(108, 92, 231, 0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
+
+        function displayPalette(colors) {
+            colorPalette.innerHTML = '';
+            // Get up to 5 unique colors
+            const uniqueColors = [...new Set(colors)].slice(0, 5);
+            uniqueColors.forEach(color => {
+                const swatch = document.createElement('div');
+                swatch.className = 'color-swatch';
+                swatch.style.backgroundColor = color;
+                colorPalette.appendChild(swatch);
+            });
+        }
+
+        // Initial grid
+        createGridCells(9);
     </script>
+
 </body>
 </html>
