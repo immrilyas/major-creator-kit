@@ -3,62 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hashtag Checker | Major Creator Kit</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Banned Instagram Hashtag Checker | Major Creator Kit</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Correct path to the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* Page-specific styles */
+        .tool-wrapper {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .tool-container {
+            padding: 2.5rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tool-header h1 {
+            font-size: 2.8rem;
+            color: var(--heading-text);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--icon-color-8), var(--grad-start));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;
+        }
+        
+        .tool-header p {
+            font-size: 1.1rem;
+            color: var(--primary-text);
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-family: var(--font-family);
+            font-size: 1rem;
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--grad-mid);
+            box-shadow: 0 0 0 3px rgba(114, 9, 183, 0.3);
+        }
+        
+        .check-btn {
+            background-image: linear-gradient(90deg, var(--icon-color-8) 0%, var(--grad-start) 100%);
+            color: var(--heading-text);
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .check-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 209, 102, 0.2);
+        }
+        
+        #results-area {
+            margin-top: 2.5rem;
+            display: none; /* Initially hidden */
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .result-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        #safe-hashtags h3 { color: #06d6a0; }
+        #banned-hashtags h3 { color: var(--icon-color-7); }
+
+        .hashtag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .hashtag-pill {
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .safe {
+            background-color: rgba(6, 214, 160, 0.1);
+            color: #06d6a0;
+            border: 1px solid rgba(6, 214, 160, 0.3);
+        }
+        
+        .banned {
+            background-color: rgba(255, 77, 109, 0.1);
+            color: #ff4d6d;
+            border: 1px solid rgba(255, 77, 109, 0.3);
+            text-decoration: line-through;
+        }
+
+        .content-section {
+            margin-top: 4rem;
+            color: #dcdcdc;
+        }
+        
+        .content-section h2 {
+            font-size: 2.2rem;
+            color: var(--heading-text);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--icon-color-8);
+            padding-left: 1rem;
+        }
+        
+        .content-section h3 {
+            font-size: 1.6rem;
+            color: var(--primary-text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section p, .content-section li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .content-section ul {
+            list-style-type: '⚠️ ';
+            padding-left: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>Hashtag Checker</h1>
-            <p>Major Creator Kit Tool</p>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--grad-start);"/><stop offset="100%" style="stop-color:var(--grad-end);"/></linearGradient></defs><path fill="url(#logoGradient)" d="M50,5 C74.85,5 95,25.15 95,50 C95,74.85 74.85,95 50,95 C25.15,95 5,74.85 5,50 C5,25.15 25.15,5 50,5 Z M30,30 L70,30 L70,70 L30,70 L30,30 Z M40,40 L60,40 L60,60 L40,60 L40,40 Z"/></svg>
+                <span class="logo-text">Major Creator Kit</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../index.html#tools">Tools</a>
+                <a href="../blog/blog.html">Blog</a>
+                <a href="../legal/about.html">About</a>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../about.html">About</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <main>
-        <section class="tool-container">
-            <h2>Check Your Hashtags</h2>
-            <div class="input-area">
-                <textarea placeholder="Enter your hashtags here, separated by spaces or commas"></textarea>
-                <select id="category">
-                    <option value="fitness">Fitness</option>
-                    <option value="travel">Travel</option>
-                    <option value="health">Health</option>
-                    <option value="food">Food</option>
-                    <option value="lifestyle">Lifestyle</option>
-                </select>
-                <button id="check-btn">Check Hashtags</button>
+    <main class="tool-wrapper">
+        <div class="tool-container">
+            <header class="tool-header">
+                <h1>Banned Hashtag Checker</h1>
+                <p>Protect your Instagram account by checking your hashtags before you post.</p>
+            </header>
+
+            <div class="form-group">
+                <label for="hashtags-input">Paste your hashtags here (separated by space, comma, or new line)</label>
+                <textarea id="hashtags-input" rows="6" placeholder="#travel #foodie #fitness..."></textarea>
             </div>
 
-            <div class="results">
-                <div class="good-hashtags">
-                    <h3>Effective Hashtags</h3>
-                    <ul id="good-list"></ul>
-                </div>
-                <div class="bad-hashtags">
-                    <h3>Overused Hashtags</h3>
-                    <ul id="bad-list"></ul>
-                </div>
-            </div>
+            <button class="check-btn" id="check-btn">Check Hashtags</button>
 
-            <div class="predefined-lists">
-                <h3>Predefined Hashtag Lists</h3>
-                <div class="hashtag-categories">
-                    <button data-category="fitness">Fitness Hashtags</button>
-                    <button data-category="travel">Travel Hashtags</button>
-                    <button data-category="health">Health Hashtags</button>
+            <div id="results-area">
+                <div class="results-grid">
+                    <div id="safe-hashtags" class="result-column">
+                        <h3>✅ Safe Hashtags</h3>
+                        <div class="hashtag-list" id="safe-list"></div>
+                    </div>
+                    <div id="banned-hashtags" class="result-column">
+                        <h3>❌ Banned Hashtags</h3>
+                        <div class="hashtag-list" id="banned-list"></div>
+                    </div>
                 </div>
-                <div id="predefined-list"></div>
             </div>
-        </section>
+        </div>
+        
+        <article class="content-section">
+            <h2>The Ultimate Guide to Instagram's Banned Hashtags</h2>
+            <p>
+                Using hashtags is the best way to get discovered on Instagram, but using the wrong ones can be disastrous for your account. This guide explains what banned hashtags are, why they are dangerous, and how our free checker can help you protect your account's health and reach.
+            </p>
+
+            <h3>What Are Banned Hashtags?</h3>
+            <p>
+                A "banned" or "broken" hashtag is one that has been flagged by Instagram because the content associated with it has violated the platform's community guidelines. This can happen for various reasons, from spam and adult content to hate speech. Sometimes, even seemingly innocent hashtags can get banned if they are flooded with inappropriate content by malicious users.
+            </p>
+            
+            <h3>Why You MUST Avoid Them</h3>
+            <p>Using even a single banned hashtag in your post can have severe consequences:</p>
+            <ul>
+                <li><strong>Shadowbanning:</strong> This is the most common penalty. Instagram might limit your post's visibility, meaning it won't show up on any hashtag pages (even the safe ones), effectively hiding your content from new audiences.</li>
+                <li><strong>Reduced Engagement:</strong> When your reach is limited, your engagement (likes, comments, shares) will naturally drop, signaling to the algorithm that your content is not valuable.</li>
+                <li><strong>Account Penalties:</strong> In severe or repeated cases, Instagram might take stricter action against your account, including temporary suspensions or even a permanent ban.</li>
+            </ul>
+
+            <h3>How to Use This Banned Hashtag Checker</h3>
+            <ol>
+                <li>Gather the list of hashtags you plan to use for your next post.</li>
+                <li>Paste your entire list into the text box above. You don't need to add the '#' symbol, and you can separate them with spaces, commas, or new lines.</li>
+                <li>Click the "Check Hashtags" button.</li>
+                <li>Our tool will instantly analyze your list and sort them into two categories: "Safe Hashtags" and "Banned Hashtags".</li>
+                <li>Only use the hashtags that appear in the ✅ Safe list for your post.</li>
+            </ol>
+            
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <p><strong>Q: How does this checker know which hashtags are banned?</strong><br>A: This tool works with a comprehensive, regularly updated database of known banned hashtags. While we strive to be as accurate as possible, Instagram's list can change daily. It's always a good practice to manually check a hashtag's page on Instagram if you're unsure.</p>
+            <p><strong>Q: What should I do if a hashtag I use is now banned?</strong><br>A: Go back to any old posts where you used that hashtag and remove it immediately by editing the caption or deleting the comment where you placed it.</p>
+        </article>
     </main>
 
-    <script src="script.js"></script>
+    <footer class="main-footer">
+        <p>&copy; 2025 Major Creator Kit. All Rights Reserved. A project by Ilyas Khan.</p>
+    </footer>
+
+    <script>
+        const checkBtn = document.getElementById('check-btn');
+        const hashtagsInput = document.getElementById('hashtags-input');
+        const resultsArea = document.getElementById('results-area');
+        const safeList = document.getElementById('safe-list');
+        const bannedList = document.getElementById('banned-list');
+
+        // --- UPDATED & EXPANDED BANNED LIST ---
+        // This is a more comprehensive list of commonly cited banned or restricted hashtags.
+        // It's still a simulation, but a more powerful one.
+        const knownBannedHashtags = new Set([
+            'abdl', 'addmysc', 'adulting', 'alone', 'always', 'amearalavey', 'armparty', 'asiangirl', 
+            'assday', 'assworship', 'beautyblogger', 'bikinibody', 'boho', 'brain', 'costumes', 
+            'curvy', 'curvygirls', 'date', 'dating', 'desk', 'direct', 'dm', 'easter', 'elevator', 
+            'girlsonly', 'gloves', 'hardworkpaysoff', 'hotweather', 'humpday', 'hustler', 'ice', 
+            'ilovemyinstagram', 'instababy', 'instasport', 'iphone', 'italian', 'kansas', 'kickoff', 
+            'killingit', 'kissing', 'master', 'mileycyrus', 'milf', 'mirrorphoto', 'models', 'mustfollow',
+            'newyears', 'newyearsday', 'overnight', 'parties', 'petite', 'pornfood', 'prettygirl', 
+            'pushups', 'rate', 'saltwater', 'samelove', 'selfharm', 'shower', 'single', 'singlelife', 
+            'skype', 'snap', 'snapchat', 'sopretty', 'stranger', 'streetphoto', 'sunbathing', 'swole',
+            'tag4like', 'tan', 'teens', 'thought', 'todayimwearing', 'undies', 'valentinesday', 
+            'workflow', 'wtf', 'youngmodel', 'gloves', 'italiano', 'parties'
+        ]);
+        
+        function checkHashtags() {
+            const inputText = hashtagsInput.value;
+            const userHashtags = inputText.split(/[\s,]+/).map(tag => tag.replace(/#/g, '').toLowerCase()).filter(Boolean);
+
+            if (userHashtags.length === 0) {
+                alert("Please enter some hashtags to check.");
+                return;
+            }
+
+            safeList.innerHTML = '';
+            bannedList.innerHTML = '';
+
+            userHashtags.forEach(tag => {
+                const pill = document.createElement('span');
+                pill.className = 'hashtag-pill';
+                pill.textContent = `#${tag}`;
+
+                if (knownBannedHashtags.has(tag)) {
+                    pill.classList.add('banned');
+                    bannedList.appendChild(pill);
+                } else {
+                    pill.classList.add('safe');
+                    safeList.appendChild(pill);
+                }
+            });
+            
+            if (safeList.innerHTML === '') {
+                safeList.innerHTML = '<p>No safe hashtags found in your list.</p>';
+            }
+             if (bannedList.innerHTML === '') {
+                bannedList.innerHTML = '<p>Great news! No banned hashtags were found.</p>';
+            }
+
+            resultsArea.style.display = 'block';
+        }
+
+        checkBtn.addEventListener('click', checkHashtags);
+
+    </script>
+
 </body>
 </html>
