@@ -167,6 +167,11 @@
             list-style-type: '✓ ';
             padding-left: 1.5rem;
         }
+        
+        .content-section a {
+            color: var(--grad-start);
+            font-weight: 500;
+        }
 
         @media (max-width: 600px) {
             .form-grid {
@@ -174,6 +179,15 @@
             }
             .tool-header h1 {
                 font-size: 2.2rem;
+            }
+            .bio-suggestion {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .copy-bio-btn {
+                margin-top: 1rem;
+                width: 100%;
+                text-align: center;
             }
         }
 
@@ -204,11 +218,11 @@
 
             <div class="form-grid">
                 <div class="form-group">
-                    <label for="niche-input">Your Niche or Industry</label>
+                    <label for="niche-input">Aapka Niche ya Industry</label>
                     <input type="text" id="niche-input" placeholder="e.g., Food Blogger, Fitness Coach">
                 </div>
                 <div class="form-group">
-                    <label for="tone-select">Choose a Tone</label>
+                    <label for="tone-select">Kaunsa Tone Chahiye?</label>
                     <select id="tone-select">
                         <option value="Professional">Professional</option>
                         <option value="Friendly" selected>Friendly</option>
@@ -222,31 +236,31 @@
             <button class="generate-btn" id="generate-btn">Generate Bio</button>
 
             <div id="results-area">
-                 <p style="text-align: center; opacity: 0.7;">Your AI-generated bios will appear here...</p>
+                 <p style="text-align: center; opacity: 0.7;">Aapke AI-generated bios yahan dikhenge...</p>
             </div>
         </div>
         
         <article class="content-section">
-            <h2>What is an Instagram Bio & Why It Matters</h2>
+            <h2>Instagram Bio Kya Hai aur Kyun Zaroori Hai?</h2>
             <p>
-                Your Instagram bio is the small section under your username where you can provide a brief description of yourself or your brand. It's one of the very first things a visitor sees on your profile. Think of it as your digital business card. A well-crafted bio can instantly communicate who you are, what you do, and why someone should follow you. It's a critical element for making a great first impression and converting visitors into followers.
+                Aapka Instagram bio aapke username ke neeche woh chota sa hissa hai jahan aap apne ya apne brand ke baare mein likh sakte hain. Yeh un sabse pehli cheezon mein se hai jo koi visitor aapke profile par dekhta hai. Isko apna digital business card samjhein. Ek accha bio fauran bata deta hai ki aap kaun hain, kya karte hain, aur koi aapko kyun follow kare. Yeh ek behtareen first impression banane aur visitors ko followers mein badalne ke liye bahut zaroori hai.
             </p>
 
-            <h3>Key Elements of a Perfect Instagram Bio</h3>
+            <h3>Ek Behtareen Instagram Bio ke Zaroori Hisse</h3>
             <ul>
-                <li><strong>Clarity:</strong> Clearly state what you offer or what your page is about. Avoid jargon.</li>
-                <li><strong>Personality:</strong> Inject your brand's personality. Are you professional and serious, or fun and witty? Our tool helps you with this by letting you choose a tone.</li>
-                <li><strong>Call-to-Action (CTA):</strong> Encourage visitors to take an action. This could be visiting your website, checking out your latest product, or signing up for a newsletter. Use emojis like 👇 to point to your link.</li>
-                <li><strong>Link in Bio:</strong> This is the only place on your Instagram profile where you can place a clickable link, so use it wisely! Link to your website, shop, latest blog post, or a Linktree-style page.</li>
+                <li><strong>Saaf aur Wazeh:</strong> Saaf saaf batayein ki aap kya offer karte hain ya aapka page kis baare mein hai. Mushkil alfaaz se bachein.</li>
+                <li><strong>Apni Personality Dikhayein:</strong> Apne brand ki personality show karein. Kya aap professional hain, ya mazaakiya? Humara tool tone chunne mein aapki madad karta hai.</li>
+                <li><strong>Call-to-Action (CTA):</strong> Visitors ko koi action lene ke liye kahein. Jaise, apni website visit karne, naya product dekhne, ya newsletter sign up karne ke liye. Aap apne link ki taraf ishara karne ke liye 👇 jaisi emojis istemal kar sakte hain.</li>
+                <li><strong>Link in Bio:</strong> Yeh aapke profile par wahid jagah hai jahan aap ek clickable link daal sakte hain, isliye ise samajhdari se istemal karein! Apni website, shop, ya latest blog post ka link dein.</li>
             </ul>
 
-            <h3>Tips for Using Our Bio Generator Effectively</h3>
-            <p>To get the best results from our AI Bio Generator, follow these simple tips:</p>
+            <h3>Humare Bio Generator ko Behtar Tareeke se Kaise Istemal Karein</h3>
+            <p>Humare AI Bio Generator se behtareen results haasil karne ke liye, in tips ko follow karein:</p>
             <ul>
-                <li><strong>Be Specific:</strong> Instead of just "Travel", try "Budget travel blogger exploring Pakistan". The more detail you provide, the better the AI can tailor the bio to your specific needs.</li>
-                <li><strong>Experiment with Tones:</strong> Don't be afraid to try different tones. A "Professional" tone might be great for a business, but a "Witty" one might work better for a personal brand or content creator.</li>
-                <li><strong>Mix and Match:</strong> The generator will provide multiple options. Feel free to take the best parts from different suggestions and combine them to create a bio that is uniquely yours.</li>
-                <li><strong>Add Your Link:</strong> Once you have a bio you love, don't forget to add your unique website or product link in your Instagram profile's "Website" field.</li>
+                <li><strong>Tafseel se Batayein:</strong> Sirf "Travel" likhne ke bajaye, "Budget travel blogger exploring Pakistan" likhein. Aap jitni zyada detail denge, AI utna hi behtar bio banayega.</li>
+                <li><strong>Alag Alag Tones Try Karein:</strong> Mukhtalif tones try karne se na darrein. Ek "Professional" tone business ke liye accha ho sakta hai, lekin ek "Witty" tone personal brand ke liye behtar kaam kar sakta hai.</li>
+                <li><strong>Mix and Match:</strong> Generator aapko kai options dega. Aap alag-alag suggestions se behtareen hisse lekar unhein mila kar ek unique bio bana sakte hain.</li>
+                <li><strong>Apna Link Add Karein:</strong> Jab aapko apni pasand ka bio mil jaye, to apne Instagram profile ke "Website" field mein apna link daalna na bhoolein.</li>
             </ul>
         </article>
     </main>
@@ -333,7 +347,19 @@
                 copyButton.className = 'copy-bio-btn';
                 copyButton.textContent = 'Copy';
                 copyButton.onclick = () => {
+                    // Use the Clipboard API for modern browsers
                     navigator.clipboard.writeText(bioText.textContent).then(() => {
+                        copyButton.textContent = 'Copied!';
+                        setTimeout(() => { copyButton.textContent = 'Copy'; }, 1500);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                        // Fallback for older browsers
+                        const tempTextArea = document.createElement('textarea');
+                        tempTextArea.value = bioText.textContent;
+                        document.body.appendChild(tempTextArea);
+                        tempTextArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tempTextArea);
                         copyButton.textContent = 'Copied!';
                         setTimeout(() => { copyButton.textContent = 'Copy'; }, 1500);
                     });
